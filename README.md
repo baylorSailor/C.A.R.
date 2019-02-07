@@ -3,20 +3,20 @@ Software Engineering 1 Group Project
 
 Tuesday 2/12 -- presentation of iteration 1 
  
- -project - analysis
+ 	-project - analysis
  
- -User Interface sketches
+ 	-User Interface sketches
  
- -domain model
+ 	-domain model
  
- -SSD
+ 	-SSD
  
- -operations
+ 	-operations
  
- -requirements
+ 	-requirements
  
- -use cases
+ 	-use cases
  
- -keep zip for iteration 1 on the website
+ 	-keep zip for iteration 1 on the website
  
- -7 min presentation 
+ 	-7 min presentation 
