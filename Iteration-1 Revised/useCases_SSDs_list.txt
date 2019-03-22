@@ -8,7 +8,7 @@ SSD list (*** means done)
 -select vehicle
 -select reservation***
 -Payment/Billing system
--Bill for damages
+-Bill for damages***
 -Purchase insurance policy
 -use personal insurance policy
 -vehicle pickup
