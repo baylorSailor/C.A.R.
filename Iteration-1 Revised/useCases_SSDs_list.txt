@@ -15,6 +15,6 @@ SSD list (*** means done)
 -return vehicle
 -buy vehicle
 -vehicle turnover
--manage personnel
--maintain payroll
--request help
+-manage personnel***
+-maintain payroll***
+-request help***
