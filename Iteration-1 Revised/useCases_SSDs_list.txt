@@ -6,7 +6,7 @@ SSD list (*** means done)
 -search vehicle ***
 -sort vehicle
 -select vehicle
--select reservation
+-select reservation***
 -Payment/Billing system
 -Bill for damages
 -Purchase insurance policy
