@@ -4,10 +4,10 @@ SSD list (*** means done)
 -login ***
 -view catalog ***
 -search vehicle ***
--sort vehicle
--select vehicle
+-sort vehicle ***
+-select vehicle ***
 -select reservation***
--Payment/Billing system
+-Payment/Billing system ***
 -Bill for damages***
 -Purchase insurance policy***
 -use personal insurance policy***
