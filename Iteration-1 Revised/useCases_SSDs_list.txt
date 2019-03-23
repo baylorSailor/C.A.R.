@@ -11,8 +11,8 @@ SSD list (*** means done)
 -Bill for damages***
 -Purchase insurance policy***
 -use personal insurance policy***
--vehicle pickup
--return vehicle
+-vehicle pickup***
+-return vehicle***
 -buy vehicle
 -vehicle turnover
 -manage personnel***
