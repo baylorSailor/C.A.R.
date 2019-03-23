@@ -13,8 +13,8 @@ SSD list (*** means done)
 -use personal insurance policy***
 -vehicle pickup***
 -return vehicle***
--buy vehicle
--vehicle turnover
+-buy vehicle ***
+-vehicle turnover ***
 -manage personnel***
 -maintain payroll***
 -request help***
