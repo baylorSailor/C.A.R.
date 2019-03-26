@@ -25,6 +25,11 @@ public class UIDemo extends JPanel {
         } catch(NullPointerException e) {
             //TODO add logger to catch this
         } finally {
+            listings = null;
+            account = null;
+            history = null;
+            accountDetails = null;
+            activeRentals = null;
             login = new Login();
         }
     }
