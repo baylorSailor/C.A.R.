@@ -31,7 +31,7 @@ public class AccountDetails extends JFrame {
         pnMainPanel.setLayout( gbMainPanel );
 
         pnAccountDetails = new JPanel();
-        pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "AccountDetails" ) );
+        pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "Account Details" ) );
         GridBagLayout gbAccountDetails = new GridBagLayout();
         GridBagConstraints gbcAccountDetails = new GridBagConstraints();
         pnAccountDetails.setLayout( gbAccountDetails );
