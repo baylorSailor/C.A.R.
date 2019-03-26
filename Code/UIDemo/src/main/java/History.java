@@ -35,9 +35,10 @@ public class History extends JFrame {
       GridBagConstraints gbcHistory = new GridBagConstraints();
       pnHistory.setLayout( gbHistory );
 
-      String [][]dataHTable = new String[][] { new String[] {"11", "21"},
-                                               new String[] {"12", "22"},
-                                               new String[] {"13", "23"} };
+//      String [][]dataHTable = new String[][] { new String[] {"11", "21"},
+//                                               new String[] {"12", "22"},
+//                                               new String[] {"13", "23"} };
+      String [][]dataHTable = new String[][] { new String[] {"No History Available", " "} };
       String []colsHTable = new String[] { "", "" };
       tbHTable = new JTable( dataHTable, colsHTable );
       tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
