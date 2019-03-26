@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-//import sun.jvm.hotspot.utilities.Assert;
-=======
-
-import sun.jvm.hotspot.utilities.Assert;
->>>>>>> 883c9ee568d6739806435297a446e86b6f312cda
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,9 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.server.UID;
 import java.util.Scanner;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class Login extends JFrame {
 
