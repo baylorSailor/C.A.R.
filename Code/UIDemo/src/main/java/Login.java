@@ -1,3 +1,4 @@
+
 import sun.jvm.hotspot.utilities.Assert;
 
 import javax.swing.JFrame;
@@ -23,7 +24,7 @@ public class Login extends JFrame {
    JLabel lbUser;
    JLabel lbPass;
    JTextField tfUser;
-   JTextField tfPass;
+   JPasswordField tfPass;
    JButton btLogin;
    JButton btCreateAcct;
 
@@ -76,7 +77,8 @@ public class Login extends JFrame {
       gbLoginPanel.setConstraints( lbPass, gbcLoginPanel );
       pnLoginPanel.add( lbPass );
 
-      tfPass = new JTextField( );
+      tfPass = new JPasswordField( );
+      tfPass.setEchoChar('*');
       gbcLoginPanel.gridx = 1;
       gbcLoginPanel.gridy = 2;
       gbcLoginPanel.gridwidth = 12;
