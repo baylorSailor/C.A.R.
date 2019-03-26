@@ -1,10 +1,7 @@
 import javax.swing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.server.UID;
 
 public class LocalListings extends JFrame {
 
@@ -182,7 +179,7 @@ public class LocalListings extends JFrame {
         btLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Save session & Sign user out
+                UIDemo.destroyPanes();
                 UIDemo.login.setVisible(true);
                 setVisible(false);
             }

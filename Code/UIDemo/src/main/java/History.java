@@ -151,7 +151,7 @@ public class History extends JFrame {
       btLogout.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            //TODO Save session & Sign user out
+            UIDemo.destroyPanes();
             setVisible(false);
             UIDemo.login.setVisible(true);
          }

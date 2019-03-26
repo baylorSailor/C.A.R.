@@ -1,23 +1,13 @@
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 
 public class ActiveRentals extends JFrame {
 
     JPanel pnMainPanel;
 
-    JPanel pnHistory;
+    JPanel pnActiveRentals;
     JTable tbHTable;
     JButton btSearch;
     JButton btHistory;
@@ -32,11 +22,11 @@ public class ActiveRentals extends JFrame {
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
         pnMainPanel.setLayout( gbMainPanel );
 
-        pnHistory = new JPanel();
-        pnHistory.setBorder( BorderFactory.createTitledBorder( "History" ) );
-        GridBagLayout gbHistory = new GridBagLayout();
-        GridBagConstraints gbcHistory = new GridBagConstraints();
-        pnHistory.setLayout( gbHistory );
+        pnActiveRentals = new JPanel();
+        pnActiveRentals.setBorder( BorderFactory.createTitledBorder( "History" ) );
+        GridBagLayout gbActiveRentals = new GridBagLayout();
+        GridBagConstraints gbcActiveRentals = new GridBagConstraints();
+        pnActiveRentals.setLayout( gbActiveRentals );
 
         String [][]dataHTable = new String[][] { new String[] {"11", "21"},
                 new String[] {"12", "22"},
@@ -46,17 +36,17 @@ public class ActiveRentals extends JFrame {
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
         tbHTable.setSelectionForeground( new Color( 0,0,0 ) );
         JScrollPane scpHTable = new JScrollPane( tbHTable );
-        gbcHistory.gridx = 0;
-        gbcHistory.gridy = 0;
-        gbcHistory.gridwidth = 15;
-        gbcHistory.gridheight = 10;
-        gbcHistory.fill = GridBagConstraints.BOTH;
-        gbcHistory.weightx = 0;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.CENTER;
-        gbHistory.setConstraints( scpHTable, gbcHistory );
-        pnHistory.add( scpHTable );
-        JScrollPane scpHistory = new JScrollPane( pnHistory );
+        gbcActiveRentals.gridx = 0;
+        gbcActiveRentals.gridy = 0;
+        gbcActiveRentals.gridwidth = 15;
+        gbcActiveRentals.gridheight = 10;
+        gbcActiveRentals.fill = GridBagConstraints.BOTH;
+        gbcActiveRentals.weightx = 0;
+        gbcActiveRentals.weighty = 0;
+        gbcActiveRentals.anchor = GridBagConstraints.CENTER;
+        gbActiveRentals.setConstraints( scpHTable, gbcActiveRentals );
+        pnActiveRentals.add( scpHTable );
+        JScrollPane scpActiveRentals = new JScrollPane( pnActiveRentals );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 10;
         gbcMainPanel.gridwidth = 19;
@@ -65,8 +55,8 @@ public class ActiveRentals extends JFrame {
         gbcMainPanel.weightx = 1;
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( scpHistory, gbcMainPanel );
-        pnMainPanel.add( scpHistory );
+        gbMainPanel.setConstraints( scpActiveRentals, gbcMainPanel );
+        pnMainPanel.add( scpActiveRentals );
 
         btSearch = new JButton( "Search"  );
         //btSearch.setActionCommand( "search" );
@@ -151,7 +141,7 @@ public class ActiveRentals extends JFrame {
         btLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Save session & Sign user out
+                UIDemo.destroyPanes();
                 UIDemo.login.setVisible(true);
                 setVisible(false);
             }

@@ -1,22 +1,13 @@
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class AccountDetails extends JFrame {
 
     JPanel pnMainPanel;
 
-    JPanel pnHistory;
+    JPanel pnAccountDetails;
     JLabel lbName;
     JLabel lbUsername;
     JLabel lbEmail;
@@ -35,72 +26,73 @@ public class AccountDetails extends JFrame {
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
         pnMainPanel.setLayout( gbMainPanel );
 
-        pnHistory = new JPanel();
-        pnHistory.setBorder( BorderFactory.createTitledBorder( "AccountDetails" ) );
-        GridBagLayout gbHistory = new GridBagLayout();
-        GridBagConstraints gbcHistory = new GridBagConstraints();
-        pnHistory.setLayout( gbHistory );
+        pnAccountDetails = new JPanel();
+        pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "AccountDetails" ) );
+        GridBagLayout gbAccountDetails = new GridBagLayout();
+        GridBagConstraints gbcAccountDetails = new GridBagConstraints();
+        pnAccountDetails.setLayout( gbAccountDetails );
 
         lbName = new JLabel( "Name: " + UIDemo.user.getName());
-        gbcHistory.gridx = 2;
-        gbcHistory.gridy = 7;
-        gbcHistory.gridwidth = 1;
-        gbcHistory.gridheight = 1;
-        gbcHistory.fill = GridBagConstraints.HORIZONTAL;
-        gbcHistory.weightx = 1;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.NORTH;
-        gbHistory.setConstraints( lbName, gbcHistory );
-        pnHistory.add( lbName );
+        gbcAccountDetails.gridx = 2;
+        gbcAccountDetails.gridy = 7;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbName, gbcAccountDetails );
+        pnAccountDetails.add( lbName );
 
         lbUsername = new JLabel( "Username: " + UIDemo.user.getUsername());
-        gbcHistory.gridx = 2;
-        gbcHistory.gridy = 9;
-        gbcHistory.gridwidth = 1;
-        gbcHistory.gridheight = 1;
-        gbcHistory.fill = GridBagConstraints.HORIZONTAL;
-        gbcHistory.weightx = 1;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.NORTH;
-        gbHistory.setConstraints( lbUsername, gbcHistory );
-        pnHistory.add( lbUsername );
+        gbcAccountDetails.gridx = 2;
+        gbcAccountDetails.gridy = 9;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbUsername, gbcAccountDetails );
+        pnAccountDetails.add( lbUsername );
 
         lbEmail = new JLabel( "Email: " + UIDemo.user.getEmail());
-        gbcHistory.gridx = 2;
-        gbcHistory.gridy = 11;
-        gbcHistory.gridwidth = 1;
-        gbcHistory.gridheight = 1;
-        gbcHistory.fill = GridBagConstraints.HORIZONTAL;
-        gbcHistory.weightx = 1;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.NORTH;
-        gbHistory.setConstraints( lbEmail, gbcHistory );
-        pnHistory.add( lbEmail );
+        gbcAccountDetails.gridx = 2;
+        gbcAccountDetails.gridy = 11;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbEmail, gbcAccountDetails );
+        pnAccountDetails.add( lbEmail );
 
         lbCreditCardType = new JLabel( "Credit Card Type: " + UIDemo.user.getCreditType());
-        gbcHistory.gridx = 2;
-        gbcHistory.gridy = 13;
-        gbcHistory.gridwidth = 1;
-        gbcHistory.gridheight = 1;
-        gbcHistory.fill = GridBagConstraints.HORIZONTAL;
-        gbcHistory.weightx = 1;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.NORTH;
-        gbHistory.setConstraints( lbCreditCardType, gbcHistory );
-        pnHistory.add( lbCreditCardType );
+        gbcAccountDetails.gridx = 2;
+        gbcAccountDetails.gridy = 13;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
+        pnAccountDetails.add( lbCreditCardType );
 
         lbLabel8 = new JLabel( "Picture"  ); // TODO Add Picture
-        gbcHistory.gridx = 7;
-        gbcHistory.gridy = 3;
-        gbcHistory.gridwidth = 1;
-        gbcHistory.gridheight = 1;
-        gbcHistory.fill = GridBagConstraints.HORIZONTAL;
-        gbcHistory.weightx = 1;
-        gbcHistory.weighty = 0;
-        gbcHistory.anchor = GridBagConstraints.CENTER;
-        gbHistory.setConstraints( lbLabel8, gbcHistory );
-        pnHistory.add( lbLabel8 );
-        JScrollPane scpHistory = new JScrollPane( pnHistory );
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 3;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.CENTER;
+        gbAccountDetails.setConstraints( lbLabel8, gbcAccountDetails );
+        pnAccountDetails.add( lbLabel8 );
+        
+        JScrollPane scpHistory = new JScrollPane( pnAccountDetails );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 10;
         gbcMainPanel.gridwidth = 19;
@@ -197,7 +189,7 @@ public class AccountDetails extends JFrame {
         btLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Save session & Sign user out
+                UIDemo.destroyPanes();
                 UIDemo.login.setVisible(true);
                 setVisible(false);
             }

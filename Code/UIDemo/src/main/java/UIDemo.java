@@ -5,6 +5,34 @@ import java.awt.event.ActionListener;
 
 public class UIDemo extends JPanel {
 
+    public static Login login = null;
+    public static LocalListings listings = null;
+    public static CreateAccount account = null;
+    public static History history = null;
+    public static AccountDetails accountDetails = null;
+    public static ActiveRentals activeRentals = null;
+    public static User user = null;
+    //TODO Add Vehicle Class
+
+    static void destroyPanes() {
+        try {
+            login.dispose();
+            listings.dispose();
+            account.dispose();
+            history.dispose();
+            accountDetails.dispose();
+            activeRentals.dispose();
+        } catch(NullPointerException e) {
+            //TODO add logger to catch this
+        } finally {
+            login = new Login();
+        }
+    }
+
+    public static void main(String[] args) {
+        login = new Login();
+    }
+
     public static void createAndShowGUI() {
         // Creates a new JFrame object with the given title
         JFrame frame = new JFrame("C.A.R.");
@@ -40,18 +68,5 @@ public class UIDemo extends JPanel {
         frame.setLocationRelativeTo(null);
         // Sets the visibility to true
         frame.setVisible(true);
-    }
-
-    public static Login login = null;
-    public static LocalListings listings = null;
-    public static CreateAccount account = null;
-    public static History history = null;
-    public static AccountDetails accountDetails = null;
-    public static ActiveRentals activeRentals = null;
-    public static User user = null;
-    //TODO Add Vehicle Class
-
-    public static void main(String[] args) {
-        login = new Login();
     }
 }

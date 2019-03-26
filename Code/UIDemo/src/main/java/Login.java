@@ -1,11 +1,8 @@
 import javax.swing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.rmi.server.UID;
 import java.util.Scanner;
 
 public class Login extends JFrame {
