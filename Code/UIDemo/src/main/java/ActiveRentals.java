@@ -128,6 +128,9 @@ public class ActiveRentals extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO Implement this
+                System.out.println(UIDemo.user.getName());
+                System.out.println(UIDemo.user.getUsername());
+                System.out.println(UIDemo.user.getEmail());
             }
         });
 
