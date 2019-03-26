@@ -4,6 +4,7 @@
 # User-specific stuff
 **/.idea/*
 **/target/*
+**/META-INF/*
 .idea/workspace.xml
 .idea/**/workspace.xml
 .idea/**/tasks.xml
