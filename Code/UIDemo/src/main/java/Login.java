@@ -1,3 +1,6 @@
+
+import sun.jvm.hotspot.utilities.Assert;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -8,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.*;
 import java.rmi.server.UID;
+import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -20,7 +24,7 @@ public class Login extends JFrame {
    JLabel lbUser;
    JLabel lbPass;
    JTextField tfUser;
-   JTextField tfPass;
+   JPasswordField tfPass;
    JButton btLogin;
    JButton btCreateAcct;
 
@@ -73,7 +77,8 @@ public class Login extends JFrame {
       gbLoginPanel.setConstraints( lbPass, gbcLoginPanel );
       pnLoginPanel.add( lbPass );
 
-      tfPass = new JTextField( );
+      tfPass = new JPasswordField( );
+      tfPass.setEchoChar('*');
       gbcLoginPanel.gridx = 1;
       gbcLoginPanel.gridy = 2;
       gbcLoginPanel.gridwidth = 12;
@@ -102,7 +107,27 @@ public class Login extends JFrame {
          public void actionPerformed(ActionEvent e) {
             //TODO Verify login
             setVisible(false);
-            UIDemo.listings = new LocalListings();
+            boolean found = false;
+            Scanner sc = new Scanner("accounts.csv");
+            String line;
+            String[] split;
+
+            while(sc.hasNextLine() && !found) {
+                line = sc.nextLine();
+                split = line.split(line, ',');
+
+                if(tfUser.getText().equals(split[2])) {
+                    Assert.that(tfPass.getText().equals(split[4]), "Username or Password Failed");
+                    UIDemo.user = new User(split[0], split[1], split[2]);
+                    found = true;
+                }
+            }
+
+            if(found) {
+                UIDemo.listings = new LocalListings();
+            } else {
+                setVisible(true);
+            }
          }
       });
 
