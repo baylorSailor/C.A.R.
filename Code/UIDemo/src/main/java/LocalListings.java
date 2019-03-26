@@ -91,7 +91,7 @@ public class LocalListings extends JFrame {
         btSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Implement
+                //refresh button
             }
         });
 
@@ -158,7 +158,7 @@ public class LocalListings extends JFrame {
         btAccountDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Implement this
+                //TODO Implement this (Account Details)
             }
         });
 

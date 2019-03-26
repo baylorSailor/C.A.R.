@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -34,6 +35,8 @@ public class CreateAccount extends JFrame {
    JRadioButton rbMasterCard;
    JLabel lbCreditCardNumber;
    JTextField tfCreditCardNumber;
+   JLabel lbPassword;
+   JTextField tfPassword;
 
    public CreateAccount() {
       super( "Create Account" );
@@ -61,6 +64,7 @@ public class CreateAccount extends JFrame {
       gbCreateAcct.setConstraints( lbFirstName, gbcCreateAcct );
       pnCreateAcct.add( lbFirstName );
 
+
       tfFirstName = new JTextField( );
       gbcCreateAcct.gridx = 1;
       gbcCreateAcct.gridy = 0;
@@ -72,6 +76,7 @@ public class CreateAccount extends JFrame {
       gbcCreateAcct.anchor = GridBagConstraints.CENTER;
       gbCreateAcct.setConstraints( tfFirstName, gbcCreateAcct );
       pnCreateAcct.add( tfFirstName );
+      System.out.println(tfFirstName.getText());
 
       lbLastName = new JLabel( "Lastname:"  );
       gbcCreateAcct.gridx = 0;
@@ -96,26 +101,6 @@ public class CreateAccount extends JFrame {
       gbcCreateAcct.anchor = GridBagConstraints.CENTER;
       gbCreateAcct.setConstraints( tfLastName, gbcCreateAcct );
       pnCreateAcct.add( tfLastName );
-
-      btCreateAcct = new JButton( "Create Account"  );
-      //btCreateAcct.setActionCommand( "createAccount" );
-      gbcCreateAcct.gridx = 3;
-      gbcCreateAcct.gridy = 7;
-      gbcCreateAcct.gridwidth = 5;
-      gbcCreateAcct.gridheight = 2;
-      gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
-      gbcCreateAcct.weightx = 0;
-      gbcCreateAcct.weighty = 0;
-      gbcCreateAcct.anchor = GridBagConstraints.SOUTH;
-      gbCreateAcct.setConstraints( btCreateAcct, gbcCreateAcct );
-      pnCreateAcct.add( btCreateAcct );
-      btCreateAcct.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            //TODO Add User to Database
-            setVisible(false);
-         }
-      });
 
       lbUserName = new JLabel( "Username:"  );
       gbcCreateAcct.gridx = 0;
@@ -238,10 +223,76 @@ public class CreateAccount extends JFrame {
       gbCreateAcct.setConstraints( tfCreditCardNumber, gbcCreateAcct );
       pnCreateAcct.add( tfCreditCardNumber );
 
+       lbPassword = new JLabel( "Password:"  );
+       gbcCreateAcct.gridx = 0;
+       gbcCreateAcct.gridy = 7;
+       gbcCreateAcct.gridwidth = 1;
+       gbcCreateAcct.gridheight = 1;
+       gbcCreateAcct.fill = GridBagConstraints.NONE;
+       gbcCreateAcct.weightx = 0;
+       gbcCreateAcct.weighty = 0;
+       gbcCreateAcct.anchor = GridBagConstraints.CENTER;
+       gbCreateAcct.setConstraints( lbPassword, gbcCreateAcct );
+       pnCreateAcct.add( lbPassword );
+
+       tfPassword = new JTextField( );
+       gbcCreateAcct.gridx = 1;
+       gbcCreateAcct.gridy = 7;
+       gbcCreateAcct.gridwidth = 12;
+       gbcCreateAcct.gridheight = 1;
+       gbcCreateAcct.fill = GridBagConstraints.HORIZONTAL;
+       gbcCreateAcct.weightx = 1;
+       gbcCreateAcct.weighty = 0;
+       gbcCreateAcct.anchor = GridBagConstraints.CENTER;
+       gbCreateAcct.setConstraints( tfPassword, gbcCreateAcct );
+       pnCreateAcct.add( tfPassword );
+
+      btCreateAcct = new JButton( "Create Account"  );
+      //btCreateAcct.setActionCommand( "createAccount" );
+      gbcCreateAcct.gridx = 3;
+      gbcCreateAcct.gridy = 8;
+      gbcCreateAcct.gridwidth = 5;
+      gbcCreateAcct.gridheight = 2;
+      gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
+      gbcCreateAcct.weightx = 0;
+      gbcCreateAcct.weighty = 0;
+      gbcCreateAcct.anchor = GridBagConstraints.SOUTH;
+      gbCreateAcct.setConstraints( btCreateAcct, gbcCreateAcct );
+      pnCreateAcct.add( btCreateAcct );
+      btCreateAcct.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e){
+            //TODO Add User to Database
+            try {
+               BufferedWriter bw;
+               File file = new File("Users.csv");
+               if(file.exists()){
+                   bw = new BufferedWriter(new FileWriter("Users.csv", true));
+                   bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
+                           + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
+                           + tfCreditCardNumber.getText() + "\n");
+                   bw.close();
+               }
+               else{
+                   bw = new BufferedWriter(new FileWriter("Users.csv"));
+                   bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
+                           + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
+                           + tfCreditCardNumber.getText() + "\n");
+                   bw.close();
+               }
+            } catch (IOException ex){
+               ex.printStackTrace();
+            }
+
+            setVisible(false);
+         }
+      });
+
       //setDefaultCloseOperation( EXIT_ON_CLOSE );
 
       setContentPane( pnMainPanel );
       pack();
       setVisible( true );
    }
-} 
+}
+
