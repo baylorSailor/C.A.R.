@@ -41,7 +41,7 @@ public class AccountDetails extends JFrame {
         gbcAccountDetails.gridy = 9;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
-        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 0;
         gbcAccountDetails.anchor = GridBagConstraints.NORTH;
@@ -53,7 +53,7 @@ public class AccountDetails extends JFrame {
         gbcAccountDetails.gridy = 11;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
-        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 0;
         gbcAccountDetails.anchor = GridBagConstraints.NORTH;
@@ -65,7 +65,7 @@ public class AccountDetails extends JFrame {
         gbcAccountDetails.gridy = 13;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
-        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 0;
         gbcAccountDetails.anchor = GridBagConstraints.NORTH;
@@ -77,7 +77,7 @@ public class AccountDetails extends JFrame {
         gbcAccountDetails.gridy = 15;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
-        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 0;
         gbcAccountDetails.anchor = GridBagConstraints.NORTH;
