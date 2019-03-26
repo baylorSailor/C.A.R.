@@ -1,8 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class CreateAccount extends JFrame {
@@ -16,6 +17,7 @@ public class CreateAccount extends JFrame {
    JLabel lbLastName;
    JTextField tfLastName;
    JButton btCreateAcct;
+   JButton btAddImage;
    JLabel lbUserName;
    JTextField tfUserName;
    JLabel lbEmail;
@@ -27,6 +29,8 @@ public class CreateAccount extends JFrame {
    JTextField tfCreditCardNumber;
    JLabel lbPassword;
    JTextField tfPassword;
+
+   BufferedImage picture = null;
 
    public CreateAccount() {
       super( "Create Account" );
@@ -237,10 +241,29 @@ public class CreateAccount extends JFrame {
        gbCreateAcct.setConstraints( tfPassword, gbcCreateAcct );
        pnCreateAcct.add( tfPassword );
 
+       btAddImage = new JButton( "Upload Image"  );
+       //btCreateAcct.setActionCommand( "createAccount" );
+       gbcCreateAcct.gridx = 3;
+       gbcCreateAcct.gridy = 8;
+       gbcCreateAcct.gridwidth = 5;
+       gbcCreateAcct.gridheight = 2;
+       gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
+       gbcCreateAcct.weightx = 0;
+       gbcCreateAcct.weighty = 0;
+       gbcCreateAcct.anchor = GridBagConstraints.SOUTH;
+       gbCreateAcct.setConstraints( btAddImage, gbcCreateAcct );
+       pnCreateAcct.add( btAddImage );
+       btAddImage.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               AddImage(e);
+           }
+       });
+
       btCreateAcct = new JButton( "Create Account"  );
       //btCreateAcct.setActionCommand( "createAccount" );
       gbcCreateAcct.gridx = 3;
-      gbcCreateAcct.gridy = 8;
+      gbcCreateAcct.gridy = 10;
       gbcCreateAcct.gridwidth = 5;
       gbcCreateAcct.gridheight = 2;
       gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
@@ -253,6 +276,7 @@ public class CreateAccount extends JFrame {
       btCreateAcct.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e){
+
             try {
                String creditType;
                BufferedWriter bw;
@@ -270,6 +294,8 @@ public class CreateAccount extends JFrame {
                            + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
                            + creditType + "," + tfCreditCardNumber.getText() +  "\n");
                    bw.close();
+                   /// TODO Ensure that a photo is added, then save it
+                   SaveImage();
                }
                else{
                    bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv"));
@@ -279,6 +305,7 @@ public class CreateAccount extends JFrame {
                    bw.close();
                }
             } catch (IOException ex){
+                // TODO add logger to catch this
                ex.printStackTrace();
             }
 
@@ -286,11 +313,33 @@ public class CreateAccount extends JFrame {
          }
       });
 
-      //setDefaultCloseOperation( EXIT_ON_CLOSE );
-
       setContentPane( pnMainPanel );
       pack();
       setVisible( true );
    }
+
+    private void AddImage(java.awt.event.ActionEvent evt) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File file = chooser.getSelectedFile();
+        try {
+            picture = ImageIO.read(new File(file.getAbsolutePath()));
+        } catch (IOException e) {
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample.png"));
+            } catch(IOException ee) {
+                //TODO add logger to catch this
+            }
+        }
+    }
+
+    private void SaveImage() {
+        File outfile = new File("./src/main/resources/" + tfUserName.getText() + ".png");
+        try {
+            ImageIO.write(picture, "png", new File(outfile.getPath()));
+        } catch(IOException ee) {
+            //TODO add logger to catch this
+        }
+    }
 }
 
