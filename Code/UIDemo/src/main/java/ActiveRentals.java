@@ -23,14 +23,12 @@ public class ActiveRentals extends JFrame {
         pnMainPanel.setLayout( gbMainPanel );
 
         pnActiveRentals = new JPanel();
-        pnActiveRentals.setBorder( BorderFactory.createTitledBorder( "History" ) );
+        pnActiveRentals.setBorder( BorderFactory.createTitledBorder( "Active Rentals" ) );
         GridBagLayout gbActiveRentals = new GridBagLayout();
         GridBagConstraints gbcActiveRentals = new GridBagConstraints();
         pnActiveRentals.setLayout( gbActiveRentals );
 
-        String [][]dataHTable = new String[][] { new String[] {"11", "21"},
-                new String[] {"12", "22"},
-                new String[] {"13", "23"} };
+        String [][]dataHTable = new String[][] { new String[] {"No Active Rentals", " "} };
         String []colsHTable = new String[] { "", "" };
         tbHTable = new JTable( dataHTable, colsHTable );
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
