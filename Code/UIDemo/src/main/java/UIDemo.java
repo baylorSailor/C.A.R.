@@ -46,14 +46,14 @@ public class UIDemo extends JPanel {
     public static LocalListings listings = null;
     public static CreateAccount account = null;
     public static History history = null;
-    //public static AccountDetails accountDetails = null;
+    public static AccountDetails accountDetails = null;
     public static ActiveRentals activeRentals = null;
     public static User user = null;
 
     public static void main(String[] args) {
-        login = new Login();
+        //login = new Login();
         //listings = new LocalListings();
         //history = new History();
-        //accountDetails = new AccountDetails();
+        accountDetails = new AccountDetails();
     }
 }
