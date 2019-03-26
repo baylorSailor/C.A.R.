@@ -91,6 +91,7 @@ public class Login extends JFrame {
       gbcLoginPanel.anchor = GridBagConstraints.SOUTH;
       gbLoginPanel.setConstraints( btLogin, gbcLoginPanel );
       pnLoginPanel.add( btLogin );
+      getRootPane().setDefaultButton(btLogin);
       btLogin.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {

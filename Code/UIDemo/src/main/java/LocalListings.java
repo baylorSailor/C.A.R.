@@ -62,6 +62,8 @@ public class LocalListings extends JFrame {
 
         String user = UIDemo.login.tfUser.getText();
         lbLoggedInAs = new JLabel( "User: " + user );
+        Font f = lbLoggedInAs.getFont();
+        lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 1;
@@ -85,6 +87,7 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btSearch, gbcMainPanel );
         pnMainPanel.add( btSearch );
+        getRootPane().setDefaultButton(btSearch);
         btSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

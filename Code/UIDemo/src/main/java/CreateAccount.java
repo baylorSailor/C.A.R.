@@ -249,6 +249,7 @@ public class CreateAccount extends JFrame {
       gbcCreateAcct.anchor = GridBagConstraints.SOUTH;
       gbCreateAcct.setConstraints( btCreateAcct, gbcCreateAcct );
       pnCreateAcct.add( btCreateAcct );
+      getRootPane().setDefaultButton(btCreateAcct);
       btCreateAcct.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e){
