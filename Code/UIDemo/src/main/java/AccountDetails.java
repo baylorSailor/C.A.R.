@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class AccountDetails extends JFrame {
 
@@ -12,7 +16,7 @@ public class AccountDetails extends JFrame {
     JLabel lbUsername;
     JLabel lbEmail;
     JLabel lbCreditCardType;
-    JLabel lbLabel8;
+    JLabel lbPicture;
     JButton btSearch;
     JButton btHistory;
     JButton btActiveRentals;
@@ -33,8 +37,8 @@ public class AccountDetails extends JFrame {
         pnAccountDetails.setLayout( gbAccountDetails );
 
         lbName = new JLabel( "Name: " + UIDemo.user.getName());
-        gbcAccountDetails.gridx = 2;
-        gbcAccountDetails.gridy = 7;
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 9;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
@@ -45,8 +49,8 @@ public class AccountDetails extends JFrame {
         pnAccountDetails.add( lbName );
 
         lbUsername = new JLabel( "Username: " + UIDemo.user.getUsername());
-        gbcAccountDetails.gridx = 2;
-        gbcAccountDetails.gridy = 9;
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 11;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
@@ -57,8 +61,8 @@ public class AccountDetails extends JFrame {
         pnAccountDetails.add( lbUsername );
 
         lbEmail = new JLabel( "Email: " + UIDemo.user.getEmail());
-        gbcAccountDetails.gridx = 2;
-        gbcAccountDetails.gridy = 11;
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 13;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
@@ -69,8 +73,8 @@ public class AccountDetails extends JFrame {
         pnAccountDetails.add( lbEmail );
 
         lbCreditCardType = new JLabel( "Credit Card Type: " + UIDemo.user.getCreditType());
-        gbcAccountDetails.gridx = 2;
-        gbcAccountDetails.gridy = 13;
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 15;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
@@ -80,19 +84,34 @@ public class AccountDetails extends JFrame {
         gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
         pnAccountDetails.add( lbCreditCardType );
 
-        lbLabel8 = new JLabel( "Picture"  ); // TODO Add Picture
+        BufferedImage picture = null;
+        try {
+            picture = ImageIO.read(new File("./src/main/resources/" + UIDemo.user.getUsername() + ".png"));
+
+        } catch(IOException e) {
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample.png"));
+            } catch(IOException ee) {
+                //TODO add logger to catch this
+            }
+
+        } finally {
+            lbPicture = new JLabel(new ImageIcon(picture));
+            add(lbPicture);
+        }
+
         gbcAccountDetails.gridx = 7;
-        gbcAccountDetails.gridy = 3;
+        gbcAccountDetails.gridy = 7;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 0;
         gbcAccountDetails.anchor = GridBagConstraints.CENTER;
-        gbAccountDetails.setConstraints( lbLabel8, gbcAccountDetails );
-        pnAccountDetails.add( lbLabel8 );
+        gbAccountDetails.setConstraints( lbPicture, gbcAccountDetails );
+        pnAccountDetails.add( lbPicture );
         
-        JScrollPane scpHistory = new JScrollPane( pnAccountDetails );
+        JScrollPane scpAccountDetails = new JScrollPane( pnAccountDetails );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 10;
         gbcMainPanel.gridwidth = 19;
@@ -101,8 +120,8 @@ public class AccountDetails extends JFrame {
         gbcMainPanel.weightx = 1;
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( scpHistory, gbcMainPanel );
-        pnMainPanel.add( scpHistory );
+        gbMainPanel.setConstraints( scpAccountDetails, gbcMainPanel );
+        pnMainPanel.add( scpAccountDetails );
 
         btSearch = new JButton( "Search"  );
         gbcMainPanel.gridx = 8;
@@ -151,7 +170,7 @@ public class AccountDetails extends JFrame {
         });
 
         btActiveRentals = new JButton( "Active Rentals"  );
-        btActiveRentals.setActionCommand( "History" );
+        //btActiveRentals.setActionCommand( "Active Rentals" );
         gbcMainPanel.gridx = 14;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
