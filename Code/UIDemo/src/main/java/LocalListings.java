@@ -1,14 +1,20 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 public class LocalListings extends JFrame {
-
+    //TODO Fix layout of buttons in layout
     JPanel pnMainPanel;
 
     JPanel pnSearchResults;
-    JButton btSearch;
+    JButton btRefresh;
     JButton btHistory;
     JButton btActiveRentals;
     JButton btAccountDetails;
@@ -24,6 +30,7 @@ public class LocalListings extends JFrame {
     JLabel lbMPG;
     JLabel lbInterior;
     JLabel lbExterior;
+    JLabel lbPicture;
     JComboBox cmbYear;
     JComboBox cmbMake;
     JComboBox cmbModel;
@@ -59,6 +66,47 @@ public class LocalListings extends JFrame {
         gbMainPanel.setConstraints( scpSearchResults, gbcMainPanel );
         pnMainPanel.add( scpSearchResults );
 
+        JLabel test = new JLabel( "<html>Make: Dodge<br/>Model: Avenger<br/>Year: 2000<br/>Type: Sedan<br/>" +
+                "Transmission: Automatic 6-spd"  +
+                "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
+                "<br/>Miles: 88,278<br/>Avg MPG: 24<br/>Interior: Black<br/>Exterior: Black</html>" );
+        gbcSearchResults.gridx = 0;
+        gbcSearchResults.gridy = 5;
+        gbcSearchResults.gridwidth = 1;
+        gbcSearchResults.gridheight = 1;
+        gbcSearchResults.fill = GridBagConstraints.NONE;
+        test.setHorizontalAlignment(SwingConstants.LEFT);
+        gbcSearchResults.weightx = 0;
+        gbcSearchResults.weighty = 0;
+        gbcSearchResults.anchor = GridBagConstraints.WEST;
+        gbMainPanel.setConstraints( test, gbcSearchResults );
+        pnSearchResults.add( test );
+
+        BufferedImage picture = null;
+        try {
+            picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+
+        } catch(IOException e) {
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+            } catch(IOException ee) {
+                //TODO add logger to catch this
+            }
+
+        } finally {
+            lbPicture = new JLabel(new ImageIcon(picture));
+            gbcSearchResults.gridx = 13;
+            gbcSearchResults.gridy = 5;
+            gbcSearchResults.gridwidth = 1;
+            gbcSearchResults.gridheight = 1;
+            gbcSearchResults.fill = GridBagConstraints.NONE;
+            test.setHorizontalAlignment(SwingConstants.RIGHT);
+            gbcSearchResults.weightx = 0;
+            gbcSearchResults.weighty = 0;
+            gbcSearchResults.anchor = GridBagConstraints.EAST;
+            gbMainPanel.setConstraints( lbPicture, gbcSearchResults );
+            pnSearchResults.add(lbPicture);
+        }
 
         String user = UIDemo.login.tfUser.getText();
         lbLoggedInAs = new JLabel( "User: " + user );
@@ -75,20 +123,20 @@ public class LocalListings extends JFrame {
         gbMainPanel.setConstraints( lbLoggedInAs, gbcMainPanel );
         pnMainPanel.add( lbLoggedInAs );
 
-        btSearch = new JButton( "Refresh"  );
+        btRefresh = new JButton( "Refresh"  );
         //btSearch.setActionCommand( "search" );
         gbcMainPanel.gridx = 8;
         gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 4;
+        gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.NONE;
         gbcMainPanel.weightx = 0;
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btSearch, gbcMainPanel );
-        pnMainPanel.add( btSearch );
-        getRootPane().setDefaultButton(btSearch);
-        btSearch.addActionListener(new ActionListener() {
+        gbMainPanel.setConstraints( btRefresh, gbcMainPanel );
+        pnMainPanel.add( btRefresh );
+        getRootPane().setDefaultButton(btRefresh);
+        btRefresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO refresh button
@@ -97,7 +145,7 @@ public class LocalListings extends JFrame {
 
         btHistory = new JButton( "History"  );
         //btHistory.setActionCommand( "history" );
-        gbcMainPanel.gridx = 12;
+        gbcMainPanel.gridx = 10;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -121,7 +169,7 @@ public class LocalListings extends JFrame {
 
         btActiveRentals = new JButton( "Active Rentals"  );
         //btActiveRentals.setActionCommand( "active" );
-        gbcMainPanel.gridx = 14;
+        gbcMainPanel.gridx = 12;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -145,7 +193,7 @@ public class LocalListings extends JFrame {
 
         btAccountDetails = new JButton( "Account Details"  );
         //btAccountDetails.setActionCommand( "account" );
-        gbcMainPanel.gridx = 16;
+        gbcMainPanel.gridx = 14;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -169,7 +217,7 @@ public class LocalListings extends JFrame {
 
         btLogout = new JButton( "Logout"  );
         //btAccountDetails.setActionCommand( "account" );
-        gbcMainPanel.gridx = 18;
+        gbcMainPanel.gridx = 16;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -189,14 +237,18 @@ public class LocalListings extends JFrame {
         });
 
         lbFilters = new JLabel( "Search Filters"  );
+        f = lbFilters.getFont();
+        Map attributes = f.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        lbFilters.setFont(f.deriveFont(attributes));
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 10;
-        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.BOTH;
+        gbcMainPanel.fill = GridBagConstraints.BOTH; //Vertical for Centering
         gbcMainPanel.weightx = 1;
         gbcMainPanel.weighty = 1;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( lbFilters, gbcMainPanel );
         pnMainPanel.add( lbFilters );
 
@@ -320,7 +372,7 @@ public class LocalListings extends JFrame {
         gbMainPanel.setConstraints( lbTrans, gbcMainPanel );
         pnMainPanel.add( lbTrans );
 
-        String []dataTrans = { "Sedan", "SUV", "Coupe" };
+        String []dataTrans = { "Automatic 6-spd", "Automatic 5-spd", "Manual 6-spd" };
         cmbTrans = new JComboBox( dataTrans );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 16;
