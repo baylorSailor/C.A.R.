@@ -1,5 +1,6 @@
 *.DS_Store
 *.vpp.bak*
+^target$
 
 # User-specific stuff
 .idea/**/workspace.xml
