@@ -38,7 +38,7 @@ public class AccountDetails extends JFrame {
         GridBagConstraints gbcHistory = new GridBagConstraints();
         pnHistory.setLayout( gbHistory );
 
-        lbName = new JLabel( "Name:" );
+        lbName = new JLabel( "Name: " + UIDemo.user.getName());
         gbcHistory.gridx = 2;
         gbcHistory.gridy = 7;
         gbcHistory.gridwidth = 1;
@@ -50,7 +50,7 @@ public class AccountDetails extends JFrame {
         gbHistory.setConstraints( lbName, gbcHistory );
         pnHistory.add( lbName );
 
-        lbUsername = new JLabel( "Username:"  );
+        lbUsername = new JLabel( "Username: " + UIDemo.user.getUsername());
         gbcHistory.gridx = 2;
         gbcHistory.gridy = 9;
         gbcHistory.gridwidth = 1;
@@ -62,7 +62,7 @@ public class AccountDetails extends JFrame {
         gbHistory.setConstraints( lbUsername, gbcHistory );
         pnHistory.add( lbUsername );
 
-        lbEmail = new JLabel( "Email:"  );
+        lbEmail = new JLabel( "Email: " + UIDemo.user.getEmail());
         gbcHistory.gridx = 2;
         gbcHistory.gridy = 11;
         gbcHistory.gridwidth = 1;

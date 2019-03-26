@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.*;
 
 public class CreateAccount extends JFrame {
@@ -255,20 +257,28 @@ public class CreateAccount extends JFrame {
          public void actionPerformed(ActionEvent e){
             //TODO Add User to Database
             try {
+               String creditType;
                BufferedWriter bw;
-               File file = new File("Users.csv");
+               File file = new File("./src/main/resources/Users.csv");
+
+               if(rbVisa.isSelected()) {
+                  creditType = "Visa";
+               } else {
+                  creditType = "MasterCard";
+               }
+
                if(file.exists()){
-                   bw = new BufferedWriter(new FileWriter("Users.csv", true));
+                   bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv", true));
                    bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
                            + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + tfCreditCardNumber.getText() + "\n");
+                           + tfCreditCardNumber.getText() + "," + creditType + "\n");
                    bw.close();
                }
                else{
-                   bw = new BufferedWriter(new FileWriter("Users.csv"));
+                   bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv"));
                    bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
                            + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + tfCreditCardNumber.getText() + "\n");
+                           + tfCreditCardNumber.getText() + "," + creditType + "\n");
                    bw.close();
                }
             } catch (IOException ex){

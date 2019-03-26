@@ -1,5 +1,3 @@
-import sun.jvm.hotspot.utilities.Assert;
-
 import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -103,7 +101,7 @@ public class Login extends JFrame {
             setVisible(false);
             boolean found = false;
             try {
-                Scanner sc = new Scanner(new File("H:\\C.A.R\\Code\\UIDemo\\src\\main\\resources\\accounts.csv"));
+                Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"));
                 String line;
                 String[] split;
 
@@ -114,7 +112,7 @@ public class Login extends JFrame {
                     //System.out.println(split[0]);
 
                     if (tfUser.getText().equals(split[1]) && tfPass.getText().equals(split[3])) {
-                        //Assert.that(tfPass.getText().equals(split[4]), "Username or Password Failed");
+
                         UIDemo.user = new User(split[0], split[1], split[2]);
                         found = true;
                     }

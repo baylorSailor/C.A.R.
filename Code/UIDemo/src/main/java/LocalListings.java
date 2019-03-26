@@ -159,6 +159,8 @@ public class LocalListings extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO Implement this (Account Details)
+                setVisible(false);
+                UIDemo.accountDetails = new AccountDetails();
             }
         });
 

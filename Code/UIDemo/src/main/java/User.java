@@ -2,6 +2,7 @@ public class User {
     private String name;
     private String username;
     private String email;
+    private String creditType;
     private Integer creditCard;
 
     public User(String name, String username, String email) {
@@ -10,11 +11,20 @@ public class User {
         this.email = email;
     }
 
-    public User(String name, String username, String email, Integer creditCard) {
+    public User(String name, String username, String email, String creditType, Integer creditCard) {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.creditType = creditType;
         this.creditCard = creditCard;
+    }
+
+    public String getCreditType() {
+        return creditType;
+    }
+
+    public void setCreditType(String creditType) {
+        this.creditType = creditType;
     }
 
     public String getName() {
