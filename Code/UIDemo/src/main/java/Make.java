@@ -1,5 +1,3 @@
-// Andrew Case
-
 import java.util.*;
 
 public class Make implements Comparable<Make> {
