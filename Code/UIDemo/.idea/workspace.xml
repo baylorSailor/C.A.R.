@@ -12,16 +12,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CreateAccount.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateAccount.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/CreateAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+            <state relative-caret-position="364">
+              <caret line="240" column="54" lean-forward="true" selection-start-line="240" selection-start-column="54" selection-end-line="240" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Users.csv" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Users.csv" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Users.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -87,8 +87,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/LocalListings.java" />
         <option value="$PROJECT_DIR$/src/main/java/ActiveRentals.java" />
-        <option value="$PROJECT_DIR$/Users.csv" />
         <option value="$PROJECT_DIR$/src/main/java/CreateAccount.java" />
+        <option value="$PROJECT_DIR$/Users.csv" />
       </list>
     </option>
   </component>
@@ -99,7 +99,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="157" />
     <option name="y" value="104" />
     <option name="width" value="1693" />
@@ -292,17 +292,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CreateAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="240" column="54" lean-forward="true" selection-start-line="240" selection-start-column="54" selection-end-line="240" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Users.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CreateAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
         </state>
       </provider>
     </entry>

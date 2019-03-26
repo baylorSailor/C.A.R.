@@ -1,19 +1,10 @@
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
 
 public class CreateAccount extends JFrame {
 
@@ -235,7 +226,7 @@ public class CreateAccount extends JFrame {
        gbCreateAcct.setConstraints( lbPassword, gbcCreateAcct );
        pnCreateAcct.add( lbPassword );
 
-       tfPassword = new JTextField( );
+       tfPassword = new JPasswordField();
        gbcCreateAcct.gridx = 1;
        gbcCreateAcct.gridy = 7;
        gbcCreateAcct.gridwidth = 12;
