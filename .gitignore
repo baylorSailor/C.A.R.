@@ -2,7 +2,7 @@
 *.vpp.bak*
 
 # User-specific stuff
-.idea/
+.idea/*
 .idea/workspace.xml
 .idea/**/workspace.xml
 .idea/**/tasks.xml
