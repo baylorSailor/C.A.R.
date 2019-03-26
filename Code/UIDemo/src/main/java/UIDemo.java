@@ -49,11 +49,9 @@ public class UIDemo extends JPanel {
     public static AccountDetails accountDetails = null;
     public static ActiveRentals activeRentals = null;
     public static User user = null;
+    //TODO Add Vehicle Class
 
     public static void main(String[] args) {
         login = new Login();
-        //listings = new LocalListings();
-        //history = new History();
-        //accountDetails = new AccountDetails();
     }
 }

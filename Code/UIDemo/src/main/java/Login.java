@@ -97,7 +97,6 @@ public class Login extends JFrame {
       btLogin.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            //TODO Verify login
             setVisible(false);
             boolean found = false;
             try {
@@ -107,13 +106,10 @@ public class Login extends JFrame {
 
                 while (sc.hasNextLine() && !found) {
                     line = sc.nextLine();
-                    //System.out.println(line);
                     split = line.split(",");
-                    //System.out.println(split[0]);
 
                     if (tfUser.getText().equals(split[1]) && tfPass.getText().equals(split[3])) {
-
-                        UIDemo.user = new User(split[0], split[1], split[2]);
+                        UIDemo.user = new User(split[0], split[1], split[2], split[4], split[5]);
                         found = true;
                     }
                 }
@@ -161,13 +157,6 @@ public class Login extends JFrame {
       pnMainPanel.add( pnLoginPanel );
 
       setDefaultCloseOperation( EXIT_ON_CLOSE );
-
-      addComponentListener(new ComponentAdapter() {
-         @Override
-         public void componentShown(ComponentEvent e) {
-            //TODO If user is logged in, logout
-         }
-      });
 
       setContentPane( pnMainPanel );
       pack();

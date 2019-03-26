@@ -3,15 +3,9 @@ public class User {
     private String username;
     private String email;
     private String creditType;
-    private Integer creditCard;
+    private String creditCard;
 
-    public User(String name, String username, String email) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-    }
-
-    public User(String name, String username, String email, String creditType, Integer creditCard) {
+    public User(String name, String username, String email, String creditType, String creditCard) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -51,11 +45,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getCreditCard() {
+    public String getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(Integer creditCard) {
+    public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }
 }

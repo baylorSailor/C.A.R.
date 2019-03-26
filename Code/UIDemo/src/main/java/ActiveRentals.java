@@ -127,10 +127,12 @@ public class ActiveRentals extends JFrame {
         btAccountDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Implement this
-                System.out.println(UIDemo.user.getName());
-                System.out.println(UIDemo.user.getUsername());
-                System.out.println(UIDemo.user.getEmail());
+                if(UIDemo.accountDetails == null) {
+                    UIDemo.accountDetails = new AccountDetails();
+                } else {
+                    UIDemo.accountDetails.setVisible(true);
+                }
+                setVisible(false);
             }
         });
 

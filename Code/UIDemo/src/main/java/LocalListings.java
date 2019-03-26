@@ -91,7 +91,7 @@ public class LocalListings extends JFrame {
         btSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //refresh button
+                //TODO refresh button
             }
         });
 
@@ -158,9 +158,12 @@ public class LocalListings extends JFrame {
         btAccountDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Implement this (Account Details)
+                if(UIDemo.accountDetails == null) {
+                    UIDemo.accountDetails = new AccountDetails();
+                } else {
+                    UIDemo.accountDetails.setVisible(true);
+                }
                 setVisible(false);
-                UIDemo.accountDetails = new AccountDetails();
             }
         });
 
@@ -209,7 +212,8 @@ public class LocalListings extends JFrame {
         gbMainPanel.setConstraints( lbMake, gbcMainPanel );
         pnMainPanel.add( lbMake );
 
-        String []dataMake = { "Dodge", "Chrysler", "Chevy" };
+        //TODO Vehicle class needed
+        String []dataMake = { "Dodge", "Chrysler", "Chevy", "BMW" };
         cmbMake = new JComboBox( dataMake );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 12;
@@ -221,6 +225,13 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbMake, gbcMainPanel );
         pnMainPanel.add( cmbMake );
+        cmbMake.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String temp = (String) cmbMake.getSelectedItem();
+
+            }
+        });
 
         lbModel = new JLabel( "Model:"  );
         gbcMainPanel.gridx = 1;

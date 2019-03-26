@@ -6,6 +6,8 @@ import javax.swing.BorderFactory;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -23,6 +25,7 @@ public class AccountDetails extends JFrame {
     JButton btSearch;
     JButton btHistory;
     JButton btActiveRentals;
+    JButton btLogout;
 
     public AccountDetails() {
         super( "View Account Details" );
@@ -74,7 +77,7 @@ public class AccountDetails extends JFrame {
         gbHistory.setConstraints( lbEmail, gbcHistory );
         pnHistory.add( lbEmail );
 
-        lbCreditCardType = new JLabel( "Credit Card Type:"  );
+        lbCreditCardType = new JLabel( "Credit Card Type: " + UIDemo.user.getCreditType());
         gbcHistory.gridx = 2;
         gbcHistory.gridy = 13;
         gbcHistory.gridwidth = 1;
@@ -86,7 +89,7 @@ public class AccountDetails extends JFrame {
         gbHistory.setConstraints( lbCreditCardType, gbcHistory );
         pnHistory.add( lbCreditCardType );
 
-        lbLabel8 = new JLabel( "Picture"  );
+        lbLabel8 = new JLabel( "Picture"  ); // TODO Add Picture
         gbcHistory.gridx = 7;
         gbcHistory.gridy = 3;
         gbcHistory.gridwidth = 1;
@@ -120,6 +123,17 @@ public class AccountDetails extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btSearch, gbcMainPanel );
         pnMainPanel.add( btSearch );
+        btSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(UIDemo.listings == null) {
+                    UIDemo.listings = new LocalListings();
+                } else {
+                    UIDemo.listings.setVisible(true);
+                }
+                setVisible(false);
+            }
+        });
 
         btHistory = new JButton( "History"  );
         gbcMainPanel.gridx = 12;
@@ -132,6 +146,17 @@ public class AccountDetails extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btHistory, gbcMainPanel );
         pnMainPanel.add( btHistory );
+        btHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(UIDemo.history == null) {
+                    UIDemo.history = new History();
+                } else {
+                    UIDemo.history.setVisible(true);
+                }
+                setVisible(false);
+            }
+        });
 
         btActiveRentals = new JButton( "Active Rentals"  );
         btActiveRentals.setActionCommand( "History" );
@@ -145,6 +170,38 @@ public class AccountDetails extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
         pnMainPanel.add( btActiveRentals );
+        btActiveRentals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(UIDemo.activeRentals == null) {
+                    UIDemo.activeRentals = new ActiveRentals();
+                } else {
+                    UIDemo.activeRentals.setVisible(true);
+                }
+                setVisible(false);
+            }
+        });
+
+        btLogout = new JButton( "Logout"  );
+        //btAccountDetails.setActionCommand( "account" );
+        gbcMainPanel.gridx = 16;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btLogout, gbcMainPanel );
+        pnMainPanel.add( btLogout );
+        btLogout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO Save session & Sign user out
+                UIDemo.login.setVisible(true);
+                setVisible(false);
+            }
+        });
 
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 

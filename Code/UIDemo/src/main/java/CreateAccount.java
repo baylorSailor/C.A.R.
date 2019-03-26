@@ -255,7 +255,6 @@ public class CreateAccount extends JFrame {
       btCreateAcct.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e){
-            //TODO Add User to Database
             try {
                String creditType;
                BufferedWriter bw;
@@ -271,14 +270,14 @@ public class CreateAccount extends JFrame {
                    bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv", true));
                    bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
                            + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + tfCreditCardNumber.getText() + "," + creditType + "\n");
+                           + creditType + "," + tfCreditCardNumber.getText() +  "\n");
                    bw.close();
                }
                else{
                    bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv"));
                    bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
                            + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + tfCreditCardNumber.getText() + "," + creditType + "\n");
+                           + creditType + "," + tfCreditCardNumber.getText() + "\n");
                    bw.close();
                }
             } catch (IOException ex){

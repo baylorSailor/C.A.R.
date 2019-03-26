@@ -127,7 +127,12 @@ public class History extends JFrame {
       btAccountDetails.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            //TODO Implement this
+            if(UIDemo.accountDetails == null) {
+               UIDemo.accountDetails = new AccountDetails();
+            } else {
+               UIDemo.accountDetails.setVisible(true);
+            }
+            setVisible(false);
          }
       });
 
