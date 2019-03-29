@@ -1,45 +1,31 @@
 # C.A.R.
-Software Engineering 1 Group Project
 
-Website: https://baylorsailor.github.io/C.A.R./site/
+Car Aggregate Reformed, or C.A.R. for short, is a car rental app that allows you to quickly and easily rent any vehicle your heart desires.
+
+###### [Project Website](https://baylorsailor.github.io/C.A.R./site/)
+
+## Getting Started
+
+In order to use our application, you will need a version of Java installed on your computer. You can download our up-to-date .JAR file here: ...
+
+## Running the Application
+
+Once Java is installed, you may either open the .JAR file by double clicking it (JAR Launcher) OR by navigating to the .JAR file's location on your computer in Terminal (Mac OSX) or Command Prompt (Windows) and running "java -jar C.A.R.jar".
      
+## Built With
 
-**- Tuesday 3/26 -- iteration 2**
+* [IDEA](https://www.jetbrains.com/idea/) - A Java IDE
+* [Maven](https://maven.apache.org/) - Dependency Management
 
-  -  project implementation
-  
-  -  testing
-  
-  -  maven
-  
-  -  git
-  
-  -  GUI
-  
-  -  prototype 2
-  
-  -  all relevant diagrams
-  
-  -  keep zip for iteration 2 on the website
-  
-  -  7 min presentation
+## Authors
 
-Tuesday 2/12 -- presentation of iteration 1 
- 
- 	-project - analysis
- 
- 	-User Interface sketches
- 
- 	-domain model
- 
- 	-SSD
- 
- 	-operations
- 
- 	-requirements
- 
- 	-use cases
- 
- 	-keep zip for iteration 1 on the website
- 
- 	-7 min presentation 
+* **[Andrew Case](https://github.com/AndrewC0128)** - *Project Lead*
+* **[Matthew Darby](https://github.com/baylorSailor)** - *Coder*
+* **[Mark Du](https://github.com/mdu2017)** - *Designer*
+* **[Maggie Burton](https://github.com/maggie-burton)** - *Quality Control*
+* **[Stevie Damrel](https://github.com/Drumshadow)** - *Coder*
+* **[Weston Straw](https://github.com/Wolf1200)** - *Designer*
+
+## Acknowledgments
+
+* **[Dr. Cerny](http://cs.baylor.edu/~cerny/)** - Advising and consultation throughout the course of this project
