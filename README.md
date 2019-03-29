@@ -19,7 +19,7 @@ Once Java is installed, you may either open the .JAR file by double clicking it 
 
 ## Authors
 
-* **[Andrew Case](https://andrewcase.org)** - *Project Lead*
+* **[Andrew Case](https://github.com/AndrewC0128)** - *Project Lead*
 * **[Matthew Darby](https://github.com/baylorSailor)** - *Coder*
 * **[Mark Du](https://github.com/mdu2017)** - *Designer*
 * **[Maggie Burton](https://github.com/maggie-burton)** - *Quality Control*
