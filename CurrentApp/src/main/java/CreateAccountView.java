@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class CreateAccount extends JFrame {
+public class CreateAccountView extends JFrame {
 
    JPanel pnMainPanel;
 
@@ -32,7 +32,7 @@ public class CreateAccount extends JFrame {
 
    BufferedImage picture = null;
 
-   public CreateAccount() {
+   public CreateAccountView() {
       super( "Create Account" );
       pnMainPanel = new JPanel();
       GridBagLayout gbMainPanel = new GridBagLayout();

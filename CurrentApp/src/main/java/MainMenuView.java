@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-public class LocalListings extends JFrame {
+public class MainMenuView extends JFrame {
     //TODO Fix layout of buttons in layout
     JPanel pnMainPanel;
 
@@ -41,7 +41,7 @@ public class LocalListings extends JFrame {
     JComboBox cmbInterior;
     JComboBox cmbExterior;
 
-    public LocalListings() {
+    public MainMenuView() {
         super( "View Local Listings");
 
         pnMainPanel = new JPanel();
@@ -108,8 +108,8 @@ public class LocalListings extends JFrame {
             pnSearchResults.add(lbPicture);
         }
 
-        String user = CurrentApp.login.tfUser.getText();
-        lbLoggedInAs = new JLabel( "User: " + user );
+        //String user = Driver.login.tfUser.getText();
+        //lbLoggedInAs = new JLabel( "User: " + user );
         Font f = lbLoggedInAs.getFont();
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
@@ -155,17 +155,17 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btHistory, gbcMainPanel );
         pnMainPanel.add( btHistory );
-        btHistory.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(CurrentApp.history == null) {
-                    CurrentApp.history = new History();
-                } else {
-                    CurrentApp.history.setVisible(true);
-                }
-                setVisible(false);
-            }
-        });
+//        btHistory.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(Driver.history == null) {
+//                    Driver.history = new History();
+//                } else {
+//                    Driver.history.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
 
         btActiveRentals = new JButton( "Active Rentals"  );
         //btActiveRentals.setActionCommand( "active" );
@@ -179,17 +179,17 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
         pnMainPanel.add( btActiveRentals );
-        btActiveRentals.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(CurrentApp.activeRentals == null) {
-                    CurrentApp.activeRentals = new ActiveRentals();
-                } else {
-                    CurrentApp.activeRentals.setVisible(true);
-                }
-                setVisible(false);
-            }
-        });
+//        btActiveRentals.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(Driver.activeRentals == null) {
+//                    Driver.activeRentals = new ActiveRentals();
+//                } else {
+//                    Driver.activeRentals.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
 
         btAccountDetails = new JButton( "Account Details"  );
         //btAccountDetails.setActionCommand( "account" );
@@ -203,17 +203,17 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btAccountDetails, gbcMainPanel );
         pnMainPanel.add( btAccountDetails );
-        btAccountDetails.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(CurrentApp.accountDetails == null) {
-                    CurrentApp.accountDetails = new AccountDetails();
-                } else {
-                    CurrentApp.accountDetails.setVisible(true);
-                }
-                setVisible(false);
-            }
-        });
+//        btAccountDetails.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(Driver.accountDetails == null) {
+//                    Driver.accountDetails = new AccountDetails();
+//                } else {
+//                    Driver.accountDetails.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
 
         btLogout = new JButton( "Logout"  );
         //btAccountDetails.setActionCommand( "account" );
@@ -227,14 +227,14 @@ public class LocalListings extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btLogout, gbcMainPanel );
         pnMainPanel.add( btLogout );
-        btLogout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CurrentApp.destroyPanes();
-                CurrentApp.login.setVisible(true);
-                setVisible(false);
-            }
-        });
+//        btLogout.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Driver.destroyPanes();
+//                //Driver.login.setVisible(true);
+//                setVisible(false);
+//            }
+//        });
 
         lbFilters = new JLabel( "Search Filters"  );
         f = lbFilters.getFont();
@@ -490,4 +490,4 @@ public class LocalListings extends JFrame {
         setLocationRelativeTo(null);
         setVisible( true );
     }
-} 
+}

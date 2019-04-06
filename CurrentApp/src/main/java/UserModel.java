@@ -1,11 +1,19 @@
-public class User {
+public class UserModel {
     private String name;
     private String username;
     private String email;
     private String creditType;
     private String creditCard;
 
-    public User(String name, String username, String email, String creditType, String creditCard) {
+    public UserModel() {
+        this.name = null;
+        this.username = null;
+        this.email = null;
+        this.creditType = null;
+        this.creditCard = null;
+    }
+
+    public UserModel(String name, String username, String email, String creditType, String creditCard) {
         this.name = name;
         this.username = username;
         this.email = email;
