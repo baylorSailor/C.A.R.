@@ -3,8 +3,8 @@ import java.awt.*;
 
 class ActiveRentalsView extends JFrame {
 
-    JPanel pnActiveRentals;
-    JTable tbHTable;
+    private JPanel pnActiveRentals;
+    private JTable tbHTable;
 
     public ActiveRentalsView() {
         super( "View Active Rentals" );

@@ -7,22 +7,18 @@ import java.io.IOException;
 
 class AccountDetailsView extends JFrame {
 
-    JPanel pnMainPanel;
-
-    JPanel pnAccountDetails;
-    JLabel lbName;
-    JLabel lbUsername;
-    JLabel lbEmail;
-    JLabel lbCreditCardType;
-    JLabel lbPicture;
+    private JPanel pnAccountDetails;
+    private JLabel lbName;
+    private JLabel lbUsername;
+    private JLabel lbEmail;
+    private JLabel lbCreditCardType;
+    private JLabel lbPicture;
 
     public AccountDetailsView() {
         super( "View Account Details" );
 
-        pnMainPanel = new JPanel();
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
-        pnMainPanel.setLayout( gbMainPanel );
 
         pnAccountDetails = new JPanel();
         pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "Account Details" ) );
@@ -116,9 +112,8 @@ class AccountDetailsView extends JFrame {
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( scpAccountDetails, gbcMainPanel );
-        pnMainPanel.add( scpAccountDetails );
 
-        setContentPane( pnMainPanel );
+        setContentPane( pnAccountDetails );
         pack();
         setLocationRelativeTo(null);
         setVisible( true );

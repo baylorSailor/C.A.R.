@@ -88,8 +88,4 @@ class MainMenuController {
             new UserController().start();
         });
     }
-
-    public MainMenuView getMainMenuView() {
-        return mainMenuView;
-    }
 }

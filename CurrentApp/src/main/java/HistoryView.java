@@ -4,12 +4,11 @@ import javax.swing.BorderFactory;
 import java.awt.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.event.WindowEvent;
 
 class HistoryView extends JFrame {
 
-    JPanel pnHistory;
-    JTable tbHTable;
+    private JPanel pnHistory;
+    private JTable tbHTable;
 
     public HistoryView() {
         super( "View History" );

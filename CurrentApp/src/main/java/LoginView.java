@@ -115,67 +115,23 @@ class LoginView extends JFrame {
         setVisible( true );
     }
 
-    public JPanel getPnLoginPanel() {
-        return pnLoginPanel;
-    }
-
-    public void setPnLoginPanel(JPanel pnLoginPanel) {
-        this.pnLoginPanel = pnLoginPanel;
-    }
-
-    public JLabel getLbUser() {
-        return lbUser;
-    }
-
-    public void setLbUser(JLabel lbUser) {
-        this.lbUser = lbUser;
-    }
-
-    public JLabel getLbPass() {
-        return lbPass;
-    }
-
-    public void setLbPass(JLabel lbPass) {
-        this.lbPass = lbPass;
-    }
-
     public JLabel getLbError() {
         return lbError;
-    }
-
-    public void setLbError(JLabel lbError) {
-        this.lbError = lbError;
     }
 
     public JTextField getTfUser() {
         return tfUser;
     }
 
-    public void setTfUser(JTextField tfUser) {
-        this.tfUser = tfUser;
-    }
-
     public JPasswordField getTfPass() {
         return tfPass;
-    }
-
-    public void setTfPass(JPasswordField tfPass) {
-        this.tfPass = tfPass;
     }
 
     public JButton getBtLogin() {
         return btLogin;
     }
 
-    public void setBtLogin(JButton btLogin) {
-        this.btLogin = btLogin;
-    }
-
     public JButton getBtCreateAcct() {
         return btCreateAcct;
-    }
-
-    public void setBtCreateAcct(JButton btCreateAcct) {
-        this.btCreateAcct = btCreateAcct;
     }
 }

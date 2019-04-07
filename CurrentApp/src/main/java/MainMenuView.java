@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.Map;
 
 class MainMenuView extends JFrame {
-    //TODO Fix layout of buttons in layout
     private JPanel pnMainPanel;
 
     private JPanel pnSearchResults;
@@ -432,227 +431,23 @@ class MainMenuView extends JFrame {
         setVisible( true );
     }
 
-    public JPanel getPnMainPanel() {
-        return pnMainPanel;
-    }
-
-    public void setPnMainPanel(JPanel pnMainPanel) {
-        this.pnMainPanel = pnMainPanel;
-    }
-
-    public JPanel getPnSearchResults() {
-        return pnSearchResults;
-    }
-
-    public void setPnSearchResults(JPanel pnSearchResults) {
-        this.pnSearchResults = pnSearchResults;
-    }
-
     public JButton getBtRefresh() {
         return btRefresh;
-    }
-
-    public void setBtRefresh(JButton btRefresh) {
-        this.btRefresh = btRefresh;
     }
 
     public JButton getBtHistory() {
         return btHistory;
     }
 
-    public void setBtHistory(JButton btHistory) {
-        this.btHistory = btHistory;
-    }
-
     public JButton getBtActiveRentals() {
         return btActiveRentals;
-    }
-
-    public void setBtActiveRentals(JButton btActiveRentals) {
-        this.btActiveRentals = btActiveRentals;
     }
 
     public JButton getBtAccountDetails() {
         return btAccountDetails;
     }
 
-    public void setBtAccountDetails(JButton btAccountDetails) {
-        this.btAccountDetails = btAccountDetails;
-    }
-
     public JButton getBtLogout() {
         return btLogout;
-    }
-
-    public void setBtLogout(JButton btLogout) {
-        this.btLogout = btLogout;
-    }
-
-    public JLabel getLbLoggedInAs() {
-        return lbLoggedInAs;
-    }
-
-    public void setLbLoggedInAs(JLabel lbLoggedInAs) {
-        this.lbLoggedInAs = lbLoggedInAs;
-    }
-
-    public JLabel getLbFilters() {
-        return lbFilters;
-    }
-
-    public void setLbFilters(JLabel lbFilters) {
-        this.lbFilters = lbFilters;
-    }
-
-    public JLabel getLbMake() {
-        return lbMake;
-    }
-
-    public void setLbMake(JLabel lbMake) {
-        this.lbMake = lbMake;
-    }
-
-    public JLabel getLbModel() {
-        return lbModel;
-    }
-
-    public void setLbModel(JLabel lbModel) {
-        this.lbModel = lbModel;
-    }
-
-    public JLabel getLbYear() {
-        return lbYear;
-    }
-
-    public void setLbYear(JLabel lbYear) {
-        this.lbYear = lbYear;
-    }
-
-    public JLabel getLbType() {
-        return lbType;
-    }
-
-    public void setLbType(JLabel lbType) {
-        this.lbType = lbType;
-    }
-
-    public JLabel getLbTrans() {
-        return lbTrans;
-    }
-
-    public void setLbTrans(JLabel lbTrans) {
-        this.lbTrans = lbTrans;
-    }
-
-    public JLabel getLbMileage() {
-        return lbMileage;
-    }
-
-    public void setLbMileage(JLabel lbMileage) {
-        this.lbMileage = lbMileage;
-    }
-
-    public JLabel getLbMPG() {
-        return lbMPG;
-    }
-
-    public void setLbMPG(JLabel lbMPG) {
-        this.lbMPG = lbMPG;
-    }
-
-    public JLabel getLbInterior() {
-        return lbInterior;
-    }
-
-    public void setLbInterior(JLabel lbInterior) {
-        this.lbInterior = lbInterior;
-    }
-
-    public JLabel getLbExterior() {
-        return lbExterior;
-    }
-
-    public void setLbExterior(JLabel lbExterior) {
-        this.lbExterior = lbExterior;
-    }
-
-    public JLabel getLbPicture() {
-        return lbPicture;
-    }
-
-    public void setLbPicture(JLabel lbPicture) {
-        this.lbPicture = lbPicture;
-    }
-
-    public JComboBox getCmbYear() {
-        return cmbYear;
-    }
-
-    public void setCmbYear(JComboBox cmbYear) {
-        this.cmbYear = cmbYear;
-    }
-
-    public JComboBox getCmbMake() {
-        return cmbMake;
-    }
-
-    public void setCmbMake(JComboBox cmbMake) {
-        this.cmbMake = cmbMake;
-    }
-
-    public JComboBox getCmbModel() {
-        return cmbModel;
-    }
-
-    public void setCmbModel(JComboBox cmbModel) {
-        this.cmbModel = cmbModel;
-    }
-
-    public JComboBox getCmbType() {
-        return cmbType;
-    }
-
-    public void setCmbType(JComboBox cmbType) {
-        this.cmbType = cmbType;
-    }
-
-    public JComboBox getCmbTrans() {
-        return cmbTrans;
-    }
-
-    public void setCmbTrans(JComboBox cmbTrans) {
-        this.cmbTrans = cmbTrans;
-    }
-
-    public JSlider getSdMileage() {
-        return sdMileage;
-    }
-
-    public void setSdMileage(JSlider sdMileage) {
-        this.sdMileage = sdMileage;
-    }
-
-    public JSlider getSdMPG() {
-        return sdMPG;
-    }
-
-    public void setSdMPG(JSlider sdMPG) {
-        this.sdMPG = sdMPG;
-    }
-
-    public JComboBox getCmbInterior() {
-        return cmbInterior;
-    }
-
-    public void setCmbInterior(JComboBox cmbInterior) {
-        this.cmbInterior = cmbInterior;
-    }
-
-    public JComboBox getCmbExterior() {
-        return cmbExterior;
-    }
-
-    public void setCmbExterior(JComboBox cmbExterior) {
-        this.cmbExterior = cmbExterior;
     }
 }
