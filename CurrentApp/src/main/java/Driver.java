@@ -1,6 +1,4 @@
-import javax.swing.*;
-
-public class Driver extends JPanel {
+public class Driver {
 
     static UserController userController = new UserController();
 
