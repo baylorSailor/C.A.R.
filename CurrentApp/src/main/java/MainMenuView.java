@@ -108,8 +108,8 @@ public class MainMenuView extends JFrame {
             pnSearchResults.add(lbPicture);
         }
 
-        //String user = Driver.login.tfUser.getText();
-        //lbLoggedInAs = new JLabel( "User: " + user );
+        //String user = UserController;
+        lbLoggedInAs = new JLabel( "User: " + "ME" );
         Font f = lbLoggedInAs.getFont();
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;

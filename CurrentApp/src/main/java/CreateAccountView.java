@@ -30,7 +30,7 @@ public class CreateAccountView extends JFrame {
    JLabel lbPassword;
    JTextField tfPassword;
 
-   BufferedImage picture = null;
+   static BufferedImage picture = null;
 
    public CreateAccountView() {
       super( "Create Account" );
@@ -284,20 +284,13 @@ public class CreateAccountView extends JFrame {
         try {
             picture = ImageIO.read(new File(file.getAbsolutePath()));
         } catch (IOException e) {
+            e.printStackTrace();
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
             } catch(IOException ee) {
+                ee.printStackTrace();
                 //TODO add logger to catch this
             }
-        }
-    }
-
-    private void SaveImage() {
-        File outfile = new File("./src/main/resources/" + tfUserName.getText() + ".png");
-        try {
-            ImageIO.write(picture, "png", new File(outfile.getPath()));
-        } catch(IOException ee) {
-            //TODO add logger to catch this
         }
     }
 
@@ -308,6 +301,10 @@ public class CreateAccountView extends JFrame {
            foo = false;
        }
        return foo;
+    }
+
+    public static BufferedImage getPicture() {
+        return picture;
     }
 }
 

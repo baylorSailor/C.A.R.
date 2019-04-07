@@ -22,6 +22,10 @@ public class UserModel {
         return fullname;
     }
 
+    public void setPictureLocation(String pictureLocation) {
+        this.pictureLocation = pictureLocation;
+    }
+
     public String getPictureLocation() {
         return pictureLocation;
     }
@@ -32,6 +36,10 @@ public class UserModel {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getCreditType() {
