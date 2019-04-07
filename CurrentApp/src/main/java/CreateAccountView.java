@@ -8,25 +8,28 @@ class CreateAccountView extends JFrame {
 
     private JPanel pnCreateAcct;
     private ButtonGroup rbgCreateAcct;
+
     private JLabel lbFirstName;
-    private JTextField tfFirstName;
     private JLabel lbLastName;
-    private JTextField tfLastName;
-    private JButton btCreateAcct;
-    private JButton btAddImage;
     private JLabel lbUserName;
-    private JTextField tfUserName;
     private JLabel lbEmail;
-    private JTextField tfEmail;
     private JLabel lbCreditCard;
-    private JRadioButton rbVisa;
-    private JRadioButton rbMasterCard;
     private JLabel lbCreditCardNumber;
-    private JTextField tfCreditCardNumber;
     private JLabel lbPassword;
     private JLabel lbPassword2;
+    private JLabel lbError;
+    private JTextField tfFirstName;
+    private JTextField tfLastName;
+    private JTextField tfUserName;
+    private JTextField tfEmail;
+    private JTextField tfCreditCardNumber;
+    private JRadioButton rbVisa;
+    private JRadioButton rbMasterCard;
     private JPasswordField tfPassword;
     private JPasswordField tfPassword2;
+    private JButton btCreateAcct;
+    private JButton btAddImage;
+
     static BufferedImage picture = null;
 
     public CreateAccountView() {
@@ -267,7 +270,7 @@ class CreateAccountView extends JFrame {
         gbcCreateAcct.gridx = 0;
         gbcCreateAcct.gridy = 9;
         gbcCreateAcct.gridwidth = 5;
-        gbcCreateAcct.gridheight = 2;
+        gbcCreateAcct.gridheight = 1;
         gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
         gbcCreateAcct.weightx = 0;
         gbcCreateAcct.weighty = 0;
@@ -279,7 +282,7 @@ class CreateAccountView extends JFrame {
         gbcCreateAcct.gridx = 3;
         gbcCreateAcct.gridy = 9;
         gbcCreateAcct.gridwidth = 5;
-        gbcCreateAcct.gridheight = 2;
+        gbcCreateAcct.gridheight = 1;
         gbcCreateAcct.fill = GridBagConstraints.VERTICAL;
         gbcCreateAcct.weightx = 0;
         gbcCreateAcct.weighty = 0;
@@ -288,8 +291,22 @@ class CreateAccountView extends JFrame {
         pnCreateAcct.add( btCreateAcct );
         getRootPane().setDefaultButton(btCreateAcct);
 
+        lbError = new JLabel( " "  );
+        gbcCreateAcct.gridx = 0;
+        gbcCreateAcct.gridy = 10;
+        gbcCreateAcct.gridwidth = 13;
+        gbcCreateAcct.gridheight = 1;
+        gbcCreateAcct.fill = GridBagConstraints.NONE;
+        gbcCreateAcct.weightx = 0;
+        gbcCreateAcct.weighty = 0;
+        gbcCreateAcct.anchor = GridBagConstraints.WEST;
+        gbCreateAcct.setConstraints( lbError, gbcCreateAcct );
+        pnCreateAcct.add( lbError );
+        lbError.setForeground(Color.red);
+
         setContentPane( pnCreateAcct );
         pack();
+        setLocationRelativeTo(null);
         setVisible( true );
     }
 
@@ -299,7 +316,7 @@ class CreateAccountView extends JFrame {
         File file = chooser.getSelectedFile();
         try {
             picture = ImageIO.read(new File(file.getAbsolutePath()));
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
@@ -470,6 +487,11 @@ class CreateAccountView extends JFrame {
 
     public JPasswordField getTfPassword() {
         return tfPassword;
+    }
+
+
+    public void setErrorLabelMessage(String str) {
+        this.lbError.setText(str);
     }
 
     public static void setPicture(BufferedImage picture) {

@@ -23,6 +23,9 @@ class UserController {
             createAccountView.getBtAddImage().addActionListener(createAccountView::AddImage);
 
             createAccountView.getBtCreateAcct().addActionListener(e1 -> {
+                if(DatabaseAdapter.Users.userExists(createAccountView.getTfEmail().getText())) {
+                    createAccountView.setErrorLabelMessage("Account already exists.");
+                }
                 String creditType;
                 File file = new File("./src/main/resources/Users.csv");
                 if(createAccountView.allFieldsEntered()) {

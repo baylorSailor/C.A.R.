@@ -29,6 +29,26 @@ class DatabaseAdapter {
             return user;
         }
 
+        public static boolean userExists(String email) {
+            boolean found = false;
+            email = email.toLowerCase();
+            try {
+                Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"));
+                String line;
+                String[] split;
+                while (sc.hasNextLine() && !found) {
+                    line = sc.nextLine();
+                    split = line.split(",");
+                    if (email.equals(split[2].toLowerCase())) {
+                        found = true;
+                    }
+                }
+            } catch(IOException a) {
+                a.printStackTrace();
+            }
+            return found;
+        }
+
         public static void writeUser(UserModel u) {
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
