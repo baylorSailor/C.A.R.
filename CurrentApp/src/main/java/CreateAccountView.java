@@ -331,7 +331,7 @@ class CreateAccountView extends JFrame {
        boolean foo = true;
        if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
             tfLastName.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()) &&
-               (tfPassword.getPassword().length >= 7) && (tfPassword.getPassword() == tfPassword2.getPassword()))) {
+               (tfPassword.getPassword().length >= 7) && (tfPassword.getText().equals(tfPassword2.getText())))) {
            foo = false;
        }
        return foo;
