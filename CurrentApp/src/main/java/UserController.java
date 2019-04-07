@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class UserController {
-    UserModel user = null;
+    static UserModel user = null;
     LoginView view = new LoginView();
 
     public void start() {
@@ -55,5 +55,9 @@ public class UserController {
                 });
             }
         });
+    }
+
+    public static UserModel getUser() {
+        return user;
     }
 }

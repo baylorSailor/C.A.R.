@@ -85,7 +85,6 @@ public class MainMenuView extends JFrame {
         BufferedImage picture = null;
         try {
             picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
-
         } catch(IOException e) {
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
@@ -108,8 +107,7 @@ public class MainMenuView extends JFrame {
             pnSearchResults.add(lbPicture);
         }
 
-        //String user = UserController;
-        lbLoggedInAs = new JLabel( "User: " + "ME" );
+        lbLoggedInAs = new JLabel( "User: " + UserController.getUser().getUsername() );
         Font f = lbLoggedInAs.getFont();
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
@@ -124,7 +122,6 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( lbLoggedInAs );
 
         btRefresh = new JButton( "Refresh"  );
-        //btSearch.setActionCommand( "search" );
         gbcMainPanel.gridx = 8;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
