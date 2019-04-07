@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class Driver extends JPanel {
 
-    static UserController controller = new UserController();
+    static UserController userController = new UserController();
 
 //    public static LoginView login = null;
 //    public static MainMenuView listings = null;
@@ -36,6 +36,6 @@ public class Driver extends JPanel {
 //    }
 
     public static void main(String[] args) {
-        controller.start();
+        userController.start();
     }
 }

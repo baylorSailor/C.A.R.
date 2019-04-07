@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class DatabaseAdapter {
 
     public static class Users {
-
         public static UserModel verifyUser(String username, String password) {
             boolean found = false;
             UserModel user = null;
@@ -26,5 +25,7 @@ public class DatabaseAdapter {
             }
             return user;
         }
+
+
     }
 }

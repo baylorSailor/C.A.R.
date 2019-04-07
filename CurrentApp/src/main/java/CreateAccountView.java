@@ -242,7 +242,6 @@ public class CreateAccountView extends JFrame {
        pnCreateAcct.add( tfPassword );
 
        btAddImage = new JButton( "Upload Image"  );
-       //btCreateAcct.setActionCommand( "createAccount" );
        gbcCreateAcct.gridx = 3;
        gbcCreateAcct.gridy = 8;
        gbcCreateAcct.gridwidth = 5;
@@ -261,7 +260,6 @@ public class CreateAccountView extends JFrame {
        });
 
       btCreateAcct = new JButton( "Create Account"  );
-      //btCreateAcct.setActionCommand( "createAccount" );
       gbcCreateAcct.gridx = 3;
       gbcCreateAcct.gridy = 10;
       gbcCreateAcct.gridwidth = 5;
@@ -273,45 +271,6 @@ public class CreateAccountView extends JFrame {
       gbCreateAcct.setConstraints( btCreateAcct, gbcCreateAcct );
       pnCreateAcct.add( btCreateAcct );
       getRootPane().setDefaultButton(btCreateAcct);
-      btCreateAcct.addActionListener(new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e){
-
-            try {
-               String creditType;
-               BufferedWriter bw;
-               File file = new File("./src/main/resources/Users.csv");
-
-               if(rbVisa.isSelected()) {
-                  creditType = "Visa";
-               } else {
-                  creditType = "MasterCard";
-               }
-
-               if(file.exists()){
-                   bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv", true));
-                   bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
-                           + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + creditType + "," + tfCreditCardNumber.getText() +  "\n");
-                   bw.close();
-                   /// TODO Ensure that a photo is added, then save it
-                   SaveImage();
-               }
-               else{
-                   bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv"));
-                   bw.write(tfFirstName.getText() + " " + tfLastName.getText() + ","
-                           + tfUserName.getText() + "," + tfEmail.getText() + "," + tfPassword.getText() + ","
-                           + creditType + "," + tfCreditCardNumber.getText() + "\n");
-                   bw.close();
-               }
-            } catch (IOException ex){
-                // TODO add logger to catch this
-               ex.printStackTrace();
-            }
-
-            setVisible(false);
-         }
-      });
 
       setContentPane( pnMainPanel );
       pack();
@@ -340,6 +299,15 @@ public class CreateAccountView extends JFrame {
         } catch(IOException ee) {
             //TODO add logger to catch this
         }
+    }
+
+    public boolean allFieldsEntered() {
+       boolean foo = true;
+       if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
+       tfLastName.isValid() && tfPassword.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()))) {
+           foo = false;
+       }
+       return foo;
     }
 }
 

@@ -1,63 +1,44 @@
 public class UserModel {
-    private String name;
+    private String fullname;
+    private String pictureLocation;
     private String username;
     private String email;
+    private String password;
     private String creditType;
     private String creditCard;
 
-    public UserModel() {
-        this.name = null;
-        this.username = null;
-        this.email = null;
-        this.creditType = null;
-        this.creditCard = null;
-    }
-
-    public UserModel(String name, String username, String email, String creditType, String creditCard) {
-        this.name = name;
+    public UserModel(String fullname, String username, String email, String password, String creditType,
+                     String creditCard) {
+        this.fullname = fullname;
+        this.pictureLocation = "./src/main/resources/" + username + ".png";
         this.username = username;
         this.email = email;
+        this.password = password;
         this.creditType = creditType;
         this.creditCard = creditCard;
     }
 
-    public String getCreditType() {
-        return creditType;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setCreditType(String creditType) {
-        this.creditType = creditType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getPictureLocation() {
+        return pictureLocation;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getCreditType() {
+        return creditType;
     }
 
     public String getCreditCard() {
         return creditCard;
-    }
-
-    public void setCreditCard(String creditCard) {
-        this.creditCard = creditCard;
     }
 }
