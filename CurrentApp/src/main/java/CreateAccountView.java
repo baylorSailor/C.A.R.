@@ -8,31 +8,32 @@ import java.io.*;
 
 class CreateAccountView extends JFrame {
 
-   JPanel pnMainPanel;
+    private JPanel pnMainPanel;
 
-   JPanel pnCreateAcct;
-   ButtonGroup rbgCreateAcct;
-   JLabel lbFirstName;
-   JTextField tfFirstName;
-   JLabel lbLastName;
-   JTextField tfLastName;
-   JButton btCreateAcct;
-   JButton btAddImage;
-   JLabel lbUserName;
-   JTextField tfUserName;
-   JLabel lbEmail;
-   JTextField tfEmail;
-   JLabel lbCreditCard;
-   JRadioButton rbVisa;
-   JRadioButton rbMasterCard;
-   JLabel lbCreditCardNumber;
-   JTextField tfCreditCardNumber;
-   JLabel lbPassword;
-   JTextField tfPassword;
+    private JPanel pnCreateAcct;
+    private ButtonGroup rbgCreateAcct;
+    private JLabel lbFirstName;
+    private JTextField tfFirstName;
+    private JLabel lbLastName;
+    private JTextField tfLastName;
+    private JButton btCreateAcct;
+    private JButton btAddImage;
+    private JLabel lbUserName;
+    private JTextField tfUserName;
+    private JLabel lbEmail;
+    private JTextField tfEmail;
+    private JLabel lbCreditCard;
+    private JRadioButton rbVisa;
+    private JRadioButton rbMasterCard;
+    private JLabel lbCreditCardNumber;
+    private JTextField tfCreditCardNumber;
+    private JLabel lbPassword;
+    private JPasswordField tfPassword;
+    private JLabel lbError;
 
-   static BufferedImage picture = null;
+    static BufferedImage picture = null;
 
-   public CreateAccountView() {
+    public CreateAccountView() {
       super( "Create Account" );
       pnMainPanel = new JPanel();
       GridBagLayout gbMainPanel = new GridBagLayout();
@@ -70,7 +71,6 @@ class CreateAccountView extends JFrame {
       gbcCreateAcct.anchor = GridBagConstraints.CENTER;
       gbCreateAcct.setConstraints( tfFirstName, gbcCreateAcct );
       pnCreateAcct.add( tfFirstName );
-      System.out.println(tfFirstName.getText());
 
       lbLastName = new JLabel( "Lastname:"  );
       gbcCreateAcct.gridx = 0;
@@ -275,7 +275,7 @@ class CreateAccountView extends JFrame {
       setContentPane( pnMainPanel );
       pack();
       setVisible( true );
-   }
+    }
 
     private void AddImage(java.awt.event.ActionEvent evt) {
         JFileChooser chooser = new JFileChooser();
@@ -297,7 +297,8 @@ class CreateAccountView extends JFrame {
     public boolean allFieldsEntered() {
        boolean foo = true;
        if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
-       tfLastName.isValid() && tfPassword.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()))) {
+       tfLastName.isValid() && tfPassword.isValid() && (rbVisa.isSelected() ||
+               rbMasterCard.isSelected()))) {
            foo = false;
        }
        return foo;
@@ -305,6 +306,166 @@ class CreateAccountView extends JFrame {
 
     public static BufferedImage getPicture() {
         return picture;
+    }
+
+    public JPanel getPnMainPanel() {
+        return pnMainPanel;
+    }
+
+    public void setPnMainPanel(JPanel pnMainPanel) {
+        this.pnMainPanel = pnMainPanel;
+    }
+
+    public JPanel getPnCreateAcct() {
+        return pnCreateAcct;
+    }
+
+    public void setPnCreateAcct(JPanel pnCreateAcct) {
+        this.pnCreateAcct = pnCreateAcct;
+    }
+
+    public ButtonGroup getRbgCreateAcct() {
+        return rbgCreateAcct;
+    }
+
+    public void setRbgCreateAcct(ButtonGroup rbgCreateAcct) {
+        this.rbgCreateAcct = rbgCreateAcct;
+    }
+
+    public JLabel getLbFirstName() {
+        return lbFirstName;
+    }
+
+    public void setLbFirstName(JLabel lbFirstName) {
+        this.lbFirstName = lbFirstName;
+    }
+
+    public JTextField getTfFirstName() {
+        return tfFirstName;
+    }
+
+    public void setTfFirstName(JTextField tfFirstName) {
+        this.tfFirstName = tfFirstName;
+    }
+
+    public JLabel getLbLastName() {
+        return lbLastName;
+    }
+
+    public void setLbLastName(JLabel lbLastName) {
+        this.lbLastName = lbLastName;
+    }
+
+    public JTextField getTfLastName() {
+        return tfLastName;
+    }
+
+    public void setTfLastName(JTextField tfLastName) {
+        this.tfLastName = tfLastName;
+    }
+
+    public JButton getBtCreateAcct() {
+        return btCreateAcct;
+    }
+
+    public void setBtCreateAcct(JButton btCreateAcct) {
+        this.btCreateAcct = btCreateAcct;
+    }
+
+    public JButton getBtAddImage() {
+        return btAddImage;
+    }
+
+    public void setBtAddImage(JButton btAddImage) {
+        this.btAddImage = btAddImage;
+    }
+
+    public JLabel getLbUserName() {
+        return lbUserName;
+    }
+
+    public void setLbUserName(JLabel lbUserName) {
+        this.lbUserName = lbUserName;
+    }
+
+    public JTextField getTfUserName() {
+        return tfUserName;
+    }
+
+    public void setTfUserName(JTextField tfUserName) {
+        this.tfUserName = tfUserName;
+    }
+
+    public JLabel getLbEmail() {
+        return lbEmail;
+    }
+
+    public void setLbEmail(JLabel lbEmail) {
+        this.lbEmail = lbEmail;
+    }
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public void setTfEmail(JTextField tfEmail) {
+        this.tfEmail = tfEmail;
+    }
+
+    public JLabel getLbCreditCard() {
+        return lbCreditCard;
+    }
+
+    public void setLbCreditCard(JLabel lbCreditCard) {
+        this.lbCreditCard = lbCreditCard;
+    }
+
+    public JRadioButton getRbVisa() {
+        return rbVisa;
+    }
+
+    public void setRbVisa(JRadioButton rbVisa) {
+        this.rbVisa = rbVisa;
+    }
+
+    public JRadioButton getRbMasterCard() {
+        return rbMasterCard;
+    }
+
+    public void setRbMasterCard(JRadioButton rbMasterCard) {
+        this.rbMasterCard = rbMasterCard;
+    }
+
+    public JLabel getLbCreditCardNumber() {
+        return lbCreditCardNumber;
+    }
+
+    public void setLbCreditCardNumber(JLabel lbCreditCardNumber) {
+        this.lbCreditCardNumber = lbCreditCardNumber;
+    }
+
+    public JTextField getTfCreditCardNumber() {
+        return tfCreditCardNumber;
+    }
+
+    public void setTfCreditCardNumber(JTextField tfCreditCardNumber) {
+        this.tfCreditCardNumber = tfCreditCardNumber;
+    }
+
+    public JLabel getLbPassword() {
+        return lbPassword;
+    }
+
+    public void setLbPassword(JLabel lbPassword) {
+        this.lbPassword = lbPassword;
+    }
+
+    public JPasswordField getTfPassword() {
+        return tfPassword;
+    }
+
+    public static void setPicture(BufferedImage picture) {
+        CreateAccountView.picture = picture;
     }
 }
 

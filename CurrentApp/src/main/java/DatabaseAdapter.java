@@ -33,8 +33,9 @@ class DatabaseAdapter {
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
                         true));
-                bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," + u.getPassword() +
-                        "," + u.getCreditType() + "," + u.getCreditCard() +  "\n");
+                bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
+                        u.getPassword() + "," + u.getCreditType() + "," +
+                        u.getCreditCard() +  "\n");
                 bw.close();
             }catch(IOException e) {
                 e.printStackTrace();
@@ -42,13 +43,15 @@ class DatabaseAdapter {
         }
 
         public static void SaveImage(UserModel u) {
-            u.setPictureLocation("./src/main/resources/" + u.getUsername() + ".png");
-            File outfile = new File(u.getPictureLocation());
-            try {
-                ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
-            } catch(IOException ee) {
-                ee.printStackTrace();
-                //TODO add logger to catch this
+            if(CreateAccountView.getPicture() != null) {
+                u.setPictureLocation("./src/main/resources/" + u.getUsername() + ".png");
+                File outfile = new File(u.getPictureLocation());
+                try {
+                    ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
+                } catch(IOException | IllegalArgumentException e) {
+                    e.printStackTrace();
+                    //TODO add logger to catch this
+                }
             }
         }
     }

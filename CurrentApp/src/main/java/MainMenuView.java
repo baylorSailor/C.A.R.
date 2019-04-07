@@ -1,8 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,35 +9,35 @@ import java.util.Map;
 
 class MainMenuView extends JFrame {
     //TODO Fix layout of buttons in layout
-    JPanel pnMainPanel;
+    private JPanel pnMainPanel;
 
-    JPanel pnSearchResults;
-    JButton btRefresh;
-    JButton btHistory;
-    JButton btActiveRentals;
-    JButton btAccountDetails;
-    JButton btLogout;
-    JLabel lbLoggedInAs;
-    JLabel lbFilters;
-    JLabel lbMake;
-    JLabel lbModel;
-    JLabel lbYear;
-    JLabel lbType;
-    JLabel lbTrans;
-    JLabel lbMileage;
-    JLabel lbMPG;
-    JLabel lbInterior;
-    JLabel lbExterior;
-    JLabel lbPicture;
-    JComboBox cmbYear;
-    JComboBox cmbMake;
-    JComboBox cmbModel;
-    JComboBox cmbType;
-    JComboBox cmbTrans;
-    JSlider sdMileage;
-    JSlider sdMPG;
-    JComboBox cmbInterior;
-    JComboBox cmbExterior;
+    private JPanel pnSearchResults;
+    private JButton btRefresh;
+    private JButton btHistory;
+    private JButton btActiveRentals;
+    private JButton btAccountDetails;
+    private JButton btLogout;
+    private JLabel lbLoggedInAs;
+    private JLabel lbFilters;
+    private JLabel lbMake;
+    private JLabel lbModel;
+    private JLabel lbYear;
+    private JLabel lbType;
+    private JLabel lbTrans;
+    private JLabel lbMileage;
+    private JLabel lbMPG;
+    private JLabel lbInterior;
+    private JLabel lbExterior;
+    private JLabel lbPicture;
+    private JComboBox cmbYear;
+    private JComboBox cmbMake;
+    private JComboBox cmbModel;
+    private JComboBox cmbType;
+    private JComboBox cmbTrans;
+    private JSlider sdMileage;
+    private JSlider sdMPG;
+    private JComboBox cmbInterior;
+    private JComboBox cmbExterior;
 
     public MainMenuView() {
         super( "View Local Listings");
@@ -476,5 +474,229 @@ class MainMenuView extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible( true );
+    }
+
+    public JPanel getPnMainPanel() {
+        return pnMainPanel;
+    }
+
+    public void setPnMainPanel(JPanel pnMainPanel) {
+        this.pnMainPanel = pnMainPanel;
+    }
+
+    public JPanel getPnSearchResults() {
+        return pnSearchResults;
+    }
+
+    public void setPnSearchResults(JPanel pnSearchResults) {
+        this.pnSearchResults = pnSearchResults;
+    }
+
+    public JButton getBtRefresh() {
+        return btRefresh;
+    }
+
+    public void setBtRefresh(JButton btRefresh) {
+        this.btRefresh = btRefresh;
+    }
+
+    public JButton getBtHistory() {
+        return btHistory;
+    }
+
+    public void setBtHistory(JButton btHistory) {
+        this.btHistory = btHistory;
+    }
+
+    public JButton getBtActiveRentals() {
+        return btActiveRentals;
+    }
+
+    public void setBtActiveRentals(JButton btActiveRentals) {
+        this.btActiveRentals = btActiveRentals;
+    }
+
+    public JButton getBtAccountDetails() {
+        return btAccountDetails;
+    }
+
+    public void setBtAccountDetails(JButton btAccountDetails) {
+        this.btAccountDetails = btAccountDetails;
+    }
+
+    public JButton getBtLogout() {
+        return btLogout;
+    }
+
+    public void setBtLogout(JButton btLogout) {
+        this.btLogout = btLogout;
+    }
+
+    public JLabel getLbLoggedInAs() {
+        return lbLoggedInAs;
+    }
+
+    public void setLbLoggedInAs(JLabel lbLoggedInAs) {
+        this.lbLoggedInAs = lbLoggedInAs;
+    }
+
+    public JLabel getLbFilters() {
+        return lbFilters;
+    }
+
+    public void setLbFilters(JLabel lbFilters) {
+        this.lbFilters = lbFilters;
+    }
+
+    public JLabel getLbMake() {
+        return lbMake;
+    }
+
+    public void setLbMake(JLabel lbMake) {
+        this.lbMake = lbMake;
+    }
+
+    public JLabel getLbModel() {
+        return lbModel;
+    }
+
+    public void setLbModel(JLabel lbModel) {
+        this.lbModel = lbModel;
+    }
+
+    public JLabel getLbYear() {
+        return lbYear;
+    }
+
+    public void setLbYear(JLabel lbYear) {
+        this.lbYear = lbYear;
+    }
+
+    public JLabel getLbType() {
+        return lbType;
+    }
+
+    public void setLbType(JLabel lbType) {
+        this.lbType = lbType;
+    }
+
+    public JLabel getLbTrans() {
+        return lbTrans;
+    }
+
+    public void setLbTrans(JLabel lbTrans) {
+        this.lbTrans = lbTrans;
+    }
+
+    public JLabel getLbMileage() {
+        return lbMileage;
+    }
+
+    public void setLbMileage(JLabel lbMileage) {
+        this.lbMileage = lbMileage;
+    }
+
+    public JLabel getLbMPG() {
+        return lbMPG;
+    }
+
+    public void setLbMPG(JLabel lbMPG) {
+        this.lbMPG = lbMPG;
+    }
+
+    public JLabel getLbInterior() {
+        return lbInterior;
+    }
+
+    public void setLbInterior(JLabel lbInterior) {
+        this.lbInterior = lbInterior;
+    }
+
+    public JLabel getLbExterior() {
+        return lbExterior;
+    }
+
+    public void setLbExterior(JLabel lbExterior) {
+        this.lbExterior = lbExterior;
+    }
+
+    public JLabel getLbPicture() {
+        return lbPicture;
+    }
+
+    public void setLbPicture(JLabel lbPicture) {
+        this.lbPicture = lbPicture;
+    }
+
+    public JComboBox getCmbYear() {
+        return cmbYear;
+    }
+
+    public void setCmbYear(JComboBox cmbYear) {
+        this.cmbYear = cmbYear;
+    }
+
+    public JComboBox getCmbMake() {
+        return cmbMake;
+    }
+
+    public void setCmbMake(JComboBox cmbMake) {
+        this.cmbMake = cmbMake;
+    }
+
+    public JComboBox getCmbModel() {
+        return cmbModel;
+    }
+
+    public void setCmbModel(JComboBox cmbModel) {
+        this.cmbModel = cmbModel;
+    }
+
+    public JComboBox getCmbType() {
+        return cmbType;
+    }
+
+    public void setCmbType(JComboBox cmbType) {
+        this.cmbType = cmbType;
+    }
+
+    public JComboBox getCmbTrans() {
+        return cmbTrans;
+    }
+
+    public void setCmbTrans(JComboBox cmbTrans) {
+        this.cmbTrans = cmbTrans;
+    }
+
+    public JSlider getSdMileage() {
+        return sdMileage;
+    }
+
+    public void setSdMileage(JSlider sdMileage) {
+        this.sdMileage = sdMileage;
+    }
+
+    public JSlider getSdMPG() {
+        return sdMPG;
+    }
+
+    public void setSdMPG(JSlider sdMPG) {
+        this.sdMPG = sdMPG;
+    }
+
+    public JComboBox getCmbInterior() {
+        return cmbInterior;
+    }
+
+    public void setCmbInterior(JComboBox cmbInterior) {
+        this.cmbInterior = cmbInterior;
+    }
+
+    public JComboBox getCmbExterior() {
+        return cmbExterior;
+    }
+
+    public void setCmbExterior(JComboBox cmbExterior) {
+        this.cmbExterior = cmbExterior;
     }
 }

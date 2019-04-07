@@ -8,7 +8,7 @@ class UserModel {
     private String creditCard;
 
     public UserModel(String fullname, String username, String email, String password, String creditType,
-                     String creditCard) {
+                                    String creditCard) {
         this.fullname = fullname;
         this.pictureLocation = "./src/main/resources/" + username + ".png";
         this.username = username;

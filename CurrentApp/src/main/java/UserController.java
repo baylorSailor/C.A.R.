@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 
 class UserController {
@@ -20,29 +21,31 @@ class UserController {
         view.getBtCreateAcct().addActionListener(e -> {
             CreateAccountView accountSetupView = new CreateAccountView();
 
-            accountSetupView.btCreateAcct.addActionListener(e1 -> {
+            accountSetupView.getBtCreateAcct().addActionListener(e1 -> {
                 String creditType;
                 File file = new File("./src/main/resources/Users.csv");
                 if(accountSetupView.allFieldsEntered()) {
-                    if(accountSetupView.rbVisa.isSelected()) {
+                    if(accountSetupView.getRbVisa().isSelected()) {
                         creditType = "Visa";
                     } else {
                         creditType = "MasterCard";
                     }
-                    user = new UserModel(accountSetupView.tfFirstName.getText() +
-                            accountSetupView.tfLastName.getText(),accountSetupView.tfUserName.getText(),
-                            accountSetupView.tfEmail.getText(),accountSetupView.tfPassword.getText(),
-                            creditType,accountSetupView.tfCreditCardNumber.getText());
+                    user = new UserModel(accountSetupView.getTfFirstName().getText() +
+                            accountSetupView.getTfLastName().getText(),accountSetupView.getTfUserName().getText(),
+                            accountSetupView.getTfEmail().getText(),accountSetupView.getTfPassword().getText(),
+                            creditType,accountSetupView.getTfCreditCardNumber().getText());
 
                     if(file.exists()) {
                         DatabaseAdapter.Users.writeUser(user);
-                        /// TODO Ensure that a photo is added, then save it
                         DatabaseAdapter.Users.SaveImage(user);
                     } else {
                         //TODO Log error
                     }
+                    accountSetupView.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "One or more fields are empty.",
+                            "", JOptionPane.WARNING_MESSAGE);
                 }
-                accountSetupView.setVisible(false);
             });
         });
     }
