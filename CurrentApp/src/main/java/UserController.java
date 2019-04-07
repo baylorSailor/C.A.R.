@@ -3,39 +3,38 @@ import java.io.File;
 
 class UserController {
     static UserModel user = null;
-    private LoginView view = new LoginView();
+    private LoginView loginView = new LoginView();
+    private MainMenuController mainMenuController = null;
+    private CreateAccountView createAccountView = null;
 
     public void start() {
-        view.getBtLogin().addActionListener(e -> {
-            if((user = DatabaseAdapter.Users.verifyUser(view.getTfUser().getText(),view.getTfPass().getText()))
-                                                            != null) {
-                view.setVisible(false);
-                view.dispose();
-                view = null;
-                new MainMenuController().start();
+        loginView.getBtLogin().addActionListener(e -> {
+            if((user = DatabaseAdapter.Users.verifyUser(loginView.getTfUser().getText(),
+                                                                    loginView.getTfPass().getText())) != null) {
+                removeAllFramesAndStart();
             } else {
-                view.getLbError().setText("Incorrect username or password.");
+                loginView.getLbError().setText("Incorrect username or password.");
             }
         });
 
-        view.getBtCreateAcct().addActionListener(e -> {
-            CreateAccountView accountSetupView = new CreateAccountView();
+        loginView.getBtCreateAcct().addActionListener(e -> {
+            createAccountView = new CreateAccountView();
 
-            accountSetupView.getBtAddImage().addActionListener(accountSetupView::AddImage);
+            createAccountView.getBtAddImage().addActionListener(createAccountView::AddImage);
 
-            accountSetupView.getBtCreateAcct().addActionListener(e1 -> {
+            createAccountView.getBtCreateAcct().addActionListener(e1 -> {
                 String creditType;
                 File file = new File("./src/main/resources/Users.csv");
-                if(accountSetupView.allFieldsEntered()) {
-                    if(accountSetupView.getRbVisa().isSelected()) {
+                if(createAccountView.allFieldsEntered()) {
+                    if(createAccountView.getRbVisa().isSelected()) {
                         creditType = "Visa";
                     } else {
                         creditType = "MasterCard";
                     }
-                    user = new UserModel(accountSetupView.getTfFirstName().getText() +
-                            accountSetupView.getTfLastName().getText(),accountSetupView.getTfUserName().getText(),
-                            accountSetupView.getTfEmail().getText(),accountSetupView.getTfPassword().getText(),
-                            creditType,accountSetupView.getTfCreditCardNumber().getText());
+                    user = new UserModel(createAccountView.getTfFirstName().getText() +
+                            createAccountView.getTfLastName().getText(),createAccountView.getTfUserName().getText(),
+                            createAccountView.getTfEmail().getText(),createAccountView.getTfPassword().getText(),
+                            creditType,createAccountView.getTfCreditCardNumber().getText());
 
                     if(file.exists()) {
                         DatabaseAdapter.Users.writeUser(user);
@@ -43,7 +42,7 @@ class UserController {
                     } else {
                         //TODO Log error
                     }
-                    accountSetupView.setVisible(false);
+                    removeAllFramesAndStart();
                 } else {
                     String message = "1. No fields may be left empty.\n" +
                                      "2. Password must be 7 or more characters.\n" +
@@ -58,5 +57,14 @@ class UserController {
 
     public static UserModel getUser() {
         return user;
+    }
+    
+    private void removeAllFramesAndStart() {
+        loginView.dispose();
+        loginView = null;
+        createAccountView.dispose();
+        createAccountView = null;
+        mainMenuController = new MainMenuController();
+        mainMenuController.start();
     }
 }
