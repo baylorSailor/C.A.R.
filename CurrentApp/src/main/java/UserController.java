@@ -29,7 +29,7 @@ class UserController {
 
     private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
-            if((user = DatabaseAdapter.Users.verifyUser(loginView.getTfUser().getText(),
+            if((user = DatabaseAdapter.verifyUser(loginView.getTfUser().getText(),
                                                                         loginView.getTfPass().getText())) != null) {
                 removeAllFramesAndStart();
             } else {
@@ -45,7 +45,7 @@ class UserController {
             createAccountView.getBtAddImage().addActionListener(createAccountView::AddImage);
 
             createAccountView.getBtCreateAcct().addActionListener(e1 -> {
-                if(DatabaseAdapter.Users.userExists(createAccountView.getTfEmail().getText())) {
+                if(DatabaseAdapter.userExists(createAccountView.getTfEmail().getText())) {
                     createAccountView.setErrorLabelMessage("Account already exists.");
                 }
                 String creditType;
@@ -62,8 +62,8 @@ class UserController {
                             creditType,createAccountView.getTfCreditCardNumber().getText());
 
                     if(file.exists()) {
-                        DatabaseAdapter.Users.writeUser(user);
-                        DatabaseAdapter.Users.SaveImage(user);
+                        DatabaseAdapter.writeUser(user);
+                        DatabaseAdapter.SaveImage(user);
                     } else {
                         //TODO Log error
                     }
