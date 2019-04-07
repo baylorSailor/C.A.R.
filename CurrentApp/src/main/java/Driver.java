@@ -6,13 +6,6 @@ import java.awt.event.ActionListener;
 public class Driver extends JPanel {
 
     static UserController userController = new UserController();
-
-//    public static LoginView login = null;
-//    public static MainMenuView listings = null;
-//    public static CreateAccount account = null;
-//    public static History history = null;
-//    public static AccountDetails accountDetails = null;
-//    public static ActiveRentals activeRentals = null;
     //TODO Add Vehicle Class
 
 //    static void destroyPanes() {

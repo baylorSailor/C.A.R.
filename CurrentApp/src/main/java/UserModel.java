@@ -1,4 +1,4 @@
-public class UserModel {
+class UserModel {
     private String fullname;
     private String pictureLocation;
     private String username;

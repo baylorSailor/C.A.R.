@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-public class MainMenuView extends JFrame {
+class MainMenuView extends JFrame {
     //TODO Fix layout of buttons in layout
     JPanel pnMainPanel;
 
@@ -133,15 +133,11 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btRefresh, gbcMainPanel );
         pnMainPanel.add( btRefresh );
         getRootPane().setDefaultButton(btRefresh);
-        btRefresh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO refresh button
-            }
+        btRefresh.addActionListener(e -> {
+            //TODO refresh button
         });
 
         btHistory = new JButton( "History"  );
-        //btHistory.setActionCommand( "history" );
         gbcMainPanel.gridx = 10;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
@@ -165,7 +161,6 @@ public class MainMenuView extends JFrame {
 //        });
 
         btActiveRentals = new JButton( "Active Rentals"  );
-        //btActiveRentals.setActionCommand( "active" );
         gbcMainPanel.gridx = 12;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
@@ -189,7 +184,6 @@ public class MainMenuView extends JFrame {
 //        });
 
         btAccountDetails = new JButton( "Account Details"  );
-        //btAccountDetails.setActionCommand( "account" );
         gbcMainPanel.gridx = 14;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
@@ -213,7 +207,6 @@ public class MainMenuView extends JFrame {
 //        });
 
         btLogout = new JButton( "Logout"  );
-        //btAccountDetails.setActionCommand( "account" );
         gbcMainPanel.gridx = 16;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
@@ -274,12 +267,9 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbMake, gbcMainPanel );
         pnMainPanel.add( cmbMake );
-        cmbMake.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String temp = (String) cmbMake.getSelectedItem();
+        cmbMake.addActionListener(e -> {
+            String temp = (String) cmbMake.getSelectedItem();
 
-            }
         });
 
         lbModel = new JLabel( "Model:"  );

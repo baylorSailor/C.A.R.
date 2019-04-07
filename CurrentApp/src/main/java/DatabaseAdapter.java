@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class DatabaseAdapter {
+class DatabaseAdapter {
 
     public static class Users {
         public static UserModel verifyUser(String username, String password) {
