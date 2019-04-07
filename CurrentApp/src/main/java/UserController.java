@@ -30,7 +30,7 @@ class UserController {
     private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
             if((user = DatabaseAdapter.Users.verifyUser(loginView.getTfUser().getText(),
-                    loginView.getTfPass().getText())) != null) {
+                                                                        loginView.getTfPass().getText())) != null) {
                 removeAllFramesAndStart();
             } else {
                 loginView.getLbError().setText("Incorrect username or password.");
@@ -79,4 +79,6 @@ class UserController {
             });
         });
     }
+
+
 }

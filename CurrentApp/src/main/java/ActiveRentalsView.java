@@ -3,28 +3,19 @@ import java.awt.*;
 
 class ActiveRentalsView extends JFrame {
 
-    JPanel pnMainPanel;
-
     JPanel pnActiveRentals;
     JTable tbHTable;
-    JButton btSearch;
-    JButton btHistory;
-    JButton btLogout;
-    JButton btAccountDetails;
 
     public ActiveRentalsView() {
         super( "View Active Rentals" );
-
-        pnMainPanel = new JPanel();
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
-        pnMainPanel.setLayout( gbMainPanel );
 
         pnActiveRentals = new JPanel();
         pnActiveRentals.setBorder( BorderFactory.createTitledBorder( "Active Rentals" ) );
         GridBagLayout gbActiveRentals = new GridBagLayout();
         GridBagConstraints gbcActiveRentals = new GridBagConstraints();
-        pnActiveRentals.setLayout( gbActiveRentals );
+        pnActiveRentals.setLayout( gbMainPanel );
 
         String [][]dataHTable = new String[][] { new String[] {"No Active Rentals", " "} };
         String []colsHTable = new String[] { "", "" };
@@ -52,94 +43,8 @@ class ActiveRentalsView extends JFrame {
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( scpActiveRentals, gbcMainPanel );
-        pnMainPanel.add( scpActiveRentals );
 
-        btSearch = new JButton( "Search"  );
-        gbcMainPanel.gridx = 8;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btSearch, gbcMainPanel );
-        pnMainPanel.add( btSearch );
-//        btSearch.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                CurrentApp.listings.setVisible(true);
-//                setVisible(false);
-//            }
-//        });
-
-        btHistory = new JButton( "History"  );
-        gbcMainPanel.gridx = 10;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btHistory, gbcMainPanel );
-        pnMainPanel.add( btHistory );
-//        btHistory.addActionListener(new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            if(CurrentApp.history == null) {
-//                CurrentApp.history = new History();
-//            } else {
-//                CurrentApp.history.setVisible(true);
-//            }
-//            setVisible(false);
-//        }
-//        });
-
-        btAccountDetails = new JButton( "Account Details"  );
-        gbcMainPanel.gridx = 12;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btAccountDetails, gbcMainPanel );
-        pnMainPanel.add( btAccountDetails );
-//        btAccountDetails.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(CurrentApp.accountDetails == null) {
-//                    CurrentApp.accountDetails = new AccountDetails();
-//                } else {
-//                    CurrentApp.accountDetails.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
-
-        btLogout = new JButton( "Logout"  );
-        gbcMainPanel.gridx = 14;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btLogout, gbcMainPanel );
-        pnMainPanel.add( btLogout );
-//        btLogout.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                CurrentApp.destroyPanes();
-//                CurrentApp.login.setVisible(true);
-//                setVisible(false);
-//            }
-//        });
-
-        setContentPane( pnMainPanel );
+        setContentPane( pnActiveRentals );
         pack();
         setLocationRelativeTo(null);
         setVisible( true );

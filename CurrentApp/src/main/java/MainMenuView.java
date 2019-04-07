@@ -143,17 +143,6 @@ class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btHistory, gbcMainPanel );
         pnMainPanel.add( btHistory );
-//        btHistory.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(Driver.history == null) {
-//                    Driver.history = new History();
-//                } else {
-//                    Driver.history.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
 
         btActiveRentals = new JButton( "Active Rentals"  );
         gbcMainPanel.gridx = 12;
@@ -166,17 +155,6 @@ class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
         pnMainPanel.add( btActiveRentals );
-//        btActiveRentals.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(Driver.activeRentals == null) {
-//                    Driver.activeRentals = new ActiveRentals();
-//                } else {
-//                    Driver.activeRentals.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
 
         btAccountDetails = new JButton( "Account Details"  );
         gbcMainPanel.gridx = 14;
@@ -189,17 +167,6 @@ class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btAccountDetails, gbcMainPanel );
         pnMainPanel.add( btAccountDetails );
-//        btAccountDetails.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(Driver.accountDetails == null) {
-//                    Driver.accountDetails = new AccountDetails();
-//                } else {
-//                    Driver.accountDetails.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
 
         btLogout = new JButton( "Logout"  );
         gbcMainPanel.gridx = 16;
@@ -212,14 +179,6 @@ class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btLogout, gbcMainPanel );
         pnMainPanel.add( btLogout );
-//        btLogout.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Driver.destroyPanes();
-//                //Driver.login.setVisible(true);
-//                setVisible(false);
-//            }
-//        });
 
         lbFilters = new JLabel( "Search Filters"  );
         f = lbFilters.getFont();

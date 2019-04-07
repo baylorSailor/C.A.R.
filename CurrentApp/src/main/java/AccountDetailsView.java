@@ -15,10 +15,6 @@ class AccountDetailsView extends JFrame {
     JLabel lbEmail;
     JLabel lbCreditCardType;
     JLabel lbPicture;
-    JButton btSearch;
-    JButton btHistory;
-    JButton btActiveRentals;
-    JButton btLogout;
 
     public AccountDetailsView() {
         super( "View Account Details" );
@@ -121,95 +117,6 @@ class AccountDetailsView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( scpAccountDetails, gbcMainPanel );
         pnMainPanel.add( scpAccountDetails );
-
-        btSearch = new JButton( "Search"  );
-        gbcMainPanel.gridx = 8;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 4;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btSearch, gbcMainPanel );
-        pnMainPanel.add( btSearch );
-//        btSearch.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(CurrentApp.listings == null) {
-//                    CurrentApp.listings = new MainMenuView();
-//                } else {
-//                    CurrentApp.listings.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
-
-        btHistory = new JButton( "History"  );
-        gbcMainPanel.gridx = 12;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btHistory, gbcMainPanel );
-        pnMainPanel.add( btHistory );
-//        btHistory.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(CurrentApp.history == null) {
-//                    CurrentApp.history = new History();
-//                } else {
-//                    CurrentApp.history.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
-
-        btActiveRentals = new JButton( "Active Rentals"  );
-        gbcMainPanel.gridx = 14;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
-        pnMainPanel.add( btActiveRentals );
-//        btActiveRentals.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(CurrentApp.activeRentals == null) {
-//                    CurrentApp.activeRentals = new ActiveRentals();
-//                } else {
-//                    CurrentApp.activeRentals.setVisible(true);
-//                }
-//                setVisible(false);
-//            }
-//        });
-
-        btLogout = new JButton( "Logout"  );
-        gbcMainPanel.gridx = 16;
-        gbcMainPanel.gridy = 9;
-        gbcMainPanel.gridwidth = 2;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( btLogout, gbcMainPanel );
-        pnMainPanel.add( btLogout );
-//        btLogout.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                CurrentApp.destroyPanes();
-//                CurrentApp.login.setVisible(true);
-//                setVisible(false);
-//            }
-//        });
 
         setContentPane( pnMainPanel );
         pack();
