@@ -131,9 +131,6 @@ class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btRefresh, gbcMainPanel );
         pnMainPanel.add( btRefresh );
         getRootPane().setDefaultButton(btRefresh);
-        btRefresh.addActionListener(e -> {
-            //TODO refresh button
-        });
 
         btHistory = new JButton( "History"  );
         gbcMainPanel.gridx = 10;

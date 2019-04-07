@@ -8,15 +8,37 @@ class UserController {
     private CreateAccountView createAccountView = null;
 
     public void start() {
+        loginButtonPressed();
+        createAccountButtonPressed();
+    }
+
+    public static UserModel getUser() {
+        return user;
+    }
+    
+    private void removeAllFramesAndStart() {
+        loginView.dispose();
+        loginView = null;
+        if(createAccountView != null) {
+            createAccountView.dispose();
+            createAccountView = null;
+        }
+        mainMenuController = new MainMenuController();
+        mainMenuController.start();
+    }
+
+    private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
             if((user = DatabaseAdapter.Users.verifyUser(loginView.getTfUser().getText(),
-                                                                    loginView.getTfPass().getText())) != null) {
+                    loginView.getTfPass().getText())) != null) {
                 removeAllFramesAndStart();
             } else {
                 loginView.getLbError().setText("Incorrect username or password.");
             }
         });
+    }
 
+    private void createAccountButtonPressed() {
         loginView.getBtCreateAcct().addActionListener(e -> {
             createAccountView = new CreateAccountView();
 
@@ -48,26 +70,13 @@ class UserController {
                     removeAllFramesAndStart();
                 } else {
                     String message = "1. No fields may be left empty.\n" +
-                                     "2. Password must be 7 or more characters.\n" +
-                                     "3. Image is preferred, but no image is required.\n" +
-                                     "4. Passwords must match.";
+                            "2. Password must be 7 or more characters.\n" +
+                            "3. Image is preferred, but no image is required.\n" +
+                            "4. Passwords must match.";
                     JOptionPane.showMessageDialog(null, message,
                             "Required Account Information", JOptionPane.WARNING_MESSAGE);
                 }
             });
         });
-    }
-
-    public static UserModel getUser() {
-        return user;
-    }
-    
-    private void removeAllFramesAndStart() {
-        loginView.dispose();
-        loginView = null;
-        createAccountView.dispose();
-        createAccountView = null;
-        mainMenuController = new MainMenuController();
-        mainMenuController.start();
     }
 }

@@ -1,0 +1,219 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+class AccountDetailsView extends JFrame {
+
+    JPanel pnMainPanel;
+
+    JPanel pnAccountDetails;
+    JLabel lbName;
+    JLabel lbUsername;
+    JLabel lbEmail;
+    JLabel lbCreditCardType;
+    JLabel lbPicture;
+    JButton btSearch;
+    JButton btHistory;
+    JButton btActiveRentals;
+    JButton btLogout;
+
+    public AccountDetailsView() {
+        super( "View Account Details" );
+
+        pnMainPanel = new JPanel();
+        GridBagLayout gbMainPanel = new GridBagLayout();
+        GridBagConstraints gbcMainPanel = new GridBagConstraints();
+        pnMainPanel.setLayout( gbMainPanel );
+
+        pnAccountDetails = new JPanel();
+        pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "Account Details" ) );
+        GridBagLayout gbAccountDetails = new GridBagLayout();
+        GridBagConstraints gbcAccountDetails = new GridBagConstraints();
+        pnAccountDetails.setLayout( gbAccountDetails );
+
+        lbName = new JLabel( "Name: " + UserController.getUser().getFullname());
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 9;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbName, gbcAccountDetails );
+        pnAccountDetails.add( lbName );
+
+        lbUsername = new JLabel( "Username: " + UserController.getUser().getUsername());
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 11;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbUsername, gbcAccountDetails );
+        pnAccountDetails.add( lbUsername );
+
+        lbEmail = new JLabel( "Email: " + UserController.getUser().getEmail());
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 13;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbEmail, gbcAccountDetails );
+        pnAccountDetails.add( lbEmail );
+
+        lbCreditCardType = new JLabel( "Credit Card Type: " + UserController.getUser().getCreditType());
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 15;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
+        pnAccountDetails.add( lbCreditCardType );
+
+        BufferedImage picture = null;
+        try {
+            picture = ImageIO.read(new File("./src/main/resources/" + UserController.getUser().getUsername()
+                                                                                            + ".png"));
+
+        } catch(IOException e) {
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample.png"));
+            } catch(IOException ee) {
+                //TODO add logger to catch this
+            }
+
+        } finally {
+            lbPicture = new JLabel(new ImageIcon(picture));
+            add(lbPicture);
+        }
+
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 7;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.CENTER;
+        gbAccountDetails.setConstraints( lbPicture, gbcAccountDetails );
+        pnAccountDetails.add( lbPicture );
+
+        JScrollPane scpAccountDetails = new JScrollPane( pnAccountDetails );
+        gbcMainPanel.gridx = 1;
+        gbcMainPanel.gridy = 10;
+        gbcMainPanel.gridwidth = 19;
+        gbcMainPanel.gridheight = 15;
+        gbcMainPanel.fill = GridBagConstraints.BOTH;
+        gbcMainPanel.weightx = 1;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( scpAccountDetails, gbcMainPanel );
+        pnMainPanel.add( scpAccountDetails );
+
+        btSearch = new JButton( "Search"  );
+        gbcMainPanel.gridx = 8;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 4;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btSearch, gbcMainPanel );
+        pnMainPanel.add( btSearch );
+//        btSearch.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(CurrentApp.listings == null) {
+//                    CurrentApp.listings = new MainMenuView();
+//                } else {
+//                    CurrentApp.listings.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
+
+        btHistory = new JButton( "History"  );
+        gbcMainPanel.gridx = 12;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btHistory, gbcMainPanel );
+        pnMainPanel.add( btHistory );
+//        btHistory.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(CurrentApp.history == null) {
+//                    CurrentApp.history = new History();
+//                } else {
+//                    CurrentApp.history.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
+
+        btActiveRentals = new JButton( "Active Rentals"  );
+        gbcMainPanel.gridx = 14;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
+        pnMainPanel.add( btActiveRentals );
+//        btActiveRentals.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(CurrentApp.activeRentals == null) {
+//                    CurrentApp.activeRentals = new ActiveRentals();
+//                } else {
+//                    CurrentApp.activeRentals.setVisible(true);
+//                }
+//                setVisible(false);
+//            }
+//        });
+
+        btLogout = new JButton( "Logout"  );
+        gbcMainPanel.gridx = 16;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btLogout, gbcMainPanel );
+        pnMainPanel.add( btLogout );
+//        btLogout.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                CurrentApp.destroyPanes();
+//                CurrentApp.login.setVisible(true);
+//                setVisible(false);
+//            }
+//        });
+
+        setContentPane( pnMainPanel );
+        pack();
+        setLocationRelativeTo(null);
+        setVisible( true );
+    }
+}
