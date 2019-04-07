@@ -8,8 +8,6 @@ import java.io.*;
 
 class CreateAccountView extends JFrame {
 
-    private JPanel pnMainPanel;
-
     private JPanel pnCreateAcct;
     private ButtonGroup rbgCreateAcct;
     private JLabel lbFirstName;
@@ -29,16 +27,13 @@ class CreateAccountView extends JFrame {
     private JTextField tfCreditCardNumber;
     private JLabel lbPassword;
     private JPasswordField tfPassword;
-    private JLabel lbError;
 
     static BufferedImage picture = null;
 
     public CreateAccountView() {
       super( "Create Account" );
-      pnMainPanel = new JPanel();
       GridBagLayout gbMainPanel = new GridBagLayout();
       GridBagConstraints gbcMainPanel = new GridBagConstraints();
-      pnMainPanel.setLayout( gbMainPanel );
 
       pnCreateAcct = new JPanel();
       pnCreateAcct.setBorder( BorderFactory.createTitledBorder( "New Account" ) );
@@ -252,12 +247,7 @@ class CreateAccountView extends JFrame {
        gbcCreateAcct.anchor = GridBagConstraints.SOUTH;
        gbCreateAcct.setConstraints( btAddImage, gbcCreateAcct );
        pnCreateAcct.add( btAddImage );
-       btAddImage.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               AddImage(e);
-           }
-       });
+       btAddImage.addActionListener(e -> AddImage(e));
 
       btCreateAcct = new JButton( "Create Account"  );
       gbcCreateAcct.gridx = 3;
@@ -272,7 +262,7 @@ class CreateAccountView extends JFrame {
       pnCreateAcct.add( btCreateAcct );
       getRootPane().setDefaultButton(btCreateAcct);
 
-      setContentPane( pnMainPanel );
+      setContentPane( pnCreateAcct );
       pack();
       setVisible( true );
     }
@@ -294,6 +284,11 @@ class CreateAccountView extends JFrame {
         }
     }
 
+    public String missingComponent() {
+
+        for(int i = 0; i <)
+    }
+
     public boolean allFieldsEntered() {
        boolean foo = true;
        if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
@@ -306,14 +301,6 @@ class CreateAccountView extends JFrame {
 
     public static BufferedImage getPicture() {
         return picture;
-    }
-
-    public JPanel getPnMainPanel() {
-        return pnMainPanel;
-    }
-
-    public void setPnMainPanel(JPanel pnMainPanel) {
-        this.pnMainPanel = pnMainPanel;
     }
 
     public JPanel getPnCreateAcct() {
