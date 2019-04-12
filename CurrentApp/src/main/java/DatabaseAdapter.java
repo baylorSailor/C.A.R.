@@ -8,6 +8,7 @@ import java.util.Scanner;
 class DatabaseAdapter {
 
     public static UserModel verifyUser(String username, String password) {
+        UserFactory uf = new UserFactory();
         boolean found = false;
         UserModel user = null;
         try {
@@ -18,7 +19,7 @@ class DatabaseAdapter {
                 line = sc.nextLine();
                 split = line.split(",");
                 if (username.equals(split[1]) && password.equals(split[3])) {
-                    user = new UserModel(split[0], split[1], split[2], split[3], split[4], split[5]);
+                    user = uf.getUser(split[6], split);
                     found = true;
                 }
             }
