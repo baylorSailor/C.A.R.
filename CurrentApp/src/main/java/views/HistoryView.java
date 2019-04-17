@@ -1,3 +1,5 @@
+package views;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
@@ -5,7 +7,7 @@ import java.awt.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-class HistoryView extends JFrame {
+public class HistoryView extends JFrame {
 
     private JPanel pnHistory;
     private JTable tbHTable;

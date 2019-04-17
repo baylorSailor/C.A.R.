@@ -1,3 +1,7 @@
+package factories;
+
+import models.UserModel;
+
 public class UserFactory {
     public UserModel getUser(String userType, String[] data) {
         if(userType == null) {

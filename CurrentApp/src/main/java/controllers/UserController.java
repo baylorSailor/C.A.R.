@@ -1,7 +1,15 @@
+package controllers;
+
+import adapters.DatabaseAdapter;
+import models.UserModel;
+import views.CreateAccountView;
+import views.LoginView;
+
+
 import javax.swing.*;
 import java.io.File;
 
-class UserController {
+public class UserController {
     static UserModel user = null;
     private LoginView loginView = new LoginView();
     private MainMenuController mainMenuController = null;

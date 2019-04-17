@@ -1,3 +1,7 @@
+package views;
+
+import controllers.UserController;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-class MainMenuView extends JFrame {
+
+
+public class MainMenuView extends JFrame {
     private JPanel pnMainPanel;
 
     private JPanel pnSearchResults;

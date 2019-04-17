@@ -1,4 +1,6 @@
-class UserModel {
+package models;
+
+public class UserModel {
     private String fullname;
     private String pictureLocation;
     private String username;

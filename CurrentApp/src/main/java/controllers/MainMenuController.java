@@ -1,7 +1,14 @@
+package controllers;
+
+import views.AccountDetailsView;
+import views.ActiveRentalsView;
+import views.HistoryView;
+import views.MainMenuView;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-class MainMenuController {
+public class MainMenuController {
     private MainMenuView mainMenuView = new MainMenuView();
     private HistoryView historyView = null;
     private ActiveRentalsView activeRentalsView = null;

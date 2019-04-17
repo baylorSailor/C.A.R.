@@ -1,7 +1,9 @@
+package views;
+
 import javax.swing.*;
 import java.awt.*;
 
-class LoginView extends JFrame {
+public class LoginView extends JFrame {
 
     private JPanel pnLoginPanel;
     private JLabel lbUser;

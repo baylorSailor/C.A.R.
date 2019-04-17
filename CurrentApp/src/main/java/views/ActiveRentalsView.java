@@ -1,7 +1,9 @@
+package views;
+
 import javax.swing.*;
 import java.awt.*;
 
-class ActiveRentalsView extends JFrame {
+public class ActiveRentalsView extends JFrame {
 
     private JPanel pnActiveRentals;
     private JTable tbHTable;

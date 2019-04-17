@@ -1,3 +1,9 @@
+package adapters;
+
+import factories.UserFactory;
+import models.UserModel;
+import views.CreateAccountView;
+
 import javax.imageio.ImageIO;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -5,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-class DatabaseAdapter {
+public class DatabaseAdapter {
 
     public static UserModel verifyUser(String username, String password) {
         UserFactory uf = new UserFactory();

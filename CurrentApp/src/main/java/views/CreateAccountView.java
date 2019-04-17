@@ -1,10 +1,12 @@
+package views;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-class CreateAccountView extends JFrame {
+public class CreateAccountView extends JFrame {
 
     private JPanel pnCreateAcct;
     private ButtonGroup rbgCreateAcct;
