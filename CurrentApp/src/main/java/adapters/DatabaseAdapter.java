@@ -1,5 +1,7 @@
 package adapters;
 
+import factories.AdministraterFactory;
+import factories.RepresentativeFactory;
 import factories.UserFactory;
 import models.UserModel;
 import views.CreateAccountView;
@@ -14,7 +16,9 @@ import java.util.Scanner;
 public class DatabaseAdapter {
 
     public static UserModel verifyUser(String username, String password) {
-        UserFactory uf = new UserFactory();
+        UserFactory uf = UserFactory.UserFactory();
+        AdministraterFactory af = AdministraterFactory.AdministraterFactory();
+        RepresentativeFactory rf = RepresentativeFactory.RepresentativeFactory();
         boolean found = false;
         UserModel user = null;
         try {
@@ -25,7 +29,13 @@ public class DatabaseAdapter {
                 line = sc.nextLine();
                 split = line.split(",");
                 if (username.equals(split[1]) && password.equals(split[3])) {
-                    user = uf.getUser(split[6], split);
+                    if(split[6].equals("0")) {
+                        user = uf.getUser(split);
+                    } else if(split[6].equals("1")) {
+                        user = af.getUser(split);
+                    } else if(split[6].equals("2")) {
+                        user = rf.getUser(split);
+                    }
                     found = true;
                 }
             }
