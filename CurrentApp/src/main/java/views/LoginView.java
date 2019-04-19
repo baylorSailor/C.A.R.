@@ -1,9 +1,14 @@
 package views;
 
+import main.CAR;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Logger;
 
 public class LoginView extends JFrame {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
 
     private JPanel pnLoginPanel;
     private JLabel lbUser;

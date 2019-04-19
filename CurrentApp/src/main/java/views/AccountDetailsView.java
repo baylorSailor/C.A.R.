@@ -1,6 +1,7 @@
 package views;
 
 import controllers.UserController;
+import main.CAR;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,8 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccountDetailsView extends JFrame {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
 
     private JPanel pnAccountDetails;
     private JLabel lbName;
@@ -82,12 +87,11 @@ public class AccountDetailsView extends JFrame {
         try {
             picture = ImageIO.read(new File("./src/main/resources/" + UserController.getUser().getUsername()
                                                                                             + ".png"));
-
         } catch(IOException e) {
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
             } catch(IOException ee) {
-                //TODO add logger to catch this
+                log.log(Level.SEVERE,"Sample Profile Image couldn't be loaded");
             }
 
         } finally {

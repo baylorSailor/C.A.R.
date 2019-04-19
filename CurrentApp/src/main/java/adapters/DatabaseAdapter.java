@@ -3,6 +3,7 @@ package adapters;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
+import main.CAR;
 import models.UserModel;
 import views.CreateAccountView;
 
@@ -12,8 +13,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseAdapter {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
 
     public static UserModel verifyUser(String username, String password) {
         UserFactory uf = UserFactory.UserFactory();
@@ -92,7 +97,7 @@ public class DatabaseAdapter {
                 ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
             } catch(IOException | IllegalArgumentException e) {
                 e.printStackTrace();
-                //TODO add logger to catch this
+                log.log(Level.SEVERE,"User's selected image could not be saved");
             }
         }
     }
