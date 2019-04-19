@@ -14,6 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- TODO add logic for running JUnit tests from jar -->
     <build>
         <plugins>
             <plugin>
@@ -31,6 +32,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
