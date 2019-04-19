@@ -22,6 +22,7 @@ public class MainMenuView extends JFrame {
     private JButton btActiveRentals;
     private JButton btAccountDetails;
     private JButton btLogout;
+    private JButton btAddRental;
     private JLabel lbLoggedInAs;
     private JLabel lbFilters;
     private JLabel lbMake;
@@ -69,6 +70,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( scpSearchResults, gbcMainPanel );
         pnMainPanel.add( scpSearchResults );
 
+        //Test label in the main window
         JLabel test = new JLabel( "<html>Make: Dodge<br/>Model: Avenger<br/>Year: 2000<br/>Type: Sedan<br/>" +
                 "Transmission: Automatic 6-spd"  +
                 "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
@@ -110,6 +112,7 @@ public class MainMenuView extends JFrame {
             pnSearchResults.add(lbPicture);
         }
 
+        //User displayed
         lbLoggedInAs = new JLabel( "User: " + UserController.getUser().getUsername() );
         Font f = lbLoggedInAs.getFont();
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
@@ -124,6 +127,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbLoggedInAs, gbcMainPanel );
         pnMainPanel.add( lbLoggedInAs );
 
+        //Refresh Button
         btRefresh = new JButton( "Refresh"  );
         gbcMainPanel.gridx = 8;
         gbcMainPanel.gridy = 9;
@@ -137,6 +141,7 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( btRefresh );
         getRootPane().setDefaultButton(btRefresh);
 
+        //History Button
         btHistory = new JButton( "History"  );
         gbcMainPanel.gridx = 10;
         gbcMainPanel.gridy = 9;
@@ -149,6 +154,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btHistory, gbcMainPanel );
         pnMainPanel.add( btHistory );
 
+        //Active Rental Button
         btActiveRentals = new JButton( "Active Rentals"  );
         gbcMainPanel.gridx = 12;
         gbcMainPanel.gridy = 9;
@@ -161,6 +167,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btActiveRentals, gbcMainPanel );
         pnMainPanel.add( btActiveRentals );
 
+        //Account Details Button
         btAccountDetails = new JButton( "Account Details"  );
         gbcMainPanel.gridx = 14;
         gbcMainPanel.gridy = 9;
@@ -173,6 +180,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btAccountDetails, gbcMainPanel );
         pnMainPanel.add( btAccountDetails );
 
+        //Logout Button
         btLogout = new JButton( "Logout"  );
         gbcMainPanel.gridx = 16;
         gbcMainPanel.gridy = 9;
@@ -185,6 +193,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btLogout, gbcMainPanel );
         pnMainPanel.add( btLogout );
 
+        //Search Filters display
         lbFilters = new JLabel( "Search Filters"  );
         f = lbFilters.getFont();
         Map attributes = f.getAttributes();
@@ -201,6 +210,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbFilters, gbcMainPanel );
         pnMainPanel.add( lbFilters );
 
+        //Make options
         lbMake = new JLabel( "Make:"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 12;
@@ -213,7 +223,6 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbMake, gbcMainPanel );
         pnMainPanel.add( lbMake );
 
-        //TODO Vehicle class needed
         String []dataMake = { "Dodge", "Chrysler", "Chevy", "BMW" };
         cmbMake = new JComboBox( dataMake );
         gbcMainPanel.gridx = 2;
@@ -231,6 +240,7 @@ public class MainMenuView extends JFrame {
 
         });
 
+        //Model Options
         lbModel = new JLabel( "Model:"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 13;
@@ -256,6 +266,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( cmbModel, gbcMainPanel );
         pnMainPanel.add( cmbModel );
 
+        //Year options
         lbYear = new JLabel( "Year:"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 14;
@@ -281,6 +292,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( cmbYear, gbcMainPanel );
         pnMainPanel.add( cmbYear );
 
+        //Type options
         lbType = new JLabel( "Type:"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 15;
@@ -306,6 +318,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( cmbType, gbcMainPanel );
         pnMainPanel.add( cmbType );
 
+        //Transmission options
         lbTrans = new JLabel( "Transmission:"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 16;
@@ -331,6 +344,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( cmbTrans, gbcMainPanel );
         pnMainPanel.add( cmbTrans );
 
+        //Mileage slider
         lbMileage = new JLabel( "Mileage"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 17;
@@ -355,6 +369,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( sdMileage, gbcMainPanel );
         pnMainPanel.add( sdMileage );
 
+        //MPG slider
         lbMPG = new JLabel( "MPG (Average)"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 18;
@@ -379,6 +394,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( sdMPG, gbcMainPanel );
         pnMainPanel.add( sdMPG );
 
+        //Interior color options
         lbInterior = new JLabel( "Interior Color"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 19;
@@ -404,6 +420,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( cmbInterior, gbcMainPanel );
         pnMainPanel.add( cmbInterior );
 
+        //Exterior color options
         lbExterior = new JLabel( "Exterior Color"  );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 20;
@@ -428,6 +445,20 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbExterior, gbcMainPanel );
         pnMainPanel.add( cmbExterior );
+
+        //Add to rental button
+        btAddRental = new JButton( "Add Rental"  );
+        gbcMainPanel.gridx = 1;
+        gbcMainPanel.gridy = 22;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
+        pnMainPanel.add( btAddRental );
+        getRootPane().setDefaultButton(btAddRental);
 
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
@@ -456,4 +487,6 @@ public class MainMenuView extends JFrame {
     public JButton getBtLogout() {
         return btLogout;
     }
+
+    public JButton getBtAddRental(){ return btAddRental; }
 }

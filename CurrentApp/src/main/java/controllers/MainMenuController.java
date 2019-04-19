@@ -20,6 +20,7 @@ public class MainMenuController {
         activeRentalsButtonPressed();
         accountDetailsButtonPressed();
         logoutButtonPressed();
+        addRentalButtonPressed();
     }
 
     private void refreshButtonPressed() {
@@ -93,6 +94,13 @@ public class MainMenuController {
                 activeRentalsView = null;
             }
             new UserController().start();
+        });
+    }
+
+    //Fill after pressing add rental
+    private void addRentalButtonPressed(){
+        mainMenuView.getBtAddRental().addActionListener(e -> {
+            System.out.println("Add rental button pressed");
         });
     }
 }
