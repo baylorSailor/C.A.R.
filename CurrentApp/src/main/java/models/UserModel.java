@@ -4,12 +4,40 @@ package models;
  * Class representing a user
  */
 public class UserModel {
+
+    /**
+     * User's full name
+     */
     private String fullname;
+
+    /**
+     * User's picture location
+     */
     private String pictureLocation;
+
+    /**
+     * User's username
+     */
     private String username;
+
+    /**
+     * User's email
+     */
     private String email;
+
+    /**
+     * User's password
+     */
     private String password;
+
+    /**
+     * User's credit card type
+     */
     private String creditType;
+
+    /**
+     * User's credit card number
+     */
     private String creditCard;
 
     /**

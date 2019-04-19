@@ -5,20 +5,74 @@ package models;
  */
 public class CarModel {
 
-    // Car Attributes (14 total)
+    /**
+     * Car price
+     */
     private int price;
+
+    /**
+     * Car mileage
+     */
     private int mileage;
+
+    /**
+     * Car make
+     */
     private String make;
+
+    /**
+     * Car model
+     */
     private String model;
+
+    /**
+     * Car fuel type
+     */
     private String fuelType;
+
+    /**
+     * Car manufacture year
+     */
     private int year;
+
+    /**
+     * Car type
+     */
     private String type;
+
+    /**
+     * Car transmission
+     */
     private String transmission;
+
+    /**
+     * number of cylinders
+     */
     private int cylinders;
+
+    /**
+     * Car city mpg
+     */
     private int mpgCity;
+
+    /**
+     * Car highway mpg
+     */
     private int mpgHighway;
+
+    /**
+     * Car avg mpg
+     */
     private int mpgCombined;
+
+    /**
+     * Car interior color
+     */
     private String interior;
+
+    /**
+     * Car exterior color
+     */
     private String exterior;
 
     /**
