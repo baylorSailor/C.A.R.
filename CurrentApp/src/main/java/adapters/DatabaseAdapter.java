@@ -29,13 +29,13 @@ public class DatabaseAdapter {
                 line = sc.nextLine();
                 split = line.split(",");
                 if (username.equals(split[1]) && password.equals(split[3])) {
-                    if(split[6].equals("0")) {
+//                    if(split[6].equals("0")) {
                         user = uf.getUser(split);
-                    } else if(split[6].equals("1")) {
-                        user = af.getUser(split);
-                    } else if(split[6].equals("2")) {
-                        user = rf.getUser(split);
-                    }
+//                    } else if(split[6].equals("1")) {
+//                        user = af.getUser(split);
+//                    } else if(split[6].equals("2")) {
+//                        user = rf.getUser(split);
+//                    }
                     found = true;
                 }
             }
