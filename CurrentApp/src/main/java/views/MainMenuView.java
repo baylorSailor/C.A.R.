@@ -462,7 +462,6 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
         pnMainPanel.add( btAddRental );
-        getRootPane().setDefaultButton(btAddRental);
 
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
