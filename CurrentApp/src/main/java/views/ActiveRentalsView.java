@@ -3,11 +3,17 @@ package views;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Displays the active rentals for the user.
+ */
 public class ActiveRentalsView extends JFrame {
 
     private JPanel pnActiveRentals;
     private JTable tbHTable;
 
+    /**
+     * Constructor for ActiveRentals View
+     */
     public ActiveRentalsView() {
         super( "View Active Rentals" );
         GridBagLayout gbMainPanel = new GridBagLayout();

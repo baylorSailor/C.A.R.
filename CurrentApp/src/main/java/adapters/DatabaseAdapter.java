@@ -13,8 +13,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Adapter for the database, interacts with the
+ * back end data
+ */
 public class DatabaseAdapter {
 
+    /**
+     * Verifies if a user exists
+     * @param username the username
+     * @param password the password
+     * @return the user if it exists
+     */
     public static UserModel verifyUser(String username, String password) {
         UserFactory uf = UserFactory.UserFactory();
         AdministratorFactory af = AdministratorFactory.AdministratorFactory();
@@ -49,7 +59,11 @@ public class DatabaseAdapter {
         return user;
     }
 
-    //Checks if user exists by email
+    /**
+     * Checks if user exists by email
+     * @param email The user's email
+     * @return true if user exists already, otherwise false
+     */
     public static boolean userExists(String email) {
         boolean found = false;
         email = email.toLowerCase();
@@ -70,7 +84,10 @@ public class DatabaseAdapter {
         return found;
     }
 
-    //Write the user to the CSV file
+    /**
+     * Write the user to a CSV
+     * @param u the user to write
+     */
     public static void writeUser(UserModel u) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
@@ -84,6 +101,10 @@ public class DatabaseAdapter {
         }
     }
 
+    /**
+     * Same the user's profile image
+     * @param u the user
+     */
     public static void SaveImage(UserModel u) {
         if(CreateAccountView.getPicture() != null) {
             u.setPictureLocation("./src/main/resources/" + u.getUsername() + ".png");

@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+/**
+ * Window for creating a new account
+ */
 public class CreateAccountView extends JFrame {
 
     private JPanel pnCreateAcct;
@@ -34,6 +37,10 @@ public class CreateAccountView extends JFrame {
 
     static BufferedImage picture = null;
 
+    /**
+     * Constructs the window for making a new account
+     * {@link #getBtCreateAcct()}
+     */
     public CreateAccountView() {
         super( "Create Account" );
         GridBagLayout gbMainPanel = new GridBagLayout();
@@ -312,6 +319,10 @@ public class CreateAccountView extends JFrame {
         setVisible( true );
     }
 
+    /**
+     * Adds an image to the account.
+     * @param evt Action event for the image
+     */
     public void AddImage(java.awt.event.ActionEvent evt) {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
@@ -329,6 +340,10 @@ public class CreateAccountView extends JFrame {
         }
     }
 
+    /**
+     * Checks if all fields have been entered for a new account.
+     * @return true if all fields have been entered, otherwise false.
+     */
     public boolean allFieldsEntered() {
        boolean foo = true;
        if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
@@ -339,52 +354,98 @@ public class CreateAccountView extends JFrame {
        return foo;
     }
 
+    /**
+     * Gets the user account image
+     * @return BufferedImage of the picture
+     */
     public static BufferedImage getPicture() {
         return picture;
     }
 
+    /**
+     * Gets first name
+     * @return A textfield representing user's first name
+     */
     public JTextField getTfFirstName() {
         return tfFirstName;
     }
 
+    /**
+     * Gets last name
+     * @return A textfield user's last name
+     */
     public JTextField getTfLastName() {
         return tfLastName;
     }
 
+    /**
+     * Gets create account button
+     * @return The button for create account
+     */
     public JButton getBtCreateAcct() {
         return btCreateAcct;
     }
 
+    /**
+     * Gets add image button
+     * @return The button for add image
+     */
     public JButton getBtAddImage() {
         return btAddImage;
     }
 
+    /**
+     * Gets user name
+     * @return A textfield representing user's username
+     */
     public JTextField getTfUserName() {
         return tfUserName;
     }
 
+    /**
+     * Gets user email
+     * @return A textfield representing the user's email
+     */
     public JTextField getTfEmail() {
         return tfEmail;
     }
 
+    /**
+     * Gets credit card type
+     * @return A radio button representing the card type
+     */
     public JRadioButton getRbVisa() {
         return rbVisa;
     }
 
-
+    /**
+     * Gets credit card number
+     * @return A textfield representing the card number
+     */
     public JTextField getTfCreditCardNumber() {
         return tfCreditCardNumber;
     }
 
+    /**
+     * Gets user password
+     * @return A textfield representing the user password
+     */
     public JPasswordField getTfPassword() {
         return tfPassword;
     }
 
-
+    /**
+     * Sets the error message
+     * @param str The error label message
+     */
     public void setErrorLabelMessage(String str) {
         this.lbError.setText(str);
     }
 
+    /**
+     * Sets the user account picture
+     * @param picture The picture to set
+     */
     public static void setPicture(BufferedImage picture) {
         CreateAccountView.picture = picture;
     }

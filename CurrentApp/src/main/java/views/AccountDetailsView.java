@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Displays details for the account in a window.
+ */
 public class AccountDetailsView extends JFrame {
 
     private JPanel pnAccountDetails;
@@ -18,6 +21,9 @@ public class AccountDetailsView extends JFrame {
     private JLabel lbCreditCardType;
     private JLabel lbPicture;
 
+    /**
+     * Constructor for AccountDetailsView
+     */
     public AccountDetailsView() {
         super( "View Account Details" );
 

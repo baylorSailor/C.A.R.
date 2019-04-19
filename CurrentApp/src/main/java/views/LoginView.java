@@ -3,6 +3,9 @@ package views;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Window for login
+ */
 public class LoginView extends JFrame {
 
     private JPanel pnLoginPanel;
@@ -14,6 +17,9 @@ public class LoginView extends JFrame {
     private JButton btLogin;
     private JButton btCreateAcct;
 
+    /**
+     * Constructs the login window
+     */
     public LoginView() {
         super( "Login" );
         pnLoginPanel = new JPanel();
@@ -117,22 +123,42 @@ public class LoginView extends JFrame {
         setVisible( true );
     }
 
+    /**
+     * Gets the label error
+     * @return A label displaying the error
+     */
     public JLabel getLbError() {
         return lbError;
     }
 
+    /**
+     * Get the username
+     * @return A textfield representing the username
+     */
     public JTextField getTfUser() {
         return tfUser;
     }
 
+    /**
+     * Get the password
+     * @return A textfield representing the password
+     */
     public JPasswordField getTfPass() {
         return tfPass;
     }
 
+    /**
+     * Get the login button
+     * @return A button for login
+     */
     public JButton getBtLogin() {
         return btLogin;
     }
 
+    /**
+     * Get the create account button
+     * @return A button for account creation
+     */
     public JButton getBtCreateAcct() {
         return btCreateAcct;
     }

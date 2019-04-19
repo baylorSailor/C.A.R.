@@ -8,12 +8,18 @@ import views.MainMenuView;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Controller for the main menu
+ */
 public class MainMenuController {
     private MainMenuView mainMenuView = new MainMenuView();
     private HistoryView historyView = null;
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsView accountDetailsView = null;
 
+    /**
+     *
+     */
     public void start() {
         refreshButtonPressed();
         historyButtonPressed();

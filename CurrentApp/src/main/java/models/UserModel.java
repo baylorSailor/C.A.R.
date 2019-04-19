@@ -1,5 +1,8 @@
 package models;
 
+/**
+ * Class representing a user
+ */
 public class UserModel {
     private String fullname;
     private String pictureLocation;
@@ -9,6 +12,15 @@ public class UserModel {
     private String creditType;
     private String creditCard;
 
+    /**
+     * Constructs user with given attributes
+     * @param fullname full name of user
+     * @param username account username
+     * @param email user email
+     * @param password user password
+     * @param creditType user credit card type
+     * @param creditCard user credit card number
+     */
     public UserModel(String fullname, String username, String email, String password, String creditType,
                                     String creditCard) {
         this.fullname = fullname;
@@ -20,6 +32,10 @@ public class UserModel {
         this.creditCard = creditCard;
     }
 
+    /**
+     * Gets the full name of the user
+     * @return A string representing user's full name
+     */
     public String getFullname() {
         return fullname;
     }
@@ -28,26 +44,50 @@ public class UserModel {
         this.pictureLocation = pictureLocation;
     }
 
+    /**
+     * Gets the picture location of the user
+     * @return A string representing user's picture location
+     */
     public String getPictureLocation() {
         return pictureLocation;
     }
 
+    /**
+     * Gets the username of the user
+     * @return A string representing user's username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Gets the email of the user
+     * @return A string representing user's email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets the password of the user
+     * @return A string representing user's password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Gets the credit card type of the user
+     * @return A string representing user's credit card type
+     */
     public String getCreditType() {
         return creditType;
     }
 
+    /**
+     * Gets the credit card number of the user
+     * @return A string representing user's credit card number
+     */
     public String getCreditCard() {
         return creditCard;
     }

@@ -7,11 +7,17 @@ import java.awt.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+/**
+ * Window displaying rental history
+ */
 public class HistoryView extends JFrame {
 
     private JPanel pnHistory;
     private JTable tbHTable;
 
+    /**
+     * Constructs the window for rental history
+     */
     public HistoryView() {
         super( "View History" );
         GridBagLayout gbMainPanel = new GridBagLayout();

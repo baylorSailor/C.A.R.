@@ -1,3 +1,7 @@
+/**
+ * Main Menu view for the app.
+ */
+
 package views;
 
 import controllers.UserController;
@@ -11,8 +15,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-
-
+/**
+ * Window for the main screen
+ */
 public class MainMenuView extends JFrame {
     private JPanel pnMainPanel;
 
@@ -45,6 +50,9 @@ public class MainMenuView extends JFrame {
     private JComboBox cmbInterior;
     private JComboBox cmbExterior;
 
+    /**
+     * Constructs main window screen
+     */
     public MainMenuView() {
         super( "View Local Listings");
 
@@ -468,25 +476,49 @@ public class MainMenuView extends JFrame {
         setVisible( true );
     }
 
+    /**
+     * Button for refreshing the display
+     * @return A button for refreshing the page
+     */
     public JButton getBtRefresh() {
         return btRefresh;
     }
 
+    /**
+     * Button for getting the history
+     * @return A button for rental history
+     */
     public JButton getBtHistory() {
         return btHistory;
     }
 
+    /**
+     * Button for active rentals
+     * @return A button for active rentals
+     */
     public JButton getBtActiveRentals() {
         return btActiveRentals;
     }
 
+    /**
+     * Button for account details
+     * @return A button for account details
+     */
     public JButton getBtAccountDetails() {
         return btAccountDetails;
     }
 
+    /**
+     * Button for logout
+     * @return A button for logging out
+     */
     public JButton getBtLogout() {
         return btLogout;
     }
 
+    /**
+     * Button for add rental
+     * @return A button for adding the rental car
+     */
     public JButton getBtAddRental(){ return btAddRental; }
 }
