@@ -8,6 +8,10 @@ import views.LoginView;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class UserController {
     static UserModel user = null;
