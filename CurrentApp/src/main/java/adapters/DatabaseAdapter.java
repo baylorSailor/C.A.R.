@@ -38,6 +38,7 @@ public class DatabaseAdapter {
 //                    } else if(split[6].equals("2")) {
 //                        user = rf.getUser(split);
 //                    }
+
                     user = uf.getUser(split);
                     found = true;
                 }
