@@ -1,15 +1,21 @@
 package views;
 
+import main.CAR;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Window for creating a new account
  */
 public class CreateAccountView extends JFrame {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
 
     private JPanel pnCreateAcct;
     private ButtonGroup rbgCreateAcct;
@@ -335,7 +341,7 @@ public class CreateAccountView extends JFrame {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
             } catch(IOException ee) {
                 ee.printStackTrace();
-                //TODO add logger to catch this
+                log.log(Level.SEVERE,"Sample Profile Image couldn't be found");
             }
         }
     }

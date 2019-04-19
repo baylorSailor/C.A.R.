@@ -5,6 +5,7 @@
 package views;
 
 import controllers.UserController;
+import main.CAR;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,10 +16,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+
 /**
  * Window for the main screen
  */
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class MainMenuView extends JFrame {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
     private JPanel pnMainPanel;
 
     private JPanel pnSearchResults;
@@ -102,7 +110,7 @@ public class MainMenuView extends JFrame {
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
             } catch(IOException ee) {
-                //TODO add logger to catch this
+                log.log(Level.SEVERE,"Sample Car Image couldn't be loaded");
             }
 
         } finally {
@@ -466,7 +474,6 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
         pnMainPanel.add( btAddRental );
-        getRootPane().setDefaultButton(btAddRental);
 
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
