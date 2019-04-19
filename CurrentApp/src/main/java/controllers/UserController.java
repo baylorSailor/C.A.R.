@@ -15,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Controller for the user object
+ */
 public class UserController {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
@@ -24,15 +27,25 @@ public class UserController {
     private MainMenuController mainMenuController = null;
     private CreateAccountView createAccountView = null;
 
+    /**
+     * Controller for the login and create account buttons
+     */
     public void start() {
         loginButtonPressed();
         createAccountButtonPressed();
     }
 
+    /**
+     * Get the user
+     * @return A user in the system
+     */
     public static UserModel getUser() {
         return user;
     }
 
+    /**
+     * Remove the login window and start the main screen
+     */
     private void removeAllFramesAndStart() {
         loginView.dispose();
         loginView = null;
@@ -44,6 +57,9 @@ public class UserController {
         mainMenuController.start();
     }
 
+    /**
+     * Add action listener for login button
+     */
     private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
             log.log(Level.INFO,"Login button clicked");
@@ -56,6 +72,9 @@ public class UserController {
         });
     }
 
+    /**
+     * Add action listener for create account button
+     */
     private void createAccountButtonPressed() {
         loginView.getBtCreateAcct().addActionListener(e -> {
             log.log(Level.INFO,"Create account button clicked");

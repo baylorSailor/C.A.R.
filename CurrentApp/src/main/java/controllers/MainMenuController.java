@@ -18,7 +18,7 @@ public class MainMenuController {
     private AccountDetailsView accountDetailsView = null;
 
     /**
-     *
+     * Starts the controller for the buttons
      */
     public void start() {
         refreshButtonPressed();
@@ -29,12 +29,18 @@ public class MainMenuController {
         addRentalButtonPressed();
     }
 
+    /**
+     * Adds action listener for the refresh button
+     */
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
 
         });
     }
 
+    /**
+     * Adds action listener for the history button
+     */
     private void historyButtonPressed() {
         mainMenuView.getBtHistory().addActionListener(e -> {
             if(historyView == null) {
@@ -51,6 +57,9 @@ public class MainMenuController {
         });
     }
 
+    /**
+     * Adds action listener for the active rentals button
+     */
     private void activeRentalsButtonPressed() {
         mainMenuView.getBtActiveRentals().addActionListener(e -> {
             if(activeRentalsView == null) {
@@ -67,6 +76,9 @@ public class MainMenuController {
         });
     }
 
+    /**
+     * Adds action listener for the account details button
+     */
     private void accountDetailsButtonPressed() {
         mainMenuView.getBtAccountDetails().addActionListener(e -> {
             if(accountDetailsView == null) {
@@ -83,6 +95,9 @@ public class MainMenuController {
         });
     }
 
+    /**
+     * Adds action listener for the logout button
+     */
     private void logoutButtonPressed() {
         mainMenuView.getBtLogout().addActionListener(e -> {
             mainMenuView.dispose();
@@ -103,7 +118,9 @@ public class MainMenuController {
         });
     }
 
-    //Fill after pressing add rental
+    /**
+     * Adds action listener for the add rental button
+     */
     private void addRentalButtonPressed(){
         mainMenuView.getBtAddRental().addActionListener(e -> {
             System.out.println("Add rental button pressed");
