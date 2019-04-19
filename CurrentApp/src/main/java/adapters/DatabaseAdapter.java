@@ -1,6 +1,6 @@
 package adapters;
 
-import factories.AdministraterFactory;
+import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
 import models.UserModel;
@@ -17,7 +17,7 @@ public class DatabaseAdapter {
 
     public static UserModel verifyUser(String username, String password) {
         UserFactory uf = UserFactory.UserFactory();
-        AdministraterFactory af = AdministraterFactory.AdministraterFactory();
+        AdministratorFactory af = AdministratorFactory.AdministratorFactory();
         RepresentativeFactory rf = RepresentativeFactory.RepresentativeFactory();
         boolean found = false;
         UserModel user = null;
@@ -28,6 +28,8 @@ public class DatabaseAdapter {
             while (sc.hasNextLine() && !found) {
                 line = sc.nextLine();
                 split = line.split(",");
+
+                //If username and password match, return that user
                 if (username.equals(split[1]) && password.equals(split[3])) {
                     if(split[6].equals("0")) {
                         user = uf.getUser(split);
@@ -45,6 +47,7 @@ public class DatabaseAdapter {
         return user;
     }
 
+    //Checks if user exists by email
     public static boolean userExists(String email) {
         boolean found = false;
         email = email.toLowerCase();
@@ -65,6 +68,7 @@ public class DatabaseAdapter {
         return found;
     }
 
+    //Write the user to the CSV file
     public static void writeUser(UserModel u) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
