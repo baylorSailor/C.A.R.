@@ -1,6 +1,7 @@
 package controllers;
 
 import adapters.DatabaseAdapter;
+import main.CAR;
 import models.UserModel;
 import views.CreateAccountView;
 import views.LoginView;
@@ -8,8 +9,13 @@ import views.LoginView;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserController {
+
+    private static Logger log = Logger.getLogger(CAR.class.getName());
+
     static UserModel user = null;
     private LoginView loginView = new LoginView();
     private MainMenuController mainMenuController = null;
@@ -37,6 +43,7 @@ public class UserController {
 
     private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
+            log.log(Level.INFO,"Login button clicked");
             if((user = DatabaseAdapter.verifyUser(loginView.getTfUser().getText(),
                                                                         loginView.getTfPass().getText())) != null) {
                 removeAllFramesAndStart();
@@ -48,6 +55,7 @@ public class UserController {
 
     private void createAccountButtonPressed() {
         loginView.getBtCreateAcct().addActionListener(e -> {
+            log.log(Level.INFO,"Create account button clicked");
             createAccountView = new CreateAccountView();
 
             createAccountView.getBtAddImage().addActionListener(createAccountView::AddImage);
@@ -73,7 +81,7 @@ public class UserController {
                             DatabaseAdapter.writeUser(user);
                             DatabaseAdapter.SaveImage(user);
                         } else {
-                            //TODO Log error
+                            log.log(Level.SEVERE,"Users.csv was not found");
                         }
                         removeAllFramesAndStart();
                     } else {

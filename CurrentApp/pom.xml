@@ -22,11 +22,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <finalName>CAR</finalName>
+                    <finalName>main.CAR</finalName>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>CAR</mainClass>
+                            <mainClass>main.CAR</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
