@@ -30,6 +30,7 @@ public class ActiveRentalsView extends JFrame {
         tbHTable = new JTable( dataHTable, colsHTable );
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
         tbHTable.setSelectionForeground( new Color( 0,0,0 ) );
+        tbHTable.setEnabled(false);
         JScrollPane scpHTable = new JScrollPane( tbHTable );
         gbcActiveRentals.gridx = 0;
         gbcActiveRentals.gridy = 0;

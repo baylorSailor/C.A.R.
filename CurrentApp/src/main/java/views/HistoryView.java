@@ -37,6 +37,7 @@ public class HistoryView extends JFrame {
         tbHTable = new JTable( dataHTable, colsHTable );
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
         tbHTable.setSelectionForeground( new Color( 0,0,0 ) );
+        tbHTable.setEnabled(false);
         JScrollPane scpHTable = new JScrollPane( tbHTable );
         gbcHistory.gridx = 0;
         gbcHistory.gridy = 0;
