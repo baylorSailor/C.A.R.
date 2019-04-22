@@ -4,6 +4,7 @@
  * promoting the reuse of vehicles.
  *
  * @author Andrew Case
+ * @author Stevie Damrel
  * @author Maggie Burton
  * @author Matthew Darby
  * @author Mark Du
