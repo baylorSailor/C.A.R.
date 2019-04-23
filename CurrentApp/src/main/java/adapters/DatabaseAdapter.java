@@ -110,7 +110,7 @@ public class DatabaseAdapter {
     }
 
     /**
-     * Same the user's profile image
+     * Save the user's profile image
      * @param u the user
      */
     public static void SaveImage(UserModel u) {
@@ -126,6 +126,10 @@ public class DatabaseAdapter {
         }
     }
 
+    /**
+     * Loads the user's profile image
+     * @return the BufferedImage containing the user's profile picture or sample image
+     */
     public static BufferedImage LoadImage() {
         BufferedImage picture = null;
         try {
