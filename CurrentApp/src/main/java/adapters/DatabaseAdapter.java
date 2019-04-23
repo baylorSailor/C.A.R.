@@ -15,6 +15,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -149,8 +151,95 @@ public class DatabaseAdapter {
         return picture;
     }
 
-    public static String[] loadMake() {
-        String[] makes = null;
+    /**
+     * Loads all the makes in the vehicle list
+     * @return the String array containing an all the makes
+     */
+    public static String[] loadallMakes() {
+        List<String> arrayListMakes = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            String line;
+            String[] split;
+            line = sc.nextLine();
+            arrayListMakes.add("-");
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 15 && !arrayListMakes.contains(split[2])) {
+                    arrayListMakes.add(split[2]);
+                }
+            }
+        } catch(IOException a) {
+            a.printStackTrace();
+            log.log(Level.SEVERE,"Vehicle list could not be loaded");
+        }
+
+        String[] makes = new String[ arrayListMakes.size() ];
+        arrayListMakes.toArray(makes);
+
         return makes;
+    }
+
+    /**
+     * Loads all the models in the vehicle list with the selected make
+     * @param selectedMake the make the user has selected
+     * @return the String array containing an all the models within the provided make
+     */
+    public static String[] loadAllModels(String selectedMake) {
+        List<String> arrayListModels = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            String line;
+            String[] split;
+            line = sc.nextLine();
+            arrayListModels.add("-");
+            while (sc.hasNextLine() && selectedMake != null) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 15 && !arrayListModels.contains(split[3]) && split[2].equals(selectedMake)) {
+                    arrayListModels.add(split[3]);
+                }
+            }
+        } catch(IOException a) {
+            a.printStackTrace();
+            log.log(Level.SEVERE,"Vehicle list could not be loaded");
+        }
+
+        String[] models = new String[ arrayListModels.size() ];
+        arrayListModels.toArray(models);
+
+        return models;
+    }
+
+    /**
+     * Loads all the years in the vehicle list with the selected model
+     * @param selectedModel the model the user has selected
+     * @return the String array containing an all the years within the provided model
+     */
+    public static String[] loadAllYears(String selectedModel) {
+        List<String> arrayListYears = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            String line;
+            String[] split;
+            line = sc.nextLine();
+            arrayListYears.add("-");
+            while (sc.hasNextLine() && selectedModel != null) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 15 && !arrayListYears.contains(split[5]) && split[3].equals(selectedModel)) {
+                    arrayListYears.add(split[5]);
+                }
+            }
+        } catch(IOException a) {
+            a.printStackTrace();
+            log.log(Level.SEVERE,"Vehicle list could not be loaded");
+        }
+
+        String[] years = new String[ arrayListYears.size() ];
+        arrayListYears.toArray(years);
+
+        return years;
     }
 }

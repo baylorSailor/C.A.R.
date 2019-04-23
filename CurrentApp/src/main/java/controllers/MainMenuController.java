@@ -1,5 +1,6 @@
 package controllers;
 
+import adapters.DatabaseAdapter;
 import main.CAR;
 import views.AccountDetailsView;
 import views.ActiveRentalsView;
@@ -8,6 +9,8 @@ import views.MainMenuView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -35,6 +38,8 @@ public class MainMenuController {
         accountDetailsButtonPressed();
         logoutButtonPressed();
         addRentalButtonPressed();
+        makeSelected();
+        modelSelected();
     }
 
     /**
@@ -133,7 +138,7 @@ public class MainMenuController {
     /**
      * Adds action listener for the add rental button
      */
-    private void addRentalButtonPressed(){
+    private void addRentalButtonPressed() {
         mainMenuView.getBtAddRental().addActionListener(e -> {
             log.log(Level.INFO,"Add Rental button clicked");
             ImageIcon icon = new ImageIcon("./src/main/resources/carIcon.png");
@@ -143,6 +148,40 @@ public class MainMenuController {
                     "Confirmation",
                     JOptionPane.INFORMATION_MESSAGE,
                     icon);
+        });
+    }
+
+    /**
+     * Adds action listener for the selected Make & changes the models
+     */
+    private void makeSelected() {
+        mainMenuView.getCmbMake().addActionListener(e -> {
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllModels(selectedMake) );
+            mainMenuView.getCmbModel().setModel( model );
+            if(selectedMake.equals("-")) {
+                mainMenuView.getCmbModel().setEnabled(false);
+            } else {
+                mainMenuView.getCmbModel().setEnabled(true);
+            }
+        });
+    }
+
+    /**
+     * Adds action listener for the selected Model & changes the years
+     */
+    private void modelSelected() {
+        mainMenuView.getCmbModel().addActionListener(e -> {
+            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllYears(selectedModel) );
+            mainMenuView.getCmbYear().setModel( model );
+            if(selectedModel.equals("-")) {
+                mainMenuView.getCmbYear().setEnabled(false);
+            } else {
+                mainMenuView.getCmbYear().setEnabled(true);
+            }
         });
     }
 }

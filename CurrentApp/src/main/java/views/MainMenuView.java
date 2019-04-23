@@ -4,12 +4,15 @@
 
 package views;
 
+import adapters.DatabaseAdapter;
 import controllers.UserController;
 import main.CAR;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -239,7 +242,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbMake, gbcMainPanel );
         pnMainPanel.add( lbMake );
 
-        String []dataMake = { "Dodge", "Chrysler", "Chevy", "BMW" };
+        String []dataMake = DatabaseAdapter.loadallMakes();
         cmbMake = new JComboBox( dataMake );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 12;
@@ -251,10 +254,6 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbMake, gbcMainPanel );
         pnMainPanel.add( cmbMake );
-        cmbMake.addActionListener(e -> {
-            String temp = (String) cmbMake.getSelectedItem();
-
-        });
 
         //Model Options
         lbModel = new JLabel( "Model:"  );
@@ -269,7 +268,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbModel, gbcMainPanel );
         pnMainPanel.add( lbModel );
 
-        String []dataModel = { "Avenger", "200", "Cruze" };
+        String []dataModel = DatabaseAdapter.loadAllModels(null);
         cmbModel = new JComboBox( dataModel );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 13;
@@ -281,6 +280,7 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbModel, gbcMainPanel );
         pnMainPanel.add( cmbModel );
+        cmbModel.setEnabled(false);
 
         //Year options
         lbYear = new JLabel( "Year:"  );
@@ -295,7 +295,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbYear, gbcMainPanel );
         pnMainPanel.add( lbYear );
 
-        String []dataYear = { "2000", "2001", "2002" };
+        String []dataYear = DatabaseAdapter.loadAllYears(null);
         cmbYear = new JComboBox( dataYear );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 14;
@@ -307,6 +307,7 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbYear, gbcMainPanel );
         pnMainPanel.add( cmbYear );
+        cmbYear.setEnabled(false);
 
         //Type options
         lbType = new JLabel( "Type:"  );
@@ -528,4 +529,28 @@ public class MainMenuView extends JFrame {
      * @return A button for adding the rental car
      */
     public JButton getBtAddRental(){ return btAddRental; }
+
+    /**
+     * ComboBox for the selected make
+     * @return A ComboBox for the selected make
+     */
+    public JComboBox getCmbMake() {
+        return cmbMake;
+    }
+
+    /**
+     * ComboBox for the selected model
+     * @return A ComboBox for the selected model
+     */
+    public JComboBox getCmbModel() {
+        return cmbModel;
+    }
+
+    /**
+     * ComboBox for the selected year
+     * @return A ComboBox for the selected year
+     */
+    public JComboBox getCmbYear() {
+        return cmbYear;
+    }
 }
