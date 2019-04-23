@@ -63,6 +63,7 @@ public class DatabaseAdapter {
             }
         } catch(IOException a) {
             a.printStackTrace();
+            log.log(Level.SEVERE,"User could not be verified in the Database");
         }
         return user;
     }
@@ -88,6 +89,7 @@ public class DatabaseAdapter {
             }
         } catch(IOException a) {
             a.printStackTrace();
+            log.log(Level.SEVERE,"User could not be checked for existence in Database");
         }
         return found;
     }
@@ -106,6 +108,7 @@ public class DatabaseAdapter {
             bw.close();
         }catch(IOException e) {
             e.printStackTrace();
+            log.log(Level.SEVERE,"User could not be written to Database");
         }
     }
 
@@ -146,5 +149,8 @@ public class DatabaseAdapter {
         return picture;
     }
 
-
+    public static String[] loadMake() {
+        String[] makes = null;
+        return makes;
+    }
 }
