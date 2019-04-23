@@ -139,7 +139,7 @@ public class DatabaseAdapter {
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
             } catch(IOException ee) {
-                log.log(Level.SEVERE,"Sample Profile Image couldn't be loaded");
+                log.log(Level.SEVERE,"sample.png file couldn't be loaded");
             }
 
         }
