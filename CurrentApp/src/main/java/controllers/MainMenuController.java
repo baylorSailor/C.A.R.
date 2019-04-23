@@ -141,7 +141,7 @@ public class MainMenuController {
     private void addRentalButtonPressed() {
         mainMenuView.getBtAddRental().addActionListener(e -> {
             log.log(Level.INFO,"Add Rental button clicked");
-            ImageIcon icon = new ImageIcon("./src/main/resources/carIcon.png");
+            ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
 
             JOptionPane.showMessageDialog(new Frame(),
                     "<Car> has been added to your active rentals.",
