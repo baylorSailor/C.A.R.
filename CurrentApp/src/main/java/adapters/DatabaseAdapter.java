@@ -1,5 +1,6 @@
 package adapters;
 
+import controllers.UserController;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
@@ -8,6 +9,8 @@ import models.UserModel;
 import views.CreateAccountView;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -112,7 +115,7 @@ public class DatabaseAdapter {
      */
     public static void SaveImage(UserModel u) {
         if(CreateAccountView.getPicture() != null) {
-            u.setPictureLocation("./src/main/resources/" + u.getUsername() + ".png");
+            u.setPictureLocation("./src/main/resources/UserPics/" + u.getUsername() + ".png");
             File outfile = new File(u.getPictureLocation());
             try {
                 ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
@@ -121,5 +124,21 @@ public class DatabaseAdapter {
                 log.log(Level.SEVERE,"User's selected image could not be saved");
             }
         }
+    }
+
+    public static BufferedImage LoadImage() {
+        BufferedImage picture = null;
+        try {
+            picture = ImageIO.read(new File("./src/main/resources/UserPics/" +
+                    UserController.getUser().getUsername() + ".png"));
+        } catch(IOException e) {
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample.png"));
+            } catch(IOException ee) {
+                log.log(Level.SEVERE,"Sample Profile Image couldn't be loaded");
+            }
+
+        }
+        return picture;
     }
 }

@@ -1,5 +1,6 @@
 package views;
 
+import adapters.DatabaseAdapter;
 import controllers.UserController;
 import main.CAR;
 
@@ -89,21 +90,9 @@ public class AccountDetailsView extends JFrame {
         gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
         pnAccountDetails.add( lbCreditCardType );
 
-        BufferedImage picture = null;
-        try {
-            picture = ImageIO.read(new File("./src/main/resources/" + UserController.getUser().getUsername()
-                                                                                            + ".png"));
-        } catch(IOException e) {
-            try {
-                picture = ImageIO.read(new File("./src/main/resources/sample.png"));
-            } catch(IOException ee) {
-                log.log(Level.SEVERE,"Sample Profile Image couldn't be loaded");
-            }
-
-        } finally {
-            lbPicture = new JLabel(new ImageIcon(picture));
-            add(lbPicture);
-        }
+        BufferedImage picture = DatabaseAdapter.LoadImage();
+        lbPicture = new JLabel(new ImageIcon(picture));
+        add(lbPicture);
 
         gbcAccountDetails.gridx = 7;
         gbcAccountDetails.gridy = 7;
