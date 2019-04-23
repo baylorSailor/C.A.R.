@@ -101,7 +101,7 @@ public class UserController {
 
                         if(file.exists()) {
                             DatabaseAdapter.writeUser(user);
-                            DatabaseAdapter.SaveImage(user);
+                            DatabaseAdapter.saveImage(user);
                         } else {
                             log.log(Level.SEVERE,"Users.csv was not found");
                         }

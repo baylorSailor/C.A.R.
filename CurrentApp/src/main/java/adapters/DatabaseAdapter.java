@@ -113,7 +113,7 @@ public class DatabaseAdapter {
      * Save the user's profile image
      * @param u the user
      */
-    public static void SaveImage(UserModel u) {
+    public static void saveImage(UserModel u) {
         if(CreateAccountView.getPicture() != null) {
             u.setPictureLocation("./src/main/resources/UserPics/" + u.getUsername() + ".png");
             File outfile = new File(u.getPictureLocation());
@@ -130,7 +130,7 @@ public class DatabaseAdapter {
      * Loads the user's profile image
      * @return the BufferedImage containing the user's profile picture or sample image
      */
-    public static BufferedImage LoadImage() {
+    public static BufferedImage loadImage() {
         BufferedImage picture = null;
         try {
             picture = ImageIO.read(new File("./src/main/resources/UserPics/" +
@@ -145,4 +145,6 @@ public class DatabaseAdapter {
         }
         return picture;
     }
+
+
 }

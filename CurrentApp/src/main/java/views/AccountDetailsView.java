@@ -90,7 +90,7 @@ public class AccountDetailsView extends JFrame {
         gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
         pnAccountDetails.add( lbCreditCardType );
 
-        BufferedImage picture = DatabaseAdapter.LoadImage();
+        BufferedImage picture = DatabaseAdapter.loadImage();
         lbPicture = new JLabel(new ImageIcon(picture));
         add(lbPicture);
 
