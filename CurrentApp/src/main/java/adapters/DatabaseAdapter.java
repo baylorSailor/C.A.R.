@@ -51,15 +51,15 @@ public class DatabaseAdapter {
 
                 //If username and password match, return that user
                 if (username.equals(split[1]) && password.equals(split[3])) {
-//                    if(split[6].equals("0")) {
-//                        user = uf.getUser(split);
-//                    } else if(split[6].equals("1")) {
-//                        user = af.getUser(split);
-//                    } else if(split[6].equals("2")) {
-//                        user = rf.getUser(split);
-//                    }
+                    if(split[6].equals("0")) {
+                        user = uf.getUser(split);
+                    } else if(split[6].equals("1")) {
+                        user = af.getUser(split);
+                    } else if(split[6].equals("2")) {
+                        user = rf.getUser(split);
+                    }
 
-                    user = uf.getUser(split);
+                    //user = uf.getUser(split);
                     found = true;
                 }
             }
