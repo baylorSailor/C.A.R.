@@ -38,6 +38,7 @@ public class MainMenuController {
         addRentalButtonPressed();
         makeSelected();
         modelSelected();
+        yearSelected();
     }
 
     /**
@@ -46,6 +47,7 @@ public class MainMenuController {
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
             log.log(Level.INFO,"Refresh button clicked");
+            //TODO Refresh Search Results Pane
         });
     }
 
@@ -146,6 +148,8 @@ public class MainMenuController {
                     "Confirmation",
                     JOptionPane.INFORMATION_MESSAGE,
                     icon);
+
+            //TODO Add selected car to Active Rentals
         });
     }
 
@@ -159,7 +163,10 @@ public class MainMenuController {
             DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllModels(selectedMake) );
             mainMenuView.getCmbModel().setModel( model );
             if(selectedMake.equals("-")) {
+                mainMenuView.getCmbModel().setSelectedIndex(0);
+                mainMenuView.getCmbYear().setSelectedIndex(0);
                 mainMenuView.getCmbModel().setEnabled(false);
+                mainMenuView.getCmbYear().setEnabled(false);
             } else {
                 mainMenuView.getCmbModel().setEnabled(true);
             }
@@ -176,9 +183,28 @@ public class MainMenuController {
             DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllYears(selectedModel) );
             mainMenuView.getCmbYear().setModel( model );
             if(selectedModel.equals("-")) {
+                mainMenuView.getCmbYear().setSelectedIndex(0);
                 mainMenuView.getCmbYear().setEnabled(false);
             } else {
                 mainMenuView.getCmbYear().setEnabled(true);
+            }
+        });
+    }
+
+    /**
+     * Adds action listener for the selected Year & changes the types
+     */
+    private void yearSelected() {
+        mainMenuView.getCmbYear().addActionListener(e -> {
+            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+
+            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedYear) );
+            mainMenuView.getCmbType().setModel( year );
+            if(selectedYear.equals("-")) {
+                mainMenuView.getCmbType().setSelectedIndex(0);
+                mainMenuView.getCmbType().setEnabled(false);
+            } else {
+                mainMenuView.getCmbType().setEnabled(true);
             }
         });
     }

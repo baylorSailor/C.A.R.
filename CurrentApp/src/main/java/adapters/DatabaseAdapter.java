@@ -241,4 +241,35 @@ public class DatabaseAdapter {
 
         return years;
     }
+
+    /**
+     * Loads all the vehicle classes in the vehicle list with the selected year
+     * @param selectedYear the year the user has selected
+     * @return the String array containing an all the types within the provided year
+     */
+    public static String[] loadAllTypes(String selectedYear) {
+        List<String> arrayListTypes = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            String line;
+            String[] split;
+            line = sc.nextLine();
+            arrayListTypes.add("-");
+            while (sc.hasNextLine() && selectedYear != null) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 15 && !arrayListTypes.contains(split[6]) && split[5].equals(selectedYear)) {
+                    arrayListTypes.add(split[6]);
+                }
+            }
+        } catch(IOException a) {
+            a.printStackTrace();
+            log.log(Level.SEVERE,"Vehicle list could not be loaded");
+        }
+
+        String[] types = new String[ arrayListTypes.size() ];
+        arrayListTypes.toArray(types);
+
+        return types;
+    }
 }

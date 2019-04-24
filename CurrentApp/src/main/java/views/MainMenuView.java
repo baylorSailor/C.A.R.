@@ -318,7 +318,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbType, gbcMainPanel );
         pnMainPanel.add( lbType );
 
-        String []dataType = { "Sedan", "SUV", "Coupe" };
+        String []dataType = DatabaseAdapter.loadAllTypes(null);
         cmbType = new JComboBox( dataType );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 15;
@@ -330,6 +330,7 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbType, gbcMainPanel );
         pnMainPanel.add( cmbType );
+        cmbType.setEnabled(false);
 
         //Transmission options
         lbTrans = new JLabel( "Transmission:"  );
@@ -548,5 +549,13 @@ public class MainMenuView extends JFrame {
      */
     public JComboBox getCmbYear() {
         return cmbYear;
+    }
+
+    /**
+     * ComboBox for the selected type
+     * @return A ComboBox for the selected type
+     */
+    public JComboBox getCmbType() {
+        return cmbType;
     }
 }
