@@ -25,6 +25,7 @@ public class MainMenuController {
     private HistoryView historyView = null;
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsView accountDetailsView = null;
+    private Integer carListPosition = 0;
 
     /**
      * Starts the controller for the buttons
@@ -144,12 +145,13 @@ public class MainMenuController {
             ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
 
             JOptionPane.showMessageDialog(new Frame(),
-                    "<Car> has been added to your active rentals.",
+                    " has been added to your active rentals.",
                     "Confirmation",
                     JOptionPane.INFORMATION_MESSAGE,
                     icon);
 
             //TODO Add selected car to Active Rentals
+
         });
     }
 

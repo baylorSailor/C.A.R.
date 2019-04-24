@@ -149,8 +149,7 @@ public class CarModel {
         return price + "," + mileage + "," + make + "," + model + "," +
                 fuelType + "," + year + "," + type + "," + transmission +
                 "," + cylinders + "," + mpgCity + "," + mpgHighway + "," +
-                mpgCombined + "," + interior + "," + exterior + "," + imageID +
-                '\n';
+                mpgCombined + "," + interior + "," + exterior + "," + imageID;
     }
 
     /**
