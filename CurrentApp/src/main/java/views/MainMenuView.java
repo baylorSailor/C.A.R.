@@ -75,7 +75,7 @@ public class MainMenuView extends JFrame {
         GridBagLayout gbSearchResults = new GridBagLayout();
         GridBagConstraints gbcSearchResults = new GridBagConstraints();
         pnSearchResults.setLayout( gbSearchResults );
-        JScrollPane scpSearchResults = new JScrollPane( pnSearchResults );
+        //JScrollPane scpSearchResults = new JScrollPane( pnSearchResults );
         gbcMainPanel.gridx = 6;
         gbcMainPanel.gridy = 10;
         gbcMainPanel.gridwidth = 14;
@@ -84,8 +84,8 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.weightx = 1;
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( scpSearchResults, gbcMainPanel );
-        pnMainPanel.add( scpSearchResults );
+        gbMainPanel.setConstraints( pnSearchResults, gbcMainPanel );
+        pnMainPanel.add( pnSearchResults );
 
         //Test label in the main window
         //TODO Make this work
