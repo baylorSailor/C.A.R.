@@ -1,11 +1,7 @@
 package views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import java.awt.*;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 /**
  * Window displaying rental history

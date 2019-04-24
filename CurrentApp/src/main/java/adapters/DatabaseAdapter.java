@@ -9,7 +9,6 @@ import models.UserModel;
 import views.CreateAccountView;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;

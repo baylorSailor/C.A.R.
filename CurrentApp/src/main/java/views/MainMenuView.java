@@ -11,21 +11,17 @@ import main.CAR;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Window for the main screen
  */
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainMenuView extends JFrame {
 
