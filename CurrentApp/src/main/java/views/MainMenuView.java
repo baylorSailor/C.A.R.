@@ -238,7 +238,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbMake, gbcMainPanel );
         pnMainPanel.add( lbMake );
 
-        String []dataMake = DatabaseAdapter.loadallMakes();
+        String []dataMake = DatabaseAdapter.loadAllMakes();
         cmbMake = new JComboBox( dataMake );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 12;
@@ -525,7 +525,9 @@ public class MainMenuView extends JFrame {
      * Button for add rental
      * @return A button for adding the rental car
      */
-    public JButton getBtAddRental(){ return btAddRental; }
+    public JButton getBtAddRental(){
+        return btAddRental;
+    }
 
     /**
      * ComboBox for the selected make

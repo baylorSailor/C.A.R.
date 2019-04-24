@@ -5,6 +5,7 @@ import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
 import main.CAR;
+import models.CarModel;
 import models.UserModel;
 import views.CreateAccountView;
 
@@ -150,11 +151,33 @@ public class DatabaseAdapter {
         return picture;
     }
 
+    public static CarModel[] loadAllCars() {
+        List<CarModel> arrayListCars = new ArrayList<>();
+
+        try{
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
+            String line;
+            String[] split;
+            while(sc.hasNextLine()) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if(split.length == 15) {
+                    arrayListCars.add(new CarModel(split));
+                }
+            }
+        } catch(IOException a) {
+            a.printStackTrace();
+            log.log(Level.SEVERE, "Vehicle list could not be loaded");
+        }
+
+        return null;
+    }
+
     /**
      * Loads all the makes in the vehicle list
      * @return the String array containing an all the makes
      */
-    public static String[] loadallMakes() {
+    public static String[] loadAllMakes() {
         List<String> arrayListMakes = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");

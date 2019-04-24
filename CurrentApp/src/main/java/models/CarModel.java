@@ -76,6 +76,11 @@ public class CarModel {
     private String exterior;
 
     /**
+     * Car image ID for display picture
+     */
+    private String imageID;
+
+    /**
      * Constructs a car given data array
      * @param data the array of attributess
      */
@@ -94,6 +99,7 @@ public class CarModel {
         this.mpgCombined = Integer.parseInt(data[11]);
         this.interior = data[12];
         this.exterior = data[13];
+        this.imageID = data[14];
     }
 
     /**
@@ -112,11 +118,12 @@ public class CarModel {
      * @param mpgCombined average mpg
      * @param interior interior color
      * @param exterior exterior color
+     * @param imageID image ID of display picture
      */
     public CarModel(int price, int mileage, String make, String model,
                     String fuelType, int year, String type, String transmission,
                     int cylinders, int mpgCity, int mpgHighway, int mpgCombined,
-                    String interior, String exterior) {
+                    String interior, String exterior, String imageID) {
         this.price = price;
         this.mileage = mileage;
         this.make = make;
@@ -131,6 +138,7 @@ public class CarModel {
         this.mpgCombined = mpgCombined;
         this.interior = interior;
         this.exterior = exterior;
+        this.imageID = imageID;
     }
 
     /**
@@ -153,6 +161,7 @@ public class CarModel {
                 ", mpgCombined=" + mpgCombined +
                 ", interior='" + interior + '\'' +
                 ", exterior='" + exterior + '\'' +
+                ", imageID='" + imageID + '\'' +
                 '}';
     }
 
@@ -378,5 +387,21 @@ public class CarModel {
      */
     public void setExterior(String exterior) {
         this.exterior = exterior;
+    }
+
+    /**
+     * Gets exterior color of the car
+     * @return the car's display photo ID
+     */
+    public String getImageID() {
+        return imageID;
+    }
+
+    /**
+     * Sets the outside color of the car
+     * @param imageID the new image ID for the car's display photo
+     */
+    public void setImageID(String imageID) {
+        this.imageID = imageID;
     }
 }
