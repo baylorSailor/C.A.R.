@@ -243,7 +243,8 @@ public class DatabaseAdapter {
     /**
      * Loads all the vehicle classes in the vehicle list with the selected year
      * @param selectedYear the year the user has selected
-     * @return the String array containing an all the types within the provided year
+     * @param selectedModel the model the user has selected
+     * @return the String array containing an all the types within the provided year and model
      */
     public static String[] loadAllTypes(String selectedYear, String selectedModel) {
         List<String> arrayListTypes = new ArrayList<>();
@@ -259,5 +260,28 @@ public class DatabaseAdapter {
         arrayListTypes.toArray(types);
 
         return types;
+    }
+
+    /**
+     * Loads all the vehicle classes in the vehicle list with the selected transmission
+     * @param selectedYear the year the user has selected
+     * @param selectedModel the model the user has selected
+     * @param selectedType the type the user has selected
+     * @return the String array containing an all the types within the provided year, model, and type
+     */
+    public static String[] loadAllTransmissions(String selectedYear, String selectedModel, String selectedType) {
+        List<String> arrayListTransmissions = new ArrayList<>();
+        arrayListTransmissions.add("-");
+        for(CarModel i : CarList) {
+            if(i.getModel().equals(selectedModel) && i.getYear().toString().equals(selectedYear)
+                    && i.getType().equals(selectedType) && !arrayListTransmissions.contains(i.getTransmission())) {
+                arrayListTransmissions.add(i.getTransmission());
+            }
+        }
+
+        String[] trans = new String[ arrayListTransmissions.size() ];
+        arrayListTransmissions.toArray(trans);
+
+        return trans;
     }
 }
