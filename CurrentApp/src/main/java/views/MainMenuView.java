@@ -86,6 +86,8 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( scpSearchResults );
 
         //Test label in the main window
+        //TODO Make this work
+        DatabaseAdapter.loadAllCars();
         JLabel test = new JLabel( "<html>Make: Dodge<br/>Model: Avenger<br/>Year: 2000<br/>Type: Sedan<br/>" +
                 "Transmission: Automatic 6-spd"  +
                 "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
@@ -318,7 +320,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbType, gbcMainPanel );
         pnMainPanel.add( lbType );
 
-        String []dataType = DatabaseAdapter.loadAllTypes(null);
+        String []dataType = DatabaseAdapter.loadAllTypes(null,null);
         cmbType = new JComboBox( dataType );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 15;

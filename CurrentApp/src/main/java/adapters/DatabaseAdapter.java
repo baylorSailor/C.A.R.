@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 public class DatabaseAdapter {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
+    private static CarModel[] CarList;
 
     /**
      * Verifies if a user exists
@@ -151,13 +152,18 @@ public class DatabaseAdapter {
         return picture;
     }
 
-    public static CarModel[] loadAllCars() {
+    /**
+     * Loads all the cars in the CSV into a list
+     * @return the CarModel array containing an all the cars
+     */
+    public static void loadAllCars() {
         List<CarModel> arrayListCars = new ArrayList<>();
 
         try{
             Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
             String line;
             String[] split;
+            line = sc.nextLine();
             while(sc.hasNextLine()) {
                 line = sc.nextLine();
                 split = line.split(",");
@@ -170,7 +176,9 @@ public class DatabaseAdapter {
             log.log(Level.SEVERE, "Vehicle list could not be loaded");
         }
 
-        return null;
+        CarModel[] modelArray = new CarModel[ arrayListCars.size() ];
+        arrayListCars.toArray(modelArray);
+        CarList = modelArray;
     }
 
     /**
@@ -179,22 +187,11 @@ public class DatabaseAdapter {
      */
     public static String[] loadAllMakes() {
         List<String> arrayListMakes = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
-            String line;
-            String[] split;
-            line = sc.nextLine();
-            arrayListMakes.add("-");
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                split = line.split(",");
-                if (split.length == 15 && !arrayListMakes.contains(split[2])) {
-                    arrayListMakes.add(split[2]);
-                }
+        arrayListMakes.add("-");
+        for(CarModel i : CarList) {
+            if(!arrayListMakes.contains(i.getMake())) {
+                arrayListMakes.add(i.getMake());
             }
-        } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"Vehicle list could not be loaded");
         }
 
         String[] makes = new String[ arrayListMakes.size() ];
@@ -210,22 +207,11 @@ public class DatabaseAdapter {
      */
     public static String[] loadAllModels(String selectedMake) {
         List<String> arrayListModels = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
-            String line;
-            String[] split;
-            line = sc.nextLine();
-            arrayListModels.add("-");
-            while (sc.hasNextLine() && selectedMake != null) {
-                line = sc.nextLine();
-                split = line.split(",");
-                if (split.length == 15 && !arrayListModels.contains(split[3]) && split[2].equals(selectedMake)) {
-                    arrayListModels.add(split[3]);
-                }
+        arrayListModels.add("-");
+        for(CarModel i : CarList) {
+            if(i.getMake().equals(selectedMake) && !arrayListModels.contains(i.getModel())) {
+                arrayListModels.add(i.getModel());
             }
-        } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"Vehicle list could not be loaded");
         }
 
         String[] models = new String[ arrayListModels.size() ];
@@ -241,28 +227,17 @@ public class DatabaseAdapter {
      */
     public static String[] loadAllYears(String selectedModel) {
         List<String> arrayListYears = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
-            String line;
-            String[] split;
-            line = sc.nextLine();
-            arrayListYears.add("-");
-            while (sc.hasNextLine() && selectedModel != null) {
-                line = sc.nextLine();
-                split = line.split(",");
-                if (split.length == 15 && !arrayListYears.contains(split[5]) && split[3].equals(selectedModel)) {
-                    arrayListYears.add(split[5]);
-                }
+        arrayListYears.add("-");
+        for(CarModel i : CarList) {
+            if(i.getModel().equals(selectedModel) && !arrayListYears.contains(i.getYear().toString())) {
+                arrayListYears.add(i.getYear().toString());
             }
-        } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"Vehicle list could not be loaded");
         }
 
-        String[] years = new String[ arrayListYears.size() ];
-        arrayListYears.toArray(years);
+        String[] models = new String[ arrayListYears.size() ];
+        arrayListYears.toArray(models);
 
-        return years;
+        return models;
     }
 
     /**
@@ -270,24 +245,14 @@ public class DatabaseAdapter {
      * @param selectedYear the year the user has selected
      * @return the String array containing an all the types within the provided year
      */
-    public static String[] loadAllTypes(String selectedYear) {
+    public static String[] loadAllTypes(String selectedYear, String selectedModel) {
         List<String> arrayListTypes = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
-            String line;
-            String[] split;
-            line = sc.nextLine();
-            arrayListTypes.add("-");
-            while (sc.hasNextLine() && selectedYear != null) {
-                line = sc.nextLine();
-                split = line.split(",");
-                if (split.length == 15 && !arrayListTypes.contains(split[6]) && split[5].equals(selectedYear)) {
-                    arrayListTypes.add(split[6]);
-                }
+        arrayListTypes.add("-");
+        for(CarModel i : CarList) {
+            if(i.getModel().equals(selectedModel) && i.getYear().toString().equals(selectedYear)
+                    && !arrayListTypes.contains(i.getType())) {
+                arrayListTypes.add(i.getType());
             }
-        } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"Vehicle list could not be loaded");
         }
 
         String[] types = new String[ arrayListTypes.size() ];

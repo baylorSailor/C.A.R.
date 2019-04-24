@@ -33,7 +33,7 @@ public class CarModel {
     /**
      * Car manufacture year
      */
-    private int year;
+    private Integer year;
 
     /**
      * Car type
@@ -249,7 +249,7 @@ public class CarModel {
      * Gets year manufactured
      * @return the car's manufacture year
      */
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 

@@ -197,8 +197,9 @@ public class MainMenuController {
     private void yearSelected() {
         mainMenuView.getCmbYear().addActionListener(e -> {
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
-
-            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedYear) );
+            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedModel,
+                    selectedYear) );
             mainMenuView.getCmbType().setModel( year );
             if(selectedYear.equals("-")) {
                 mainMenuView.getCmbType().setSelectedIndex(0);
