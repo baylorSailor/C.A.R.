@@ -42,7 +42,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"));
+            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), "UTF-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -79,7 +79,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"));
+            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), "UTF-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -158,7 +158,7 @@ public class DatabaseAdapter {
     public static String[] loadallMakes() {
         List<String> arrayListMakes = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
             String line;
             String[] split;
             line = sc.nextLine();
@@ -189,7 +189,7 @@ public class DatabaseAdapter {
     public static String[] loadAllModels(String selectedMake) {
         List<String> arrayListModels = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
             String line;
             String[] split;
             line = sc.nextLine();
@@ -220,7 +220,7 @@ public class DatabaseAdapter {
     public static String[] loadAllYears(String selectedModel) {
         List<String> arrayListYears = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"));
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
             String line;
             String[] split;
             line = sc.nextLine();
