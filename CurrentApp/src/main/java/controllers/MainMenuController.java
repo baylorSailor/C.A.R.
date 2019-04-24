@@ -39,6 +39,8 @@ public class MainMenuController {
         makeSelected();
         modelSelected();
         yearSelected();
+        typeSelected();
+        transmissionSelected();
     }
 
     /**
@@ -163,10 +165,7 @@ public class MainMenuController {
             DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllModels(selectedMake) );
             mainMenuView.getCmbModel().setModel( model );
             if(selectedMake.equals("-")) {
-                mainMenuView.getCmbModel().setSelectedIndex(0);
-                mainMenuView.getCmbYear().setSelectedIndex(0);
-                mainMenuView.getCmbModel().setEnabled(false);
-                mainMenuView.getCmbYear().setEnabled(false);
+                clearCriteria(6);
             } else {
                 mainMenuView.getCmbModel().setEnabled(true);
             }
@@ -183,8 +182,7 @@ public class MainMenuController {
             DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllYears(selectedModel) );
             mainMenuView.getCmbYear().setModel( model );
             if(selectedModel.equals("-")) {
-                mainMenuView.getCmbYear().setSelectedIndex(0);
-                mainMenuView.getCmbYear().setEnabled(false);
+                clearCriteria(5);
             } else {
                 mainMenuView.getCmbYear().setEnabled(true);
             }
@@ -198,15 +196,89 @@ public class MainMenuController {
         mainMenuView.getCmbYear().addActionListener(e -> {
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
-            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedModel,
-                    selectedYear) );
+
+            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedYear,
+                    selectedModel) );
             mainMenuView.getCmbType().setModel( year );
             if(selectedYear.equals("-")) {
-                mainMenuView.getCmbType().setSelectedIndex(0);
-                mainMenuView.getCmbType().setEnabled(false);
+                clearCriteria(4);
             } else {
                 mainMenuView.getCmbType().setEnabled(true);
             }
         });
+    }
+
+    /**
+     * Adds action listener for the selected Type & changes the transmission
+     */
+    private void typeSelected() {
+        mainMenuView.getCmbType().addActionListener(e -> {
+            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+            String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
+
+            DefaultComboBoxModel type = new DefaultComboBoxModel( DatabaseAdapter.loadAllTransmissions(selectedYear,
+                    selectedModel,selectedType) );
+            mainMenuView.getCmbTrans().setModel( type );
+            if(selectedType.equals("-")) {
+                clearCriteria(3);
+            } else {
+                mainMenuView.getCmbTrans().setEnabled(true);
+            }
+        });
+    }
+
+    /**
+     * Adds action listener for the selected Transmission & changes the mileage/MPG/
+     */
+    private void transmissionSelected() {
+//        mainMenuView.getCmbTrans().addActionListener(e -> {
+//            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+//            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+//            String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
+//
+//            DefaultComboBoxModel trans = new DefaultComboBoxModel( DatabaseAdapter.loadAllTransmissions(selectedYear,
+//                    selectedModel,selectedType) );
+//            mainMenuView.getCmbInterior().setModel( trans );
+//            if(selectedYear.equals("-")) {
+//                clearCriteria(1);
+//            } else {
+//                mainMenuView.getSdMileage().setEnabled(true);
+//                mainMenuView.getSdMPG().setEnabled(true);
+//                mainMenuView.getCmbInterior().setEnabled(true);
+//            }
+//        });
+    }
+
+    /**
+     * Clears the criteria of all following search parameters based on which "-" is selected
+     */
+    private void clearCriteria(int selected) {
+        switch (selected) {
+            case 6 : {
+                mainMenuView.getCmbModel().setSelectedIndex(0);
+                mainMenuView.getCmbModel().setEnabled(false);
+            }
+            case 5 : {
+                mainMenuView.getCmbYear().setSelectedIndex(0);
+                mainMenuView.getCmbYear().setEnabled(false);
+            }
+            case 4 : {
+                mainMenuView.getCmbType().setSelectedIndex(0);
+                mainMenuView.getCmbType().setEnabled(false);
+            }
+            case 3 : {
+                mainMenuView.getCmbTrans().setSelectedIndex(0);
+                mainMenuView.getCmbTrans().setEnabled(false);
+            }
+            case 1 : {
+                mainMenuView.getCmbInterior().setSelectedIndex(0);
+                mainMenuView.getCmbInterior().setEnabled(false);
+            }
+            case 0 : {
+                mainMenuView.getCmbExterior().setSelectedIndex(0);
+                mainMenuView.getCmbExterior().setEnabled(false);
+            }
+        }
     }
 }

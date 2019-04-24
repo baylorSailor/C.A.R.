@@ -347,7 +347,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbTrans, gbcMainPanel );
         pnMainPanel.add( lbTrans );
 
-        String []dataTrans = { "Automatic 6-spd", "Automatic 5-spd", "Manual 6-spd" };
+        String []dataTrans = DatabaseAdapter.loadAllTransmissions(null,null,null);
         cmbTrans = new JComboBox( dataTrans );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 16;
@@ -359,61 +359,12 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbTrans, gbcMainPanel );
         pnMainPanel.add( cmbTrans );
-
-        //Mileage slider
-        lbMileage = new JLabel( "Mileage"  );
-        gbcMainPanel.gridx = 1;
-        gbcMainPanel.gridy = 17;
-        gbcMainPanel.gridwidth = 1;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( lbMileage, gbcMainPanel );
-        pnMainPanel.add( lbMileage );
-
-        sdMileage = new JSlider( );
-        gbcMainPanel.gridx = 2;
-        gbcMainPanel.gridy = 17;
-        gbcMainPanel.gridwidth = 1;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( sdMileage, gbcMainPanel );
-        pnMainPanel.add( sdMileage );
-
-        //MPG slider
-        lbMPG = new JLabel( "MPG (Average)"  );
-        gbcMainPanel.gridx = 1;
-        gbcMainPanel.gridy = 18;
-        gbcMainPanel.gridwidth = 1;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( lbMPG, gbcMainPanel );
-        pnMainPanel.add( lbMPG );
-
-        sdMPG = new JSlider( );
-        gbcMainPanel.gridx = 2;
-        gbcMainPanel.gridy = 18;
-        gbcMainPanel.gridwidth = 1;
-        gbcMainPanel.gridheight = 1;
-        gbcMainPanel.fill = GridBagConstraints.NONE;
-        gbcMainPanel.weightx = 0;
-        gbcMainPanel.weighty = 0;
-        gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( sdMPG, gbcMainPanel );
-        pnMainPanel.add( sdMPG );
+        cmbTrans.setEnabled(false);
 
         //Interior color options
         lbInterior = new JLabel( "Interior Color"  );
         gbcMainPanel.gridx = 1;
-        gbcMainPanel.gridy = 19;
+        gbcMainPanel.gridy = 17;
         gbcMainPanel.gridwidth = 1;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.NONE;
@@ -426,7 +377,7 @@ public class MainMenuView extends JFrame {
         String []dataInterior = { "Black", "Red", "Beige" };
         cmbInterior = new JComboBox( dataInterior );
         gbcMainPanel.gridx = 2;
-        gbcMainPanel.gridy = 19;
+        gbcMainPanel.gridy = 17;
         gbcMainPanel.gridwidth = 1;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.BOTH;
@@ -435,11 +386,12 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbInterior, gbcMainPanel );
         pnMainPanel.add( cmbInterior );
+        cmbInterior.setEnabled(false);
 
         //Exterior color options
         lbExterior = new JLabel( "Exterior Color"  );
         gbcMainPanel.gridx = 1;
-        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridy = 18;
         gbcMainPanel.gridwidth = 1;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.NONE;
@@ -452,7 +404,7 @@ public class MainMenuView extends JFrame {
         String []dataExterior = { "Black", "Red", "Yellow" };
         cmbExterior = new JComboBox( dataExterior );
         gbcMainPanel.gridx = 2;
-        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridy = 18;
         gbcMainPanel.gridwidth = 1;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.BOTH;
@@ -461,6 +413,67 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.CENTER;
         gbMainPanel.setConstraints( cmbExterior, gbcMainPanel );
         pnMainPanel.add( cmbExterior );
+        cmbExterior.setEnabled(false);
+
+        //Mileage slider
+        lbMileage = new JLabel( "Mileage"  );
+        gbcMainPanel.gridx = 1;
+        gbcMainPanel.gridy = 19;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( lbMileage, gbcMainPanel );
+        pnMainPanel.add( lbMileage );
+
+        sdMileage = new JSlider( JSlider.HORIZONTAL,
+                10, 90, 50);
+        sdMileage.setMajorTickSpacing(10);
+        sdMileage.setPaintTicks(true);
+        sdMileage.setPaintLabels(true);
+        sdMileage.setPaintTrack(true);
+        gbcMainPanel.gridx = 2;
+        gbcMainPanel.gridy = 19;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( sdMileage, gbcMainPanel );
+        pnMainPanel.add( sdMileage );
+
+        //MPG slider
+        lbMPG = new JLabel( "MPG (Average)"  );
+        gbcMainPanel.gridx = 1;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( lbMPG, gbcMainPanel );
+        pnMainPanel.add( lbMPG );
+
+        sdMPG = new JSlider( JSlider.HORIZONTAL,
+                0, 50, 25);
+        sdMPG.setMajorTickSpacing(10);
+        sdMPG.setPaintTicks(true);
+        sdMPG.setPaintLabels(true);
+        sdMPG.setPaintTrack(true);
+        gbcMainPanel.gridx = 2;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( sdMPG, gbcMainPanel );
+        pnMainPanel.add( sdMPG );
 
         //Add to rental button
         btAddRental = new JButton( "Add Rental"  );
@@ -561,5 +574,45 @@ public class MainMenuView extends JFrame {
      */
     public JComboBox getCmbType() {
         return cmbType;
+    }
+
+    /**
+     * ComboBox for the selected transmission
+     * @return A ComboBox for the selected transmission
+     */
+    public JComboBox getCmbTrans() {
+        return cmbTrans;
+    }
+
+    /**
+     * JSlider for the selected mileage
+     * @return A JSlider for the selected mileage
+     */
+    public JSlider getSdMileage() {
+        return sdMileage;
+    }
+
+    /**
+     * JSlider for the selected MPG
+     * @return A JSlider for the selected MPG
+     */
+    public JSlider getSdMPG() {
+        return sdMPG;
+    }
+
+    /**
+     * ComboBox for the selected interior color
+     * @return A ComboBox for the selected interior color
+     */
+    public JComboBox getCmbInterior() {
+        return cmbInterior;
+    }
+
+    /**
+     * ComboBox for the selected exterior color
+     * @return A ComboBox for the selected exterior color
+     */
+    public JComboBox getCmbExterior() {
+        return cmbExterior;
     }
 }
