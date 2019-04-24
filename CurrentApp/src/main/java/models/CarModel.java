@@ -8,12 +8,12 @@ public class CarModel {
     /**
      * Car price
      */
-    private int price;
+    private Integer price;
 
     /**
      * Car mileage
      */
-    private int mileage;
+    private Integer mileage;
 
     /**
      * Car make
@@ -48,22 +48,22 @@ public class CarModel {
     /**
      * number of cylinders
      */
-    private int cylinders;
+    private Integer cylinders;
 
     /**
      * Car city mpg
      */
-    private int mpgCity;
+    private Integer mpgCity;
 
     /**
      * Car highway mpg
      */
-    private int mpgHighway;
+    private Integer mpgHighway;
 
     /**
      * Car avg mpg
      */
-    private int mpgCombined;
+    private Integer mpgCombined;
 
     /**
      * Car interior color
@@ -120,9 +120,9 @@ public class CarModel {
      * @param exterior exterior color
      * @param imageID image ID of display picture
      */
-    public CarModel(int price, int mileage, String make, String model,
-                    String fuelType, int year, String type, String transmission,
-                    int cylinders, int mpgCity, int mpgHighway, int mpgCombined,
+    public CarModel(Integer price, Integer mileage, String make, String model,
+                    String fuelType, Integer year, String type, String transmission,
+                    Integer cylinders, Integer mpgCity, Integer mpgHighway, Integer mpgCombined,
                     String interior, String exterior, String imageID) {
         this.price = price;
         this.mileage = mileage;
@@ -169,7 +169,7 @@ public class CarModel {
      * Gets price of the car
      * @return the car's price
      */
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -177,7 +177,7 @@ public class CarModel {
      * Sets the price of the car
      * @param price the new price of the car
      */
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -185,7 +185,7 @@ public class CarModel {
      * Gets mileage of the car
      * @return the car's mileage
      */
-    public int getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
@@ -193,7 +193,7 @@ public class CarModel {
      * Sets the mileage of the car
      * @param mileage the new mileage of the car
      */
-    public void setMileage(int mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -257,7 +257,7 @@ public class CarModel {
      * Sets the year car manufactured
      * @param year the year of the car
      */
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -297,7 +297,7 @@ public class CarModel {
      * Gets number of cylinder in car
      * @return number of cylinders the car has
      */
-    public int getCylinders() {
+    public Integer getCylinders() {
         return cylinders;
     }
 
@@ -305,7 +305,7 @@ public class CarModel {
      * Sets number of cylinders for the car
      * @param cylinders the number cylinders for the car
      */
-    public void setCylinders(int cylinders) {
+    public void setCylinders(Integer cylinders) {
         this.cylinders = cylinders;
     }
 
@@ -313,7 +313,7 @@ public class CarModel {
      * Gets city mpg of the car
      * @return the car's city mpg
      */
-    public int getMpgCity() {
+    public Integer getMpgCity() {
         return mpgCity;
     }
 
@@ -321,7 +321,7 @@ public class CarModel {
      * Sets the city mpg of the car
      * @param mpgCity the new city mpg of the car
      */
-    public void setMpgCity(int mpgCity) {
+    public void setMpgCity(Integer mpgCity) {
         this.mpgCity = mpgCity;
     }
 
@@ -329,7 +329,7 @@ public class CarModel {
      * Gets highway mpg of the car
      * @return the car's highway mpg
      */
-    public int getMpgHighway() {
+    public Integer getMpgHighway() {
         return mpgHighway;
     }
 
@@ -337,7 +337,7 @@ public class CarModel {
      * Sets the highway mpg of the car
      * @param mpgHighway the new highway mpg of the car
      */
-    public void setMpgHighway(int mpgHighway) {
+    public void setMpgHighway(Integer mpgHighway) {
         this.mpgHighway = mpgHighway;
     }
 
@@ -345,7 +345,7 @@ public class CarModel {
      * Gets avg mpg of the car
      * @return the car's avg mpg
      */
-    public int getMpgCombined() {
+    public Integer getMpgCombined() {
         return mpgCombined;
     }
 
@@ -353,7 +353,7 @@ public class CarModel {
      * Sets the avg mpg of the car
      * @param mpgCombined the new avg mpg of the car
      */
-    public void setMpgCombined(int mpgCombined) {
+    public void setMpgCombined(Integer mpgCombined) {
         this.mpgCombined = mpgCombined;
     }
 
