@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 public class CAR {
 
-    public static Logger logger = java.util.logging.Logger.getLogger("CARLog");
+    public static final Logger logger = java.util.logging.Logger.getLogger("CARLog");
     static {
         try {
             InputStream configFile = CAR.class.getClassLoader().getResourceAsStream("logger.properties");
