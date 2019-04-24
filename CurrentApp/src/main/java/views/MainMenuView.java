@@ -7,6 +7,7 @@ package views;
 import adapters.DatabaseAdapter;
 import controllers.UserController;
 import main.CAR;
+import models.CarModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,6 +27,7 @@ import java.util.logging.Logger;
 public class MainMenuView extends JFrame {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
+    private static CarModel[] CarList;
     private JPanel pnMainPanel;
 
     private JPanel pnSearchResults;
@@ -73,7 +75,7 @@ public class MainMenuView extends JFrame {
         GridBagLayout gbSearchResults = new GridBagLayout();
         GridBagConstraints gbcSearchResults = new GridBagConstraints();
         pnSearchResults.setLayout( gbSearchResults );
-        JScrollPane scpSearchResults = new JScrollPane( pnSearchResults );
+        //JScrollPane scpSearchResults = new JScrollPane( pnSearchResults );
         gbcMainPanel.gridx = 6;
         gbcMainPanel.gridy = 10;
         gbcMainPanel.gridwidth = 14;
@@ -82,16 +84,22 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.weightx = 1;
         gbcMainPanel.weighty = 0;
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
-        gbMainPanel.setConstraints( scpSearchResults, gbcMainPanel );
-        pnMainPanel.add( scpSearchResults );
+        gbMainPanel.setConstraints( pnSearchResults, gbcMainPanel );
+        pnMainPanel.add( pnSearchResults );
 
         //Test label in the main window
         //TODO Make this work
-        DatabaseAdapter.loadAllCars();
-        JLabel test = new JLabel( "<html>Make: Dodge<br/>Model: Avenger<br/>Year: 2000<br/>Type: Sedan<br/>" +
-                "Transmission: Automatic 6-spd"  +
+        CarList = DatabaseAdapter.loadAllCars();
+        JLabel test = new JLabel( "<html>Make: " + CarList[0].getMake() +
+                "<br/>Model: " + CarList[0].getModel() + "<br/>Year: " +
+                CarList[0].getYear().toString() + "<br/>Type: " +
+                CarList[0].getType() + "<br/>Transmission: " +
+                CarList[0].getTransmission() +
                 "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
-                "<br/>Miles: 88,278<br/>Avg MPG: 24<br/>Interior: Black<br/>Exterior: Black</html>" );
+                "<br/>Miles: " + CarList[0].getMileage().toString() +
+                "<br/>Avg MPG: " + CarList[0].getMpgCombined() +
+                "<br/>Interior: " + CarList[0].getInterior() +
+                "<br/>Exterior: " + CarList[0].getExterior() + "</html>" );
         gbcSearchResults.gridx = 0;
         gbcSearchResults.gridy = 5;
         gbcSearchResults.gridwidth = 1;

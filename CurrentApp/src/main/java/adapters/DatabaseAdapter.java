@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class DatabaseAdapter {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
-    private static CarModel[] CarList;
+    public static CarModel[] CarList;
 
     /**
      * Verifies if a user exists
@@ -156,7 +156,7 @@ public class DatabaseAdapter {
      * Loads all the cars in the CSV into a list
      * @return the CarModel array containing an all the cars
      */
-    public static void loadAllCars() {
+    public static CarModel[] loadAllCars() {
         List<CarModel> arrayListCars = new ArrayList<>();
 
         try{
@@ -179,6 +179,8 @@ public class DatabaseAdapter {
         CarModel[] modelArray = new CarModel[ arrayListCars.size() ];
         arrayListCars.toArray(modelArray);
         CarList = modelArray;
+
+        return CarList;
     }
 
     /**
