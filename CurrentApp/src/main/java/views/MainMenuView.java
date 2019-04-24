@@ -570,4 +570,12 @@ public class MainMenuView extends JFrame {
     public JComboBox getCmbType() {
         return cmbType;
     }
+
+    /**
+     * CarModel list for searching
+     * @return A CarModel[] for searching
+     */
+    public CarModel[] getCarList() {
+        return CarList;
+    }
 }
