@@ -585,6 +585,7 @@ public class MainMenuView extends JFrame {
     }
 
     /**
+<<<<<<< HEAD
      * ComboBox for the selected transmission
      * @return A ComboBox for the selected transmission
      */
@@ -622,5 +623,12 @@ public class MainMenuView extends JFrame {
      */
     public JComboBox getCmbExterior() {
         return cmbExterior;
+    }
+
+    /** CarModel list for searching
+    * @return A CarModel[] for searching
+    */
+    public CarModel[] getCarList() {
+        return CarList;
     }
 }
