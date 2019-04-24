@@ -146,23 +146,11 @@ public class CarModel {
      * @return String representation of a car object
      */
     public String toString() {
-        return "CarModel{" +
-                "price=" + price +
-                ", mileage=" + mileage +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", fuelType='" + fuelType + '\'' +
-                ", year=" + year +
-                ", type='" + type + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", cylinders=" + cylinders +
-                ", mpgCity=" + mpgCity +
-                ", mpgHighway=" + mpgHighway +
-                ", mpgCombined=" + mpgCombined +
-                ", interior='" + interior + '\'' +
-                ", exterior='" + exterior + '\'' +
-                ", imageID='" + imageID + '\'' +
-                '}';
+        return price + "," + mileage + "," + make + "," + model + "," +
+                fuelType + "," + year + "," + type + "," + transmission +
+                "," + cylinders + "," + mpgCity + "," + mpgHighway + "," +
+                mpgCombined + "," + interior + "," + exterior + "," + imageID +
+                '\n';
     }
 
     /**
