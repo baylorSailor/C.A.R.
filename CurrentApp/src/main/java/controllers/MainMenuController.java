@@ -42,6 +42,7 @@ public class MainMenuController {
         yearSelected();
         typeSelected();
         transmissionSelected();
+        interiorColorSelected();
     }
 
     /**
@@ -179,9 +180,11 @@ public class MainMenuController {
      */
     private void modelSelected() {
         mainMenuView.getCmbModel().addActionListener(e -> {
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
 
-            DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllYears(selectedModel) );
+            DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllYears(selectedMake,
+                    selectedModel) );
             mainMenuView.getCmbYear().setModel( model );
             if(selectedModel.equals("-")) {
                 clearCriteria(5);
@@ -196,11 +199,12 @@ public class MainMenuController {
      */
     private void yearSelected() {
         mainMenuView.getCmbYear().addActionListener(e -> {
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
 
-            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedYear,
-                    selectedModel) );
+            DefaultComboBoxModel year = new DefaultComboBoxModel( DatabaseAdapter.loadAllTypes(selectedMake,
+                    selectedModel,selectedYear) );
             mainMenuView.getCmbType().setModel( year );
             if(selectedYear.equals("-")) {
                 clearCriteria(4);
@@ -215,12 +219,13 @@ public class MainMenuController {
      */
     private void typeSelected() {
         mainMenuView.getCmbType().addActionListener(e -> {
-            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
             String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
 
-            DefaultComboBoxModel type = new DefaultComboBoxModel( DatabaseAdapter.loadAllTransmissions(selectedYear,
-                    selectedModel,selectedType) );
+            DefaultComboBoxModel type = new DefaultComboBoxModel( DatabaseAdapter.loadAllTransmissions(selectedMake,
+                    selectedModel,selectedYear, selectedType) );
             mainMenuView.getCmbTrans().setModel( type );
             if(selectedType.equals("-")) {
                 clearCriteria(3);
@@ -231,25 +236,48 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Transmission & changes the mileage/MPG/
+     * Adds action listener for the selected Transmission & changes the interior color
      */
     private void transmissionSelected() {
-//        mainMenuView.getCmbTrans().addActionListener(e -> {
-//            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
-//            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
-//            String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
-//
-//            DefaultComboBoxModel trans = new DefaultComboBoxModel( DatabaseAdapter.loadAllTransmissions(selectedYear,
-//                    selectedModel,selectedType) );
-//            mainMenuView.getCmbInterior().setModel( trans );
-//            if(selectedYear.equals("-")) {
-//                clearCriteria(1);
-//            } else {
-//                mainMenuView.getSdMileage().setEnabled(true);
-//                mainMenuView.getSdMPG().setEnabled(true);
-//                mainMenuView.getCmbInterior().setEnabled(true);
-//            }
-//        });
+        mainMenuView.getCmbTrans().addActionListener(e -> {
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
+            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+            String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
+            String selectedTransmission = (String) mainMenuView.getCmbTrans().getSelectedItem();
+
+            DefaultComboBoxModel trans = new DefaultComboBoxModel( DatabaseAdapter.loadAllInteriorColor(selectedMake,
+                    selectedModel,selectedYear,selectedType,selectedTransmission) );
+            mainMenuView.getCmbInterior().setModel( trans );
+            if(selectedTransmission.equals("-")) {
+                clearCriteria(1);
+            } else {
+                mainMenuView.getCmbInterior().setEnabled(true);
+            }
+        });
+    }
+
+    /**
+     * Adds action listener for the selected interior color & changes the exterior color
+     */
+    private void interiorColorSelected() {
+        mainMenuView.getCmbInterior().addActionListener(e -> {
+            String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
+            String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
+            String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
+            String selectedType = (String) mainMenuView.getCmbType().getSelectedItem();
+            String selectedTransmission = (String) mainMenuView.getCmbTrans().getSelectedItem();
+            String selectedInteriorColor = (String) mainMenuView.getCmbInterior().getSelectedItem();
+
+            DefaultComboBoxModel interior = new DefaultComboBoxModel( DatabaseAdapter.loadAllExteriorColor(selectedMake,
+                    selectedModel,selectedYear,selectedType,selectedTransmission,selectedInteriorColor) );
+            mainMenuView.getCmbExterior().setModel( interior );
+            if(selectedInteriorColor.equals("-")) {
+                clearCriteria(0);
+            } else {
+                mainMenuView.getCmbExterior().setEnabled(true);
+            }
+        });
     }
 
     /**
