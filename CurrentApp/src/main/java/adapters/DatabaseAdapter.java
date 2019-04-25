@@ -164,7 +164,6 @@ public class DatabaseAdapter {
             input.nextLine();
             String line;
 
-            // Read CSV file
             while (input.hasNextLine()) {
                 line = input.nextLine();
                 String[] data = line.split(",");

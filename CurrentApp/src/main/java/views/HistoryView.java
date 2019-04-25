@@ -33,7 +33,7 @@ public class HistoryView extends JFrame {
 
         //Create history panel
         pnHistory = new JPanel();
-        pnHistory.setBorder( BorderFactory.createTitledBorder( "Previous Transactions" ) );
+        pnHistory.setBorder( BorderFactory.createTitledBorder( "Previous Rentals" ) );
         GridBagLayout gbHistory = new GridBagLayout();
         GridBagConstraints gbcHistory = new GridBagConstraints();
         pnHistory.setLayout( gbMainPanel );
@@ -42,7 +42,10 @@ public class HistoryView extends JFrame {
         rentalHistory = DatabaseAdapter.readHistory();
 
         // Store rental history into table
-        String [][]dataHTable = new String[rentalHistory.size()][NUM_COLS];
+        String [][]dataHTable = new String[rentalHistory.size()+1][NUM_COLS];
+        if(rentalHistory.isEmpty()) {
+            dataHTable[0][0] = "No rentals yet :(";
+        }
         for(int i = 0; i < rentalHistory.size(); i++){
             for(int j = 0; j < NUM_COLS; j++){
                 //If first col, put vehicle string, else rental date
