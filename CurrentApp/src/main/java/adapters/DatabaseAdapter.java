@@ -6,6 +6,7 @@ import factories.RepresentativeFactory;
 import factories.UserFactory;
 import main.CAR;
 import models.CarModel;
+import models.HistoryModel;
 import models.UserModel;
 import views.CreateAccountView;
 

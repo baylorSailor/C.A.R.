@@ -31,6 +31,8 @@ public class ActiveRentalsView extends JFrame {
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
         tbHTable.setSelectionForeground( new Color( 0,0,0 ) );
         tbHTable.setEnabled(false);
+
+        // Add table to panel
         JScrollPane scpHTable = new JScrollPane( tbHTable );
         gbcActiveRentals.gridx = 0;
         gbcActiveRentals.gridy = 0;
@@ -42,6 +44,8 @@ public class ActiveRentalsView extends JFrame {
         gbcActiveRentals.anchor = GridBagConstraints.CENTER;
         gbActiveRentals.setConstraints( scpHTable, gbcActiveRentals );
         pnActiveRentals.add( scpHTable );
+
+        // Add rental scroll pane
         JScrollPane scpActiveRentals = new JScrollPane( pnActiveRentals );
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 10;
