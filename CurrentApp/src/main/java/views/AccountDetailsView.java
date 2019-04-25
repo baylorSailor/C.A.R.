@@ -22,6 +22,7 @@ public class AccountDetailsView extends JFrame {
     private JLabel lbEmail;
     private JLabel lbCreditCardType;
     private JLabel lbPicture;
+    private JButton btChangePassword;
 
     /**
      * Constructor for AccountDetailsView
@@ -86,6 +87,18 @@ public class AccountDetailsView extends JFrame {
         gbAccountDetails.setConstraints( lbCreditCardType, gbcAccountDetails );
         pnAccountDetails.add( lbCreditCardType );
 
+        btChangePassword = new JButton("Change Password");
+        gbcAccountDetails.gridx = 7;
+        gbcAccountDetails.gridy = 17;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.VERTICAL;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTH;
+        gbAccountDetails.setConstraints( btChangePassword, gbcAccountDetails );
+        pnAccountDetails.add( btChangePassword );
+
         BufferedImage picture = DatabaseAdapter.loadImage();
         lbPicture = new JLabel(new ImageIcon(picture));
         add(lbPicture);
@@ -116,5 +129,13 @@ public class AccountDetailsView extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible( true );
+    }
+
+    /**
+     * Get the change password button
+     * @return A button for change password
+     */
+    public JButton getBtChangePassword() {
+        return btChangePassword;
     }
 }

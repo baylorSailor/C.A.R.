@@ -224,14 +224,16 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the years in the vehicle list with the selected model
+     * @param selectedMake the make the user has selected
      * @param selectedModel the model the user has selected
      * @return the String array containing an all the years within the provided model
      */
-    public static String[] loadAllYears(String selectedModel) {
+    public static String[] loadAllYears(String selectedMake, String selectedModel) {
         List<String> arrayListYears = new ArrayList<>();
         arrayListYears.add("-");
         for(CarModel i : CarList) {
-            if(i.getModel().equals(selectedModel) && !arrayListYears.contains(i.getYear().toString())) {
+            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+                    && !arrayListYears.contains(i.getYear().toString())) {
                 arrayListYears.add(i.getYear().toString());
             }
         }
@@ -244,16 +246,17 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected year
-     * @param selectedYear the year the user has selected
+     * @param selectedMake the make the user has selected
      * @param selectedModel the model the user has selected
+     * @param selectedYear the year the user has selected
      * @return the String array containing an all the types within the provided year and model
      */
-    public static String[] loadAllTypes(String selectedYear, String selectedModel) {
+    public static String[] loadAllTypes(String selectedMake, String selectedModel, String selectedYear) {
         List<String> arrayListTypes = new ArrayList<>();
         arrayListTypes.add("-");
         for(CarModel i : CarList) {
-            if(i.getModel().equals(selectedModel) && i.getYear().toString().equals(selectedYear)
-                    && !arrayListTypes.contains(i.getType())) {
+            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+                    && i.getYear().toString().equals(selectedYear) && !arrayListTypes.contains(i.getType())) {
                 arrayListTypes.add(i.getType());
             }
         }
@@ -266,23 +269,90 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected transmission
-     * @param selectedYear the year the user has selected
+     * @param selectedMake the make the user has selected
      * @param selectedModel the model the user has selected
+     * @param selectedYear the year the user has selected
      * @param selectedType the type the user has selected
      * @return the String array containing an all the types within the provided year, model, and type
      */
-    public static String[] loadAllTransmissions(String selectedYear, String selectedModel, String selectedType) {
+    public static String[] loadAllTransmissions(String selectedMake, String selectedModel,
+                                                String selectedYear, String selectedType) {
         List<String> arrayListTransmissions = new ArrayList<>();
         arrayListTransmissions.add("-");
         for(CarModel i : CarList) {
-            if(i.getModel().equals(selectedModel) && i.getYear().toString().equals(selectedYear)
-                    && i.getType().equals(selectedType) && !arrayListTransmissions.contains(i.getTransmission())) {
+            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+                    && i.getYear().toString().equals(selectedYear)
+                    && i.getType().equals(selectedType)
+                    && !arrayListTransmissions.contains(i.getTransmission())) {
                 arrayListTransmissions.add(i.getTransmission());
             }
         }
 
         String[] trans = new String[ arrayListTransmissions.size() ];
         arrayListTransmissions.toArray(trans);
+
+        return trans;
+    }
+
+    /**
+     * Loads all the vehicle classes in the vehicle list with the selected interior color
+     * @param selectedMake the make the user has selected
+     * @param selectedModel the model the user has selected
+     * @param selectedYear the year the user has selected
+     * @param selectedType the type the user has selected
+     * @param selectedTrans the transmission the user has selected
+     * @return the String array containing an all the cars within the provided year, model, type, and transmission
+     */
+    public static String[] loadAllInteriorColor(String selectedMake, String selectedModel,
+                                                String selectedYear, String selectedType,
+                                                String selectedTrans) {
+        List<String> arrayListInteriorColor = new ArrayList<>();
+        arrayListInteriorColor.add("-");
+        for(CarModel i : CarList) {
+            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+                    && i.getYear().toString().equals(selectedYear)
+                    && i.getType().equals(selectedType)
+                    && i.getTransmission().equals(selectedTrans)
+                    && !arrayListInteriorColor.contains(i.getInterior())) {
+                arrayListInteriorColor.add(i.getInterior());
+            }
+        }
+
+        String[] trans = new String[ arrayListInteriorColor.size() ];
+        arrayListInteriorColor.toArray(trans);
+
+        return trans;
+    }
+
+    /**
+     * Loads all the vehicle classes in the vehicle list with the selected exterior color
+     * @param selectedMake the make the user has selected
+     * @param selectedModel the model the user has selected
+     * @param selectedYear the year the user has selected
+     * @param selectedType the type the user has selected
+     * @param selectedTrans the transmission the user has selected
+     * @param selectedInteriorColor the interior color the user has selected
+     * @return the String array containing an all the cars within the provided year, model, type,
+     * transmission, and interior color
+     */
+    public static String[] loadAllExteriorColor(String selectedMake, String selectedModel,
+                                                String selectedYear, String selectedType,
+                                                String selectedTrans, String selectedInteriorColor) {
+        List<String> arrayListExteriorColor = new ArrayList<>();
+        arrayListExteriorColor.add("-");
+        for(CarModel i : CarList) {
+            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+                    && i.getYear().toString().equals(selectedYear)
+                    && i.getType().equals(selectedType)
+                    && i.getTransmission().equals(selectedTrans)
+                    && i.getInterior().equals(selectedInteriorColor)
+                    && !arrayListExteriorColor.contains(i.getExterior())) {
+                arrayListExteriorColor.add(i.getExterior());
+            }
+        }
+
+        String[] trans = new String[ arrayListExteriorColor.size() ];
+        arrayListExteriorColor.toArray(trans);
 
         return trans;
     }

@@ -11,6 +11,7 @@ import models.CarModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
@@ -38,6 +39,8 @@ public class MainMenuView extends JFrame {
     private JButton btAccountDetails;
     private JButton btLogout;
     private JButton btAddRental;
+    private JButton btLeftButton;
+    private JButton btRightButton;
     private JLabel lbLoggedInAs;
     private JLabel lbFilters;
     private JLabel lbMake;
@@ -303,7 +306,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbYear, gbcMainPanel );
         pnMainPanel.add( lbYear );
 
-        String []dataYear = DatabaseAdapter.loadAllYears(null);
+        String []dataYear = DatabaseAdapter.loadAllYears(null,null);
         cmbYear = new JComboBox( dataYear );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 14;
@@ -330,7 +333,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbType, gbcMainPanel );
         pnMainPanel.add( lbType );
 
-        String []dataType = DatabaseAdapter.loadAllTypes(null,null);
+        String []dataType = DatabaseAdapter.loadAllTypes(null,null,null);
         cmbType = new JComboBox( dataType );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 15;
@@ -357,7 +360,7 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbTrans, gbcMainPanel );
         pnMainPanel.add( lbTrans );
 
-        String []dataTrans = DatabaseAdapter.loadAllTransmissions(null,null,null);
+        String []dataTrans = DatabaseAdapter.loadAllTransmissions(null, null,null,null);
         cmbTrans = new JComboBox( dataTrans );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 16;
@@ -384,7 +387,8 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbInterior, gbcMainPanel );
         pnMainPanel.add( lbInterior );
 
-        String []dataInterior = { "Black", "Red", "Beige" };
+        String []dataInterior = DatabaseAdapter.loadAllInteriorColor(null,
+                null,null,null,null);
         cmbInterior = new JComboBox( dataInterior );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 17;
@@ -411,7 +415,9 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( lbExterior, gbcMainPanel );
         pnMainPanel.add( lbExterior );
 
-        String []dataExterior = { "Black", "Red", "Yellow" };
+        String []dataExterior = DatabaseAdapter.loadAllExteriorColor(null,
+                null,null,null,null,
+                null);
         cmbExterior = new JComboBox( dataExterior );
         gbcMainPanel.gridx = 2;
         gbcMainPanel.gridy = 18;
@@ -498,6 +504,32 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
         pnMainPanel.add( btAddRental );
 
+        //Left arrow button
+        btLeftButton = new JButton(" < ");
+        gbcMainPanel.gridx = 11;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btLeftButton, gbcMainPanel );
+        pnMainPanel.add( btLeftButton );
+
+        //Right arrow button
+        btRightButton = new JButton(" > ");
+        gbcMainPanel.gridx = 15;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btRightButton, gbcMainPanel );
+        pnMainPanel.add( btRightButton );
+
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
         setContentPane( pnMainPanel );
@@ -579,6 +611,22 @@ public class MainMenuView extends JFrame {
     }
 
     /**
+     * Button for going left in list
+     * @return A button for moving left through the array of cars
+     */
+    public JButton getBtLeftButton() {
+        return btLeftButton;
+    }
+
+    /**
+     * Button for going right in list
+     * @return A button for moving right through the array of cars
+     */
+    public JButton getBtRightButton() {
+        return btRightButton;
+    }
+
+    /**
      * ComboBox for the selected make
      * @return A ComboBox for the selected make
      */
@@ -611,7 +659,6 @@ public class MainMenuView extends JFrame {
     }
 
     /**
-<<<<<<< HEAD
      * ComboBox for the selected transmission
      * @return A ComboBox for the selected transmission
      */
@@ -652,8 +699,8 @@ public class MainMenuView extends JFrame {
     }
 
     /** CarModel list for searching
-    * @return A CarModel[] for searching
-    */
+     * @return A CarModel[] for searching
+     */
     public CarModel[] getCarList() {
         return CarList;
     }
