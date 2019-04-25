@@ -1,8 +1,10 @@
 package controllers;
 
+import adapters.DatabaseAdapter;
 import main.CAR;
 import views.AccountDetailsView;
 
+import javax.sound.sampled.LineEvent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,15 +53,32 @@ public class AccountDetailsController {
      */
     public void changePasswordButtonPressed() {
         accountDetailsView.getBtChangePassword().addActionListener(e -> {
+            log.log(Level.INFO,"Change password button clicked");
             String oldPass = JOptionPane.showInputDialog(null,
                     "Please enter your old password:",
                     "Old Password",
                     JOptionPane.INFORMATION_MESSAGE);
-            System.out.println(oldPass + "\n");
-            //Check if same pass
-            //New one
-            //New one confirmation
-            //check if they match
+            if(UserController.getUser().getPassword().equals(oldPass)) {
+                String newPass = JOptionPane.showInputDialog(null,
+                        "Please enter your new password:",
+                        "New Password",
+                        JOptionPane.INFORMATION_MESSAGE);
+                String retypePass = JOptionPane.showInputDialog(null,
+                        "Please reenter your new password:",
+                        "New Password (Again)",
+                        JOptionPane.INFORMATION_MESSAGE);
+                if(newPass.equals(retypePass)) {
+                    //Update Password Here
+                    JOptionPane.showMessageDialog(null,"Your password has been changed."
+                    ,"Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Passwords do not match!","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Incorrect password entered!","ERROR",JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 
