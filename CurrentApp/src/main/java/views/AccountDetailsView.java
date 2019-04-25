@@ -130,4 +130,12 @@ public class AccountDetailsView extends JFrame {
         setLocationRelativeTo(null);
         setVisible( true );
     }
+
+    /**
+     * Get the change password button
+     * @return A button for change password
+     */
+    public JButton getBtChangePassword() {
+        return btChangePassword;
+    }
 }
