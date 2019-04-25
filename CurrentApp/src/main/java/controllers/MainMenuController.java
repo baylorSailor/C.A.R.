@@ -2,15 +2,18 @@ package controllers;
 
 import adapters.DatabaseAdapter;
 import main.CAR;
+import models.CarModel;
 import views.AccountDetailsView;
 import views.ActiveRentalsView;
 import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +53,87 @@ public class MainMenuController {
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
             log.log(Level.INFO,"Refresh button clicked");
-            //TODO Refresh Search Results Pane
+            boolean match = true;
+            List<CarModel> retList = new ArrayList<>();
+            CarModel[] fullList = mainMenuView.getCarList();
+            for(int i = 0; i < fullList.length && match; i++) {
+                if(!fullList[i].getMake().equals("-")) {
+
+                    if(fullList[i].getMake().equals(mainMenuView.getCmbMake().getSelectedItem())) {
+
+                        if(!fullList[i].getModel().equals("-")) {
+
+                            if(fullList[i].getModel().equals(mainMenuView.getCmbModel().getSelectedItem())) {
+
+                                if(!fullList[i].getYear().toString().equals("-")) {
+
+                                    if(fullList[i].getYear().toString().equals(mainMenuView.getCmbYear().getSelectedItem())) {
+
+                                        if(!fullList[i].getType().equals("-")) {
+
+                                            if(fullList[i].getType().equals(mainMenuView.getCmbType().getSelectedItem())) {
+
+                                                if(!fullList[i].getTransmission().equals("-")) {
+
+                                                    if(fullList[i].getTransmission().equals(mainMenuView.getCmbTrans().getSelectedItem())) {
+
+                                                        if(!fullList[i].getInterior().equals("-")) {
+
+                                                            if(fullList[i].getInterior().equals(mainMenuView.getCmbInterior())) {
+
+                                                                if(!fullList[i].getExterior().equals("-") &&
+                                                                        !fullList[i].getExterior().equals(mainMenuView.getCmbExterior().getSelectedItem())) {
+
+                                                                    match = false;
+                                                                }
+                                                            } else {
+                                                                match = false;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        match = false;
+                                                    }
+                                                }
+                                            } else {
+                                                match = false;
+                                            }
+                                        }
+                                    } else {
+                                        match = false;
+                                    }
+                                }
+                            } else {
+                                match = false;
+                            }
+                        }
+                    } else {
+                        match = false;
+                    }
+                }
+
+                if(match) {
+                    if(fullList[i].getMileage() < mainMenuView.getSdMileage().getValue()) {
+                        match = false;
+                    }
+
+                    if(match && fullList[i].getMpgCombined() < mainMenuView.getSdMPG().getValue()) {
+                        match = false;
+                    }
+                }
+
+                if(!match) {
+                    match = true;
+                } else {
+                    retList.add(fullList[i]);
+                }
+            }
+
+            CarModel[] searchRet = new CarModel[ retList.size() ];
+            retList.toArray(searchRet);
+
+            mainMenuView.setSearchList(searchRet);
+
+            //mainMenuView.updateSearch();
         });
     }
 
