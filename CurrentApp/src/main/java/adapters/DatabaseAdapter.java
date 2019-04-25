@@ -6,6 +6,7 @@ import factories.RepresentativeFactory;
 import factories.UserFactory;
 import main.CAR;
 import models.CarModel;
+import models.HistoryModel;
 import models.UserModel;
 import views.CreateAccountView;
 
@@ -150,6 +151,33 @@ public class DatabaseAdapter {
 
         }
         return picture;
+    }
+
+    /**
+     * Function for reading history CSV
+     */
+    public static ArrayList<HistoryModel> readHistory(){
+        ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
+        try {
+            String username = UserController.getUser().getUsername();
+            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), "UTF-8");
+            input.nextLine();
+            String line;
+
+            // Read CSV file
+            while (input.hasNextLine()) {
+                line = input.nextLine();
+                String[] data = line.split(",");
+                if(data[0].equalsIgnoreCase(username)) {
+                    historyModelArrayList.add(new HistoryModel(data));
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            log.log(Level.SEVERE,"history.csv could not be loaded");
+        }
+        return historyModelArrayList;
     }
 
     /**

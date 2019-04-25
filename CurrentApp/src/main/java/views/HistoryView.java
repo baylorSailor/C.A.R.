@@ -1,5 +1,6 @@
 package views;
 
+import adapters.DatabaseAdapter;
 import controllers.UserController;
 import models.HistoryModel;
 
@@ -18,33 +19,7 @@ public class HistoryView extends JFrame {
     private JTable tbHTable;
     private final int NUM_COLS = 2;
 
-    private ArrayList<HistoryModel> rentalHistory =
-            new ArrayList<>();
-
-    /**
-     * Function for reading history CSV
-     */
-    public void readHistory(){
-
-        try {
-            String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), "UTF-8");
-            input.nextLine();
-            String line;
-
-            // Read CSV file
-            while (input.hasNextLine()) {
-                line = input.nextLine();
-                String[] data = line.split(",");
-                if(data[0].equalsIgnoreCase(username)) {
-                    rentalHistory.add(new HistoryModel(data));
-                }
-            }
-
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
+    private ArrayList<HistoryModel> rentalHistory;
 
     /**
      * Constructs the window for rental history
@@ -64,7 +39,7 @@ public class HistoryView extends JFrame {
         pnHistory.setLayout( gbMainPanel );
 
         //Read the history CSV
-        readHistory();
+        rentalHistory = DatabaseAdapter.readHistory();
 
         // Store rental history into table
         String [][]dataHTable = new String[rentalHistory.size()][NUM_COLS];
