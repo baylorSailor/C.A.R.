@@ -11,7 +11,6 @@ import models.CarModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
@@ -29,6 +28,7 @@ public class MainMenuView extends JFrame {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
     private static CarModel[] CarList;
+    private static CarModel[] SearchList;
     private JPanel pnMainPanel;
 
     private JPanel pnSearchResults;
@@ -93,16 +93,17 @@ public class MainMenuView extends JFrame {
         //Test label in the main window
         //TODO Make this work
         CarList = DatabaseAdapter.loadAllCars();
-        JLabel test = new JLabel( "<html>Make: " + CarList[0].getMake() +
-                "<br/>Model: " + CarList[0].getModel() + "<br/>Year: " +
-                CarList[0].getYear().toString() + "<br/>Type: " +
-                CarList[0].getType() + "<br/>Transmission: " +
-                CarList[0].getTransmission() +
+        SearchList = CarList;
+        JLabel test = new JLabel( "<html>Make: " + SearchList[0].getMake() +
+                "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
+                SearchList[0].getYear().toString() + "<br/>Type: " +
+                SearchList[0].getType() + "<br/>Transmission: " +
+                SearchList[0].getTransmission() +
                 "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
-                "<br/>Miles: " + CarList[0].getMileage().toString() +
-                "<br/>Avg MPG: " + CarList[0].getMpgCombined() +
-                "<br/>Interior: " + CarList[0].getInterior() +
-                "<br/>Exterior: " + CarList[0].getExterior() + "</html>" );
+                "<br/>Miles: " + SearchList[0].getMileage().toString() +
+                "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
+                "<br/>Interior: " + SearchList[0].getInterior() +
+                "<br/>Exterior: " + SearchList[0].getExterior() + "</html>" );
         gbcSearchResults.gridx = 0;
         gbcSearchResults.gridy = 5;
         gbcSearchResults.gridwidth = 1;
@@ -443,7 +444,7 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( lbMileage );
 
         sdMileage = new JSlider( JSlider.HORIZONTAL,
-                10, 90, 50);
+                10, 90, 10);
         sdMileage.setMajorTickSpacing(10);
         sdMileage.setPaintTicks(true);
         sdMileage.setPaintLabels(true);
@@ -473,7 +474,7 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( lbMPG );
 
         sdMPG = new JSlider( JSlider.HORIZONTAL,
-                0, 50, 25);
+                0, 50, 0);
         sdMPG.setMajorTickSpacing(10);
         sdMPG.setPaintTicks(true);
         sdMPG.setPaintLabels(true);
@@ -534,6 +535,30 @@ public class MainMenuView extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible( true );
+    }
+
+    public void updateSearch() {
+        JPanel oldPanel = pnSearchResults;
+        pnSearchResults.removeAll();
+        JLabel test;
+
+        if(SearchList.length == 0) {
+            test = new JLabel("NO MATCHING CARS! :(");
+        } else {
+            test = new JLabel("<html>Make: " + SearchList[0].getMake() +
+                    "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
+                    SearchList[0].getYear().toString() + "<br/>Type: " +
+                    SearchList[0].getType() + "<br/>Transmission: " +
+                    SearchList[0].getTransmission() +
+                    "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
+                    "<br/>Miles: " + SearchList[0].getMileage().toString() +
+                    "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
+                    "<br/>Interior: " + SearchList[0].getInterior() +
+                    "<br/>Exterior: " + SearchList[0].getExterior() + "</html>");
+        }
+        pnSearchResults.add(test);
+        pnSearchResults.revalidate();
+        pnSearchResults.repaint();
     }
 
     /**
@@ -677,5 +702,9 @@ public class MainMenuView extends JFrame {
      */
     public CarModel[] getCarList() {
         return CarList;
+    }
+
+    public void setSearchList(CarModel[] searchList) {
+        SearchList = searchList;
     }
 }

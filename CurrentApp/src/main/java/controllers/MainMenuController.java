@@ -2,17 +2,17 @@ package controllers;
 
 import adapters.DatabaseAdapter;
 import main.CAR;
-import views.AccountDetailsView;
+import models.CarModel;
 import views.ActiveRentalsView;
 import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,7 +55,87 @@ public class MainMenuController {
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
             log.log(Level.INFO,"Refresh button clicked");
-            //TODO Refresh Search Results Pane
+            boolean match = true;
+            List<CarModel> retList = new ArrayList<>();
+            CarModel[] fullList = mainMenuView.getCarList();
+            for(int i = 0; i < fullList.length && match; i++) {
+                if(!mainMenuView.getCmbMake().getSelectedItem().equals("-")) {
+
+                    if(fullList[i].getMake().equals(mainMenuView.getCmbMake().getSelectedItem())) {
+
+                        if(!mainMenuView.getCmbModel().getSelectedItem().equals("-")) {
+
+                            if(fullList[i].getModel().equals(mainMenuView.getCmbModel().getSelectedItem())) {
+
+                                if(!mainMenuView.getCmbYear().getSelectedItem().equals("-")) {
+
+                                    if(fullList[i].getYear().toString().equals(mainMenuView.getCmbYear().getSelectedItem())) {
+
+                                        if(!mainMenuView.getCmbType().getSelectedItem().equals("-")) {
+
+                                            if(fullList[i].getType().equals(mainMenuView.getCmbType().getSelectedItem())) {
+
+                                                if(!mainMenuView.getCmbTrans().getSelectedItem().equals("-")) {
+
+                                                    if(fullList[i].getTransmission().equals(mainMenuView.getCmbTrans().getSelectedItem())) {
+
+                                                        if(!mainMenuView.getCmbInterior().getSelectedItem().equals("-")) {
+
+                                                            if(fullList[i].getInterior().equals(mainMenuView.getCmbInterior())) {
+
+                                                                if(!mainMenuView.getCmbExterior().getSelectedItem().equals("-") &&
+                                                                        !fullList[i].getExterior().equals(mainMenuView.getCmbExterior().getSelectedItem())) {
+
+                                                                    match = false;
+                                                                }
+                                                            } else {
+                                                                match = false;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        match = false;
+                                                    }
+                                                }
+                                            } else {
+                                                match = false;
+                                            }
+                                        }
+                                    } else {
+                                        match = false;
+                                    }
+                                }
+                            } else {
+                                match = false;
+                            }
+                        }
+                    } else {
+                        match = false;
+                    }
+                }
+
+                if(match) {
+                    if(fullList[i].getMileage() < mainMenuView.getSdMileage().getValue()) {
+                        match = false;
+                    }
+
+                    if(match && fullList[i].getMpgCombined() < mainMenuView.getSdMPG().getValue()) {
+                        match = false;
+                    }
+                }
+
+                if(!match) {
+                    match = true;
+                } else {
+                    retList.add(fullList[i]);
+                }
+            }
+
+            CarModel[] searchRet = new CarModel[ retList.size() ];
+            retList.toArray(searchRet);
+
+            mainMenuView.setSearchList(searchRet);
+
+            mainMenuView.updateSearch();
         });
     }
 
