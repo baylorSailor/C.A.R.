@@ -11,7 +11,6 @@ import models.CarModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;

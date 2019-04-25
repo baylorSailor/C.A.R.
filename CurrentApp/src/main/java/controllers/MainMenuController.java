@@ -3,19 +3,12 @@ package controllers;
 import adapters.DatabaseAdapter;
 import main.CAR;
 import models.CarModel;
-import views.AccountDetailsView;
 import views.ActiveRentalsView;
 import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
-<<<<<<< HEAD
-import java.awt.Frame;
-=======
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
->>>>>>> d64eb1d5c951df29a330284e49f7edbefdbba869
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
