@@ -3,6 +3,10 @@ package controllers;
 import main.CAR;
 import views.AccountDetailsView;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -23,7 +27,7 @@ public class AccountDetailsController {
         if(accountDetailsView == null) {
             log.log(Level.INFO,"AccountDetails Controller & View has been created");
             accountDetailsView = new AccountDetailsView();
-
+            start();
             accountDetailsView.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -33,6 +37,27 @@ public class AccountDetailsController {
                 }
             });
         }
+    }
+
+    /**
+     * Starts the controller for the buttons
+     */
+    public void start() {
+        changePasswordButtonPressed();
+    }
+
+    /**
+     * Adds action listener for the change password button
+     */
+    public void changePasswordButtonPressed() {
+        accountDetailsView.getBtChangePassword().addActionListener(e -> {
+            String oldPass = JOptionPane.showInputDialog(new Frame("Old Password"),
+                    "Please enter your old password:");
+            //Check if same pass
+            //New one
+            //New one confirmation
+            //check if they match
+        });
     }
 
     /**
