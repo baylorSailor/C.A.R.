@@ -9,6 +9,8 @@ import views.MainMenuView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -37,6 +39,8 @@ public class MainMenuController {
         accountDetailsButtonPressed();
         logoutButtonPressed();
         addRentalButtonPressed();
+        leftArrowButtonPressed();
+        rightArrowButtonPressed();
         makeSelected();
         modelSelected();
         yearSelected();
@@ -155,6 +159,26 @@ public class MainMenuController {
 
             //TODO Add selected car to Active Rentals
 
+        });
+    }
+
+    /**
+     * Adds action listener for the left arrow button
+     */
+    private void leftArrowButtonPressed() {
+        mainMenuView.getBtLeftButton().addActionListener(e -> {
+            log.log(Level.INFO,"Left arrow button clicked");
+            //TODO Implement left arrow
+        });
+    }
+
+    /**
+     * Adds action listener for the right arrow button
+     */
+    private void rightArrowButtonPressed() {
+        mainMenuView.getBtRightButton().addActionListener(e -> {
+            log.log(Level.INFO,"Right arrow button clicked");
+            //TODO Implement right arrow
         });
     }
 

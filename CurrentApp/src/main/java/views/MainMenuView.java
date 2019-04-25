@@ -38,6 +38,8 @@ public class MainMenuView extends JFrame {
     private JButton btAccountDetails;
     private JButton btLogout;
     private JButton btAddRental;
+    private JButton btLeftButton;
+    private JButton btRightButton;
     private JLabel lbLoggedInAs;
     private JLabel lbFilters;
     private JLabel lbMake;
@@ -500,6 +502,32 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
         pnMainPanel.add( btAddRental );
 
+        //Left arrow button
+        btLeftButton = new JButton(" < ");
+        gbcMainPanel.gridx = 11;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btLeftButton, gbcMainPanel );
+        pnMainPanel.add( btLeftButton );
+
+        //Right arrow button
+        btRightButton = new JButton(" > ");
+        gbcMainPanel.gridx = 15;
+        gbcMainPanel.gridy = 20;
+        gbcMainPanel.gridwidth = 1;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btRightButton, gbcMainPanel );
+        pnMainPanel.add( btRightButton );
+
         setDefaultCloseOperation( EXIT_ON_CLOSE );
 
         setContentPane( pnMainPanel );
@@ -557,6 +585,22 @@ public class MainMenuView extends JFrame {
     }
 
     /**
+     * Button for going left in list
+     * @return A button for moving left through the array of cars
+     */
+    public JButton getBtLeftButton() {
+        return btLeftButton;
+    }
+
+    /**
+     * Button for going right in list
+     * @return A button for moving right through the array of cars
+     */
+    public JButton getBtRightButton() {
+        return btRightButton;
+    }
+
+    /**
      * ComboBox for the selected make
      * @return A ComboBox for the selected make
      */
@@ -589,7 +633,6 @@ public class MainMenuView extends JFrame {
     }
 
     /**
-<<<<<<< HEAD
      * ComboBox for the selected transmission
      * @return A ComboBox for the selected transmission
      */
@@ -630,8 +673,8 @@ public class MainMenuView extends JFrame {
     }
 
     /** CarModel list for searching
-    * @return A CarModel[] for searching
-    */
+     * @return A CarModel[] for searching
+     */
     public CarModel[] getCarList() {
         return CarList;
     }
