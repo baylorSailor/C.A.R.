@@ -57,31 +57,31 @@ public class MainMenuController {
             List<CarModel> retList = new ArrayList<>();
             CarModel[] fullList = mainMenuView.getCarList();
             for(int i = 0; i < fullList.length && match; i++) {
-                if(!fullList[i].getMake().equals("-")) {
+                if(!mainMenuView.getCmbMake().getSelectedItem().equals("-")) {
 
                     if(fullList[i].getMake().equals(mainMenuView.getCmbMake().getSelectedItem())) {
 
-                        if(!fullList[i].getModel().equals("-")) {
+                        if(!mainMenuView.getCmbModel().getSelectedItem().equals("-")) {
 
                             if(fullList[i].getModel().equals(mainMenuView.getCmbModel().getSelectedItem())) {
 
-                                if(!fullList[i].getYear().toString().equals("-")) {
+                                if(!mainMenuView.getCmbYear().getSelectedItem().equals("-")) {
 
                                     if(fullList[i].getYear().toString().equals(mainMenuView.getCmbYear().getSelectedItem())) {
 
-                                        if(!fullList[i].getType().equals("-")) {
+                                        if(!mainMenuView.getCmbType().getSelectedItem().equals("-")) {
 
                                             if(fullList[i].getType().equals(mainMenuView.getCmbType().getSelectedItem())) {
 
-                                                if(!fullList[i].getTransmission().equals("-")) {
+                                                if(!mainMenuView.getCmbTrans().getSelectedItem().equals("-")) {
 
                                                     if(fullList[i].getTransmission().equals(mainMenuView.getCmbTrans().getSelectedItem())) {
 
-                                                        if(!fullList[i].getInterior().equals("-")) {
+                                                        if(!mainMenuView.getCmbInterior().getSelectedItem().equals("-")) {
 
                                                             if(fullList[i].getInterior().equals(mainMenuView.getCmbInterior())) {
 
-                                                                if(!fullList[i].getExterior().equals("-") &&
+                                                                if(!mainMenuView.getCmbExterior().getSelectedItem().equals("-") &&
                                                                         !fullList[i].getExterior().equals(mainMenuView.getCmbExterior().getSelectedItem())) {
 
                                                                     match = false;
@@ -133,7 +133,7 @@ public class MainMenuController {
 
             mainMenuView.setSearchList(searchRet);
 
-            //mainMenuView.updateSearch();
+            mainMenuView.updateSearch();
         });
     }
 

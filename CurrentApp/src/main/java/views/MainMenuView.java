@@ -439,7 +439,7 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( lbMileage );
 
         sdMileage = new JSlider( JSlider.HORIZONTAL,
-                10, 90, 50);
+                10, 90, 10);
         sdMileage.setMajorTickSpacing(10);
         sdMileage.setPaintTicks(true);
         sdMileage.setPaintLabels(true);
@@ -469,7 +469,7 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( lbMPG );
 
         sdMPG = new JSlider( JSlider.HORIZONTAL,
-                0, 50, 25);
+                0, 50, 0);
         sdMPG.setMajorTickSpacing(10);
         sdMPG.setPaintTicks(true);
         sdMPG.setPaintLabels(true);
@@ -506,23 +506,29 @@ public class MainMenuView extends JFrame {
         setVisible( true );
     }
 
-    /*public void updateSearch() {
+    public void updateSearch() {
         JPanel oldPanel = pnSearchResults;
-        pnSearchResults = null;
+        pnSearchResults.removeAll();
+        JLabel test;
 
-        JLabel test = new JLabel( "<html>Make: " + SearchList[0].getMake() +
-                "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
-                SearchList[0].getYear().toString() + "<br/>Type: " +
-                SearchList[0].getType() + "<br/>Transmission: " +
-                SearchList[0].getTransmission() +
-                "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
-                "<br/>Miles: " + SearchList[0].getMileage().toString() +
-                "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
-                "<br/>Interior: " + SearchList[0].getInterior() +
-                "<br/>Exterior: " + SearchList[0].getExterior() + "</html>" );
-
-        pnSearchResults.add( test );
-    }*/
+        if(SearchList.length == 0) {
+            test = new JLabel("NO MATCHING CARS! :(");
+        } else {
+            test = new JLabel("<html>Make: " + SearchList[0].getMake() +
+                    "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
+                    SearchList[0].getYear().toString() + "<br/>Type: " +
+                    SearchList[0].getType() + "<br/>Transmission: " +
+                    SearchList[0].getTransmission() +
+                    "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
+                    "<br/>Miles: " + SearchList[0].getMileage().toString() +
+                    "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
+                    "<br/>Interior: " + SearchList[0].getInterior() +
+                    "<br/>Exterior: " + SearchList[0].getExterior() + "</html>");
+        }
+        pnSearchResults.add(test);
+        pnSearchResults.revalidate();
+        pnSearchResults.repaint();
+    }
 
     /**
      * Button for refreshing the display
