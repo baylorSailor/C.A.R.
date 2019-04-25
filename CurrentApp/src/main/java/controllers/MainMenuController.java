@@ -26,7 +26,7 @@ public class MainMenuController {
     private MainMenuView mainMenuView = new MainMenuView();
     private HistoryView historyView = null;
     private ActiveRentalsView activeRentalsView = null;
-    private AccountDetailsView accountDetailsView = null;
+    private AccountDetailsController accountDetailsController = null;
     private Integer carListPosition = 0;
 
     /**
@@ -105,17 +105,7 @@ public class MainMenuController {
     private void accountDetailsButtonPressed() {
         mainMenuView.getBtAccountDetails().addActionListener(e -> {
             log.log(Level.INFO,"Account Details button clicked");
-            if(accountDetailsView == null) {
-                accountDetailsView = new AccountDetailsView();
-
-                accountDetailsView.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        accountDetailsView.dispose();
-                        accountDetailsView = null;
-                    }
-                });
-            }
+                accountDetailsController = new AccountDetailsController();
         });
     }
 
@@ -131,9 +121,9 @@ public class MainMenuController {
                 historyView.dispose();
                 historyView = null;
             }
-            if(accountDetailsView != null) {
-                accountDetailsView.dispose();
-                accountDetailsView = null;
+            if(accountDetailsController != null) {
+                accountDetailsController.destroy();
+                accountDetailsController = null;
             }
             if(activeRentalsView != null) {
                 activeRentalsView.dispose();
