@@ -3,13 +3,11 @@ package views;
 import controllers.UserController;
 import models.HistoryModel;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Window displaying rental history
