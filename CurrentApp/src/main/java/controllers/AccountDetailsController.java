@@ -51,8 +51,11 @@ public class AccountDetailsController {
      */
     public void changePasswordButtonPressed() {
         accountDetailsView.getBtChangePassword().addActionListener(e -> {
-            String oldPass = JOptionPane.showInputDialog(new Frame("Old Password"),
-                    "Please enter your old password:");
+            String oldPass = JOptionPane.showInputDialog(null,
+                    "Please enter your old password:",
+                    "Old Password",
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(oldPass + "\n");
             //Check if same pass
             //New one
             //New one confirmation
