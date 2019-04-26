@@ -9,6 +9,7 @@ import controllers.UserController;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
+import models.UserModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -145,6 +146,9 @@ public class MainMenuView extends JFrame {
         //User displayed
         lbLoggedInAs = new JLabel( "User: " + UserController.getUser().getUsername() );
         Font f = lbLoggedInAs.getFont();
+        if(UserController.getUser() instanceof AdministratorModel) {
+            lbLoggedInAs.setForeground(Color.red);
+        }
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
         gbcMainPanel.gridy = 9;
