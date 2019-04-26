@@ -55,7 +55,7 @@ public class UserModel {
      * @param creditCard user credit card number
      */
     public UserModel(String fullname, String username, String email, String password, String creditType,
-                                    String creditCard) {
+                                    String creditCard, Integer level) {
         this.fullname = fullname;
         this.pictureLocation = "./src/main/resources/" + username + ".png";
         this.username = username;
@@ -63,6 +63,7 @@ public class UserModel {
         this.password = password;
         this.creditType = creditType;
         this.creditCard = creditCard;
+        this.permissionLevel = level;
     }
 
     /**
@@ -71,10 +72,9 @@ public class UserModel {
      */
     @Override
     public String toString() {
-        String user = getFullname() + "," + getUsername() + "," + getEmail() + "," +
+        return getFullname() + "," + getUsername() + "," + getEmail() + "," +
                 getPassword() + "," + getCreditType() + "," + getCreditCard() + "," +
                 getPermissionLevel();
-        return user;
     }
 
     /**
