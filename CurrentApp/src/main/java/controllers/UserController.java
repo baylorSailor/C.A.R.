@@ -83,7 +83,7 @@ public class UserController {
                     createAccountView.setErrorLabelMessage("Account already exists.");
                 } else {
                     String creditType;
-                    File file = new File("./src/main/resources/Users.csv");
+                    File file = new File("./src/main/resources/users.csv");
                     if(createAccountView.allFieldsEntered()) {
                         if(createAccountView.getRbVisa().isSelected()) {
                             creditType = "Visa";
@@ -99,7 +99,7 @@ public class UserController {
                             DatabaseAdapter.writeUser(user,true);
                             DatabaseAdapter.saveImage(user);
                         } else {
-                            log.log(Level.SEVERE,"Users.csv was not found");
+                            log.log(Level.SEVERE,"users.csv was not found");
                         }
                         removeAllFramesAndStart();
                     } else {

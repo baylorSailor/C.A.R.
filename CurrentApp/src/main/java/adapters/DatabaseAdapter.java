@@ -43,7 +43,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -86,7 +86,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -110,7 +110,7 @@ public class DatabaseAdapter {
      */
     public static void writeUser(UserModel u, boolean append) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
+            BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
                     append));
             String level;
             if(u instanceof AdministratorModel) {
@@ -139,7 +139,7 @@ public class DatabaseAdapter {
      */
     public static void updateUser(UserModel oldUser, UserModel newUser) {
         try {
-            File file = new File("./src/main/resources/Users.csv");
+            File file = new File("./src/main/resources/users.csv");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line, originalLine = "";
             while((line = reader.readLine()) != null) {
@@ -148,7 +148,7 @@ public class DatabaseAdapter {
             reader.close();
 
             String newtext = originalLine.replaceAll(oldUser.getFullname() + "," + oldUser.getUsername() + "(.*)", newUser.toString());
-            FileWriter writer = new FileWriter("./src/main/resources/Users.csv");
+            FileWriter writer = new FileWriter("./src/main/resources/users.csv");
             writer.write(newtext);
             writer.close();
         }catch(IOException e) {
@@ -160,7 +160,7 @@ public class DatabaseAdapter {
     public static void writeAllUsers(ArrayList<UserModel> arrayList) {
         // Erase all users
         try {
-            FileWriter erase = new FileWriter("./src/main/resources/Users.csv");
+            FileWriter erase = new FileWriter("./src/main/resources/users.csv");
             erase.close();
         } catch(IOException e) {
             e.printStackTrace();
@@ -249,7 +249,7 @@ public class DatabaseAdapter {
     public static ArrayList<UserModel> readInUsers(){
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
 
             while (input.hasNextLine()) {
