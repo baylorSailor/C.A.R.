@@ -47,13 +47,13 @@ public class EditUsersTableModel extends AbstractTableModel {
             }
             case 6 : {
                 if(rows.get(rowIndex) instanceof AdministratorModel) {
-                    return "1";
+                    return "Admin";
                 }
 //                else if(rows.get(rowIndex) instanceof RepresentativeModel) {
 //                    return "2";
 //                }
                 else {
-                    return "0";
+                    return "User";
                 }
             }
         }
@@ -90,6 +90,23 @@ public class EditUsersTableModel extends AbstractTableModel {
                 rows.get(r).setCreditCard((String)o);
                 break;
             }
+            case 6 : {
+                if(o.toString().equals("Admin")) {
+                    rows.set(r,new AdministratorModel(rows.get(r)));
+                }
+//                else if(rows.get(r).toString().equals("Rep")) {
+//                    rows.set(r,new RepresentativeModel(rows.get(r)));
+//                }
+                else if(o.toString().equals("User")) {
+                    rows.set(r,new UserModel(rows.get(r)));
+                }
+                break;
+            }
         }
+        fireTableCellUpdated(r,c);
+    }
+
+    public ArrayList<UserModel> getRows() {
+        return rows;
     }
 }

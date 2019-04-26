@@ -96,7 +96,7 @@ public class UserController {
                                 creditType,createAccountView.getTfCreditCardNumber().getText());
 
                         if(file.exists()) {
-                            DatabaseAdapter.writeUser(user,true);
+                            DatabaseAdapter.writeUser(user);
                             DatabaseAdapter.saveImage(user);
                         } else {
                             log.log(Level.SEVERE,"users.csv was not found");

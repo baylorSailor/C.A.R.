@@ -106,12 +106,11 @@ public class DatabaseAdapter {
     /**
      * Write the user to a CSV
      * @param u the user to write
-     * @param append whether you want the writer to append to the file or not
      */
-    public static void writeUser(UserModel u, boolean append) {
+    public static void writeUser(UserModel u) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
-                    append));
+                    true));
             String level;
             if(u instanceof AdministratorModel) {
                 level = "1";
@@ -157,6 +156,10 @@ public class DatabaseAdapter {
         }
     }
 
+    /**
+     * Writes all the users in an ArrayList to CSV
+     * @param arrayList the list containing UserModels
+     */
     public static void writeAllUsers(ArrayList<UserModel> arrayList) {
         // Erase all users
         try {
@@ -167,7 +170,7 @@ public class DatabaseAdapter {
         }
         // Add all users
         for(UserModel u : arrayList) {
-            writeUser(u,true);
+            writeUser(u);
         }
     }
 

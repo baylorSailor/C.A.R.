@@ -61,6 +61,20 @@ public class UserModel {
     }
 
     /**
+     * Constructs user with given UserModel object
+     * @param other UserModel to be copied
+     */
+    public UserModel(UserModel other) {
+        this.fullname = other.fullname;
+        this.pictureLocation = "./src/main/resources/" + other.username + ".png";
+        this.username = other.username;
+        this.email = other.email;
+        this.password = other.password;
+        this.creditType = other.creditType;
+        this.creditCard = other.creditCard;
+    }
+
+    /**
      * Constructs user with given attributes in a String[]
      * @param array an array of strings containing user info
      */
