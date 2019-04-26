@@ -61,6 +61,20 @@ public class UserModel {
     }
 
     /**
+     * Constructs user with given attributes in a String[]
+     * @param array an array of strings containing user info
+     */
+    public UserModel(String[] array) {
+        this.fullname = array[0];
+        this.username = array[1];
+        this.pictureLocation = "./src/main/resources/" + username + ".png";
+        this.email = array[2];
+        this.password = array[3];
+        this.creditType = array[4];
+        this.creditCard = array[5];
+    }
+
+    /**
      * Creates a string containing all given attributes of a user
      * @return a string with proper CSV formatting
      */
@@ -137,5 +151,25 @@ public class UserModel {
      */
     public String getCreditCard() {
         return creditCard;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCreditType(String creditType) {
+        this.creditType = creditType;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 }
