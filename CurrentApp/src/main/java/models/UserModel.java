@@ -61,6 +61,17 @@ public class UserModel {
     }
 
     /**
+     * Creates a string containing all given attributes of a user
+     * @return a string with proper CSV formatting
+     */
+    @Override
+    public String toString() {
+        String user = getFullname() + "," + getUsername() + "," + getEmail() + "," +
+                getPassword() + "," + getCreditType() + "," + getCreditCard();
+        return user;
+    }
+
+    /**
      * Gets the full name of the user
      * @return A string representing user's full name
      */
