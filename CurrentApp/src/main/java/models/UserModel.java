@@ -41,6 +41,11 @@ public class UserModel {
     private String creditCard;
 
     /**
+     * User's permission level
+     */
+    private Integer permissionLevel;
+
+    /**
      * Constructs user with given attributes
      * @param fullname full name of user
      * @param username account username
@@ -67,7 +72,8 @@ public class UserModel {
     @Override
     public String toString() {
         String user = getFullname() + "," + getUsername() + "," + getEmail() + "," +
-                getPassword() + "," + getCreditType() + "," + getCreditCard();
+                getPassword() + "," + getCreditType() + "," + getCreditCard() + "," +
+                getPermissionLevel();
         return user;
     }
 
@@ -137,5 +143,13 @@ public class UserModel {
      */
     public String getCreditCard() {
         return creditCard;
+    }
+
+    /**
+     * Gets the permission level of the user
+     * @return A Integer representing user's permission level
+     */
+    public Integer getPermissionLevel() {
+        return permissionLevel;
     }
 }
