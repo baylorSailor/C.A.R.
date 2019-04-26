@@ -1,7 +1,6 @@
 package adapters;
 
 import controllers.UserController;
-import factories.AbstractUserFactory;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
@@ -14,6 +13,7 @@ import views.CreateAccountView;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -42,7 +42,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), "UTF-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -51,14 +51,20 @@ public class DatabaseAdapter {
 
                 //If username and password match, return that user
                 if (username.equals(split[1]) && password.equals(split[3])) {
-                    if(split[6].equals("0")) {
-                        user = uf.getUser(split);
-                    } else if(split[6].equals("1")) {
-                        user = af.getUser(split);
-                    } else if(split[6].equals("2")) {
-                        user = rf.getUser(split);
+                    switch(split[6]) {
+                        case "0" : {
+                            user = uf.getUser(split);
+                            break;
+                        }
+                        case "1" : {
+                            user = af.getUser(split);
+                            break;
+                        }
+                        case "2" : {
+                            user = rf.getUser(split);
+                            break;
+                        }
                     }
-
                     //user = uf.getUser(split);
                     found = true;
                 }
@@ -79,7 +85,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), "UTF-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -99,11 +105,12 @@ public class DatabaseAdapter {
     /**
      * Write the user to a CSV
      * @param u the user to write
+     * @param append whether you want the writer to append to the file or not
      */
-    public static void writeUser(UserModel u) {
+    public static void writeUser(UserModel u, boolean append) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
-                    true));
+                    append));
             bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
                     u.getPassword() + "," + u.getCreditType() + "," +
                     u.getCreditCard() +  "\n");
@@ -121,8 +128,9 @@ public class DatabaseAdapter {
      */
     public static void updateUser(UserModel oldUser, UserModel newUser) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("./src/main/resources/Users.csv")));
-            String line = "", originalLine = "";
+            File file = new File("./src/main/resources/Users.csv");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line, originalLine = "";
             while((line = reader.readLine()) != null) {
                 originalLine += line + '\n';
             }
@@ -132,10 +140,15 @@ public class DatabaseAdapter {
             FileWriter writer = new FileWriter("./src/main/resources/Users.csv");
             writer.write(newtext);
             writer.close();
-
         }catch(IOException e) {
             e.printStackTrace();
             log.log(Level.SEVERE,"User could not be written to Database");
+        }
+    }
+
+    public static void writeAllUsers(ArrayList<UserModel> arrayList) {
+        for(UserModel u : arrayList) {
+            writeUser(u,false);
         }
     }
 
@@ -192,7 +205,7 @@ public class DatabaseAdapter {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), "UTF-8");
+            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), StandardCharsets.UTF_8);
             input.nextLine();
             String line;
 
@@ -212,6 +225,29 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Function for reading users CSV
+     */
+    public static ArrayList<UserModel> readInUsers(){
+        ArrayList<UserModel> userModelArrayList = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
+            input.nextLine();
+            String line;
+
+            while (input.hasNextLine()) {
+                line = input.nextLine();
+                String[] data = line.split(",");
+                userModelArrayList.add(new UserModel(data));
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            log.log(Level.SEVERE,"history.csv could not be loaded");
+        }
+        return userModelArrayList;
+    }
+
+    /**
      * Loads all the cars in the CSV into a list
      * @return the CarModel array containing an all the cars
      */
@@ -219,10 +255,10 @@ public class DatabaseAdapter {
         List<CarModel> arrayListCars = new ArrayList<>();
 
         try{
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "UTF-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
-            line = sc.nextLine();
+            sc.nextLine();
             while(sc.hasNextLine()) {
                 line = sc.nextLine();
                 split = line.split(",");
