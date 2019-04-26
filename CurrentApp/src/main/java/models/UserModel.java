@@ -72,6 +72,14 @@ public class UserModel {
     }
 
     /**
+     * Sets the password of the user
+     * @param  password a string representing user's new password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
      * Gets the full name of the user
      * @return A string representing user's full name
      */
