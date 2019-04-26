@@ -1,14 +1,11 @@
 package views;
 
 import adapters.DatabaseAdapter;
-import controllers.UserController;
 import models.HistoryModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Window displaying rental history

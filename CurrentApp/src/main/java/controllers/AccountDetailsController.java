@@ -2,11 +2,9 @@ package controllers;
 
 import adapters.DatabaseAdapter;
 import main.CAR;
-import models.UserModel;
 import views.AccountDetailsView;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;

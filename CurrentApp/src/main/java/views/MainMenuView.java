@@ -612,6 +612,14 @@ public class MainMenuView extends JFrame {
     }
 
     /**
+     * Button for edit users
+     * @return A button for edit users
+     */
+    public JButton getBtEditUsers() {
+        return btEditUsers;
+    }
+
+    /**
      * Button for logout
      * @return A button for logging out
      */

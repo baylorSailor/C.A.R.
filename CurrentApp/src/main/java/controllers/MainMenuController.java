@@ -46,6 +46,7 @@ public class MainMenuController {
         typeSelected();
         transmissionSelected();
         interiorColorSelected();
+        editUsersButtonPressed();
     }
 
     /**
@@ -185,6 +186,17 @@ public class MainMenuController {
         mainMenuView.getBtAccountDetails().addActionListener(e -> {
             log.log(Level.INFO,"Account Details button clicked");
                 accountDetailsController = new AccountDetailsController();
+        });
+    }
+
+    /**
+     * Adds action listener for the edit users button
+     */
+    private void editUsersButtonPressed() {
+        mainMenuView.getBtEditUsers().addActionListener(e -> {
+            log.log(Level.INFO,"Edit Users button clicked");
+            EditUsersController editUsersController = new EditUsersController();
+            editUsersController.start();
         });
     }
 

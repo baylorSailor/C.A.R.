@@ -5,6 +5,7 @@ import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
 import main.CAR;
+import models.AdministratorModel;
 import models.CarModel;
 import models.HistoryModel;
 import models.UserModel;
@@ -111,9 +112,19 @@ public class DatabaseAdapter {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/Users.csv",
                     append));
+            String level;
+            if(u instanceof AdministratorModel) {
+                level = "1";
+            }
+//            else if(u instanceof RepresentativeLevel) {
+//                String level = "2";
+//            }
+            else {
+                level = "0";
+            }
             bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
                     u.getPassword() + "," + u.getCreditType() + "," +
-                    u.getCreditCard() +  "\n");
+                    u.getCreditCard() + "," + level + "\n");
             bw.close();
         }catch(IOException e) {
             e.printStackTrace();
@@ -147,8 +158,16 @@ public class DatabaseAdapter {
     }
 
     public static void writeAllUsers(ArrayList<UserModel> arrayList) {
+        // Erase all users
+        try {
+            FileWriter erase = new FileWriter("./src/main/resources/Users.csv");
+            erase.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        // Add all users
         for(UserModel u : arrayList) {
-            writeUser(u,false);
+            writeUser(u,true);
         }
     }
 
@@ -231,13 +250,26 @@ public class DatabaseAdapter {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
             Scanner input = new Scanner(new File("./src/main/resources/Users.csv"), StandardCharsets.UTF_8);
-            input.nextLine();
             String line;
 
             while (input.hasNextLine()) {
                 line = input.nextLine();
                 String[] data = line.split(",");
-                userModelArrayList.add(new UserModel(data));
+
+                switch(data[6]) {
+                    case "0" : {
+                        userModelArrayList.add(new UserModel(data));
+                        break;
+                    }
+                    case "1" : {
+                        userModelArrayList.add(new AdministratorModel(data));
+                        break;
+                    }
+                    case "2" : {
+                        //userModelArrayList.add(new RepresentativeModel(data));
+                        //break;
+                    }
+                }
             }
 
         }catch(Exception e){
