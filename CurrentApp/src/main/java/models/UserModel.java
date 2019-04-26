@@ -43,7 +43,7 @@ public class UserModel {
     /**
      * User's permission level
      */
-    private Integer permissionLevel;
+    private String permissionLevel;
 
     /**
      * Constructs user with given attributes
@@ -55,7 +55,7 @@ public class UserModel {
      * @param creditCard user credit card number
      */
     public UserModel(String fullname, String username, String email, String password, String creditType,
-                                    String creditCard, Integer level) {
+                                    String creditCard, String level) {
         this.fullname = fullname;
         this.pictureLocation = "./src/main/resources/" + username + ".png";
         this.username = username;
@@ -149,7 +149,7 @@ public class UserModel {
      * Gets the permission level of the user
      * @return A Integer representing user's permission level
      */
-    public Integer getPermissionLevel() {
+    public String getPermissionLevel() {
         return permissionLevel;
     }
 }
