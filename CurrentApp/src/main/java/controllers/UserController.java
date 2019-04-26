@@ -93,7 +93,7 @@ public class UserController {
                         user = new UserModel(createAccountView.getTfFirstName().getText() +
                                 createAccountView.getTfLastName().getText(),createAccountView.getTfUserName().getText(),
                                 createAccountView.getTfEmail().getText(),createAccountView.getTfPassword().getText(),
-                                creditType,createAccountView.getTfCreditCardNumber().getText(),"0");
+                                creditType,createAccountView.getTfCreditCardNumber().getText());
 
                         if(file.exists()) {
                             DatabaseAdapter.writeUser(user);

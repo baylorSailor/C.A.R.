@@ -7,6 +7,7 @@ package views;
 import adapters.DatabaseAdapter;
 import controllers.UserController;
 import main.CAR;
+import models.AdministratorModel;
 import models.CarModel;
 
 import javax.imageio.ImageIO;
@@ -23,7 +24,6 @@ import java.util.logging.Logger;
 /**
  * Window for the main screen
  */
-
 public class MainMenuView extends JFrame {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
@@ -36,6 +36,7 @@ public class MainMenuView extends JFrame {
     private JButton btHistory;
     private JButton btActiveRentals;
     private JButton btAccountDetails;
+    private JButton btEditUsers;
     private JButton btLogout;
     private JButton btAddRental;
     private JButton btLeftButton;
@@ -209,9 +210,26 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btAccountDetails, gbcMainPanel );
         pnMainPanel.add( btAccountDetails );
 
+        //Edit Users Button
+        btEditUsers = new JButton( "Edit Users"  );
+        gbcMainPanel.gridx = 16;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btEditUsers, gbcMainPanel );
+        pnMainPanel.add( btEditUsers );
+        btEditUsers.setVisible(false);
+        if(UserController.getUser() instanceof AdministratorModel) {
+            btEditUsers.setVisible(true);
+        }
+
         //Logout Button
         btLogout = new JButton( "Logout"  );
-        gbcMainPanel.gridx = 16;
+        gbcMainPanel.gridx = 18;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
