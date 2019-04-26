@@ -1,6 +1,7 @@
 package adapters;
 
 import controllers.UserController;
+import factories.AbstractUserFactory;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
 import factories.UserFactory;
@@ -12,10 +13,7 @@ import views.CreateAccountView;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -117,6 +115,31 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Update the user in CSV
+     * @param oldUser the old user
+     * @param newUser the new user to be written
+     */
+    public static void updateUser(UserModel oldUser, UserModel newUser) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File("./src/main/resources/Users.csv")));
+            String line = "", originalLine = "";
+            while((line = reader.readLine()) != null) {
+                originalLine += line + '\n';
+            }
+            reader.close();
+
+            String newtext = originalLine.replaceAll(oldUser.getFullname() + "," + oldUser.getUsername() + "(.*)", newUser.toString());
+            FileWriter writer = new FileWriter("./src/main/resources/Users.csv");
+            writer.write(newtext);
+            writer.close();
+
+        }catch(IOException e) {
+            e.printStackTrace();
+            log.log(Level.SEVERE,"User could not be written to Database");
+        }
+    }
+
+    /**
      * Save the user's profile image
      * @param u the user
      */
@@ -131,6 +154,15 @@ public class DatabaseAdapter {
                 log.log(Level.SEVERE,"User's selected image could not be saved");
             }
         }
+    }
+
+    /**
+     * Save the user's new password
+     * @param newPassword the user's new password
+     */
+    public static void updatePassword(String newPassword) {
+        UserController.getUser().setPassword(newPassword);
+        updateUser(UserController.getUser(),UserController.getUser());
     }
 
     /**

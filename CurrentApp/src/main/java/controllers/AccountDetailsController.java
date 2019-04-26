@@ -1,9 +1,12 @@
 package controllers;
 
+import adapters.DatabaseAdapter;
 import main.CAR;
+import models.UserModel;
 import views.AccountDetailsView;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -63,7 +66,8 @@ public class AccountDetailsController {
                         "New Password (Again)",
                         JOptionPane.INFORMATION_MESSAGE);
                 if(newPass.equals(retypePass)) {
-                    //Update Password Here
+                    // Update Password
+                    DatabaseAdapter.updatePassword(newPass);
                     JOptionPane.showMessageDialog(null,"Your password has been changed."
                     ,"Confirmation",JOptionPane.INFORMATION_MESSAGE);
                 } else {
