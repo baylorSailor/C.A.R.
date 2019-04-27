@@ -25,7 +25,7 @@ public class ActiveRentalsView extends JFrame {
         GridBagConstraints gbcActiveRentals = new GridBagConstraints();
         pnActiveRentals.setLayout( gbMainPanel );
 
-        String [][]dataHTable = new String[][] { new String[] {"No Active Rentals", " "} };
+        String [][]dataHTable = new String[][] { new String[] {"No Active Rentals :(", " "} };
         String []colsHTable = new String[] { "", "" };
         tbHTable = new JTable( dataHTable, colsHTable );
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );

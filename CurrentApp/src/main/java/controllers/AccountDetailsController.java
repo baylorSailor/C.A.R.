@@ -30,8 +30,7 @@ public class AccountDetailsController {
                 @Override
                 public void windowClosing(WindowEvent e) {
                     log.log(Level.INFO,"AccountDetails View has been disposed of");
-                    accountDetailsView.dispose();
-                    accountDetailsView = null;
+                    destroy();
                 }
             });
         }
@@ -42,6 +41,7 @@ public class AccountDetailsController {
      */
     public void start() {
         changePasswordButtonPressed();
+        changeCardInfoButtonPressed();
     }
 
     /**
@@ -80,13 +80,57 @@ public class AccountDetailsController {
     }
 
     /**
+     * Adds action listener for the change card type button
+     */
+    private void changeCardInfoButtonPressed() {
+        accountDetailsView.getBtChangeInfoInfo().addActionListener(e -> {
+            log.log(Level.INFO,"Change card info button clicked");
+            String newCardType = JOptionPane.showInputDialog(null,
+                    "Please enter your new card type:",
+                    "New Card Type",
+                    JOptionPane.INFORMATION_MESSAGE);
+            if(newCardType != null && (newCardType.equalsIgnoreCase("MasterCard") || newCardType.equalsIgnoreCase("Visa"))) {
+                String newCardNumber = JOptionPane.showInputDialog(null,
+                        "Please enter your new card number:",
+                        "New Card Number",
+                        JOptionPane.INFORMATION_MESSAGE);
+                if(newCardNumber != null && (newCardNumber.length() < 20 & newCardNumber.length() > 11 & newCardNumber.matches("[0-9]+") )) {
+                    JOptionPane.showMessageDialog(null,"Your card information has been saved."
+                            ,"Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                    UserController.getUser().setCreditType(newCardType);
+                    UserController.getUser().setCreditCard(newCardNumber);
+                    refresh();
+                    DatabaseAdapter.updateUser(UserController.getUser(),UserController.getUser());
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid Card Number!","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Not an approved card type :(","ERROR",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }
+
+    /**
      * Ensures that the view is disposed of if Logout button is clicked
      */
     public void destroy() {
-        log.log(Level.INFO,"AccountDetails Controller & View has been destroyed");
+        log.log(Level.INFO,"AccountDetails View has been destroyed");
         if(accountDetailsView != null) {
             accountDetailsView.dispose();
             accountDetailsView = null;
         }
+    }
+
+    /**
+     * Ensures that the view is refresh if User info changes
+     */
+    public void refresh() {
+        log.log(Level.INFO,"AccountDetails View has been refreshed");
+        destroy();
+        accountDetailsView = new AccountDetailsView();
+        start();
     }
 }

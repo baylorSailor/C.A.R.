@@ -9,7 +9,6 @@ import controllers.UserController;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
-import models.UserModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

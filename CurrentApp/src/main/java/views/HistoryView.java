@@ -41,7 +41,7 @@ public class HistoryView extends JFrame {
         // Store rental history into table
         String [][]dataHTable = new String[rentalHistory.size()+1][NUM_COLS];
         if(rentalHistory.isEmpty()) {
-            dataHTable[0][0] = "No rentals yet :(";
+            dataHTable[0][0] = "No Past Rentals yet :(";
         }
         for(int i = 0; i < rentalHistory.size(); i++){
             for(int j = 0; j < NUM_COLS; j++){

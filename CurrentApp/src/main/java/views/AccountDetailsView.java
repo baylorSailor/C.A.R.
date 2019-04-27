@@ -24,6 +24,7 @@ public class AccountDetailsView extends JFrame {
     private JLabel lbPicture;
     private JLabel lbCreditCardNumber;
     private JButton btChangePassword;
+    private JButton btChangeCardInfo;
 
     /**
      * Constructor for AccountDetailsView
@@ -116,22 +117,34 @@ public class AccountDetailsView extends JFrame {
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.HORIZONTAL;
         gbcAccountDetails.weightx = 1;
-        gbcAccountDetails.weighty = 0;
-        gbcAccountDetails.anchor = GridBagConstraints.WEST;
+        gbcAccountDetails.weighty = 1;
+        gbcAccountDetails.anchor = GridBagConstraints.NORTHWEST;
         gbAccountDetails.setConstraints( lbCreditCardNumber, gbcAccountDetails );
         pnAccountDetails.add( lbCreditCardNumber );
 
         btChangePassword = new JButton("Change Password");
         gbcAccountDetails.gridx = 0;
-        gbcAccountDetails.gridy = 7;
+        gbcAccountDetails.gridy = 10;
         gbcAccountDetails.gridwidth = 1;
         gbcAccountDetails.gridheight = 1;
         gbcAccountDetails.fill = GridBagConstraints.CENTER;
         gbcAccountDetails.weightx = 1;
         gbcAccountDetails.weighty = 1;
-        gbcAccountDetails.anchor = GridBagConstraints.CENTER;
+        gbcAccountDetails.anchor = GridBagConstraints.SOUTHWEST;
         gbAccountDetails.setConstraints( btChangePassword, gbcAccountDetails );
         pnAccountDetails.add( btChangePassword );
+
+        btChangeCardInfo = new JButton("Change Card Info");
+        gbcAccountDetails.gridx = 0;
+        gbcAccountDetails.gridy = 11;
+        gbcAccountDetails.gridwidth = 1;
+        gbcAccountDetails.gridheight = 1;
+        gbcAccountDetails.fill = GridBagConstraints.CENTER;
+        gbcAccountDetails.weightx = 1;
+        gbcAccountDetails.weighty = 0;
+        gbcAccountDetails.anchor = GridBagConstraints.SOUTHWEST;
+        gbAccountDetails.setConstraints( btChangeCardInfo, gbcAccountDetails );
+        pnAccountDetails.add( btChangeCardInfo );
 
         setContentPane( pnAccountDetails );
         pack();
@@ -145,5 +158,13 @@ public class AccountDetailsView extends JFrame {
      */
     public JButton getBtChangePassword() {
         return btChangePassword;
+    }
+
+    /**
+     * Get the change card info button
+     * @return A button for change card info
+     */
+    public JButton getBtChangeInfoInfo() {
+        return btChangeCardInfo;
     }
 }
