@@ -1,5 +1,6 @@
 package views;
 
+import adapters.DatabaseAdapter;
 import main.CAR;
 
 import javax.imageio.ImageIO;
@@ -353,11 +354,22 @@ public class CreateAccountView extends JFrame {
      */
     public boolean allFieldsEntered() {
        boolean foo = true;
-       if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
-            tfLastName.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()) &&
-               (tfPassword.getPassword().length >= 7) && (tfPassword.getText().equals(tfPassword2.getText())))) {
-           foo = false;
-       }
+       String[] strings = new String[7];
+        strings[0] = tfFirstName.getText() + tfLastName.getText();
+        strings[1] = tfUserName.getText();
+        strings[2] = tfEmail.getText();
+        strings[3] = tfPassword.getText();
+        strings[5] = tfCreditCardNumber.getText();
+        if(DatabaseAdapter.verifySyntax(strings)) {
+            if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
+                    tfLastName.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()) &&
+                    (tfPassword.getPassword().length >= 7) && (tfPassword.getText().equals(tfPassword2.getText())))) {
+                foo = false;
+            }
+        } else {
+            foo = false;
+        }
+
        return foo;
     }
 

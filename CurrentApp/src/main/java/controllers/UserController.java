@@ -106,9 +106,11 @@ public class UserController {
                         String message = "1. No fields may be left empty.\n" +
                                 "2. Password must be 7 or more characters.\n" +
                                 "3. Image is preferred, but no image is required.\n" +
-                                "4. Passwords must match.";
+                                "4. Passwords must match.\n" +
+                                "5. No information can contain commas.";
                         JOptionPane.showMessageDialog(null, message,
-                                "Required Account Information", JOptionPane.WARNING_MESSAGE);
+                                "Required Account Information", JOptionPane.WARNING_MESSAGE,
+                                DatabaseAdapter.getIcon());
                     }
                 }
 

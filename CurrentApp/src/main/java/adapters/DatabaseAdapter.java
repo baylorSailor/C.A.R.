@@ -9,6 +9,7 @@ import models.*;
 import views.CreateAccountView;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -26,6 +27,26 @@ public class DatabaseAdapter {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
     public static CarModel[] CarList;
+    private static ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
+
+    /**
+     * Verifies that the strings don't have commas
+     * @param strings an array containing strings to be checked
+     * @return true if none contain it, false otherwise
+     */
+    public static boolean verifySyntax(String[] strings) {
+        boolean flag = true;
+        for(String s : strings) {
+            if(s != null && s.contains(",")) {
+                flag = false;
+                JOptionPane.showMessageDialog(null,
+                        "Information entered cannot contain commas.",
+                        "Invalid Information",JOptionPane.ERROR_MESSAGE,
+                        icon);
+            }
+        }
+        return flag;
+    }
 
     /**
      * Verifies if a user exists
@@ -194,8 +215,15 @@ public class DatabaseAdapter {
      * @param newPassword the user's new password
      */
     public static void updatePassword(String newPassword) {
-        UserController.getUser().setPassword(newPassword);
-        updateUser(UserController.getUser(),UserController.getUser());
+        if(newPassword.contains(",")) {
+            JOptionPane.showMessageDialog(null,
+                    "Information entered cannot contain commas",
+                    "Invalid Information",JOptionPane.ERROR_MESSAGE,
+                    icon);
+        } else {
+            UserController.getUser().setPassword(newPassword);
+            updateUser(UserController.getUser(),UserController.getUser());
+        }
     }
 
     /**
@@ -514,5 +542,12 @@ public class DatabaseAdapter {
         arrayListExteriorColor.toArray(trans);
 
         return trans;
+    }
+    /**
+     * Gets the company logo
+     * @return the company logo for output
+     */
+    public static ImageIcon getIcon() {
+        return icon;
     }
 }
