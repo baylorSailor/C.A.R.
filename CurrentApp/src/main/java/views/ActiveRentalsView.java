@@ -6,6 +6,8 @@ import models.CarModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -88,10 +90,31 @@ public class ActiveRentalsView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( scpActiveRentals, gbcMainPanel );
 
+        //Planning on adding the capability to remove active rental
+        //I might be missing it but how do users return the rented
+        //The cars need a solid way to go from active to past
+        //Maybe add a state for the cars, gonna do this tomorrow
+        //Leaving comments as a reminder
+        JButton removeSelected = new JButton();
+        ActionListener l = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbHTable.getSelectedRow();
+                tbHTable.removeRowSelectionInterval(0,1);
+            }
+        };
+        removeSelected.addActionListener(l);
+        //pnActiveRentals.add(removeSelected);
+        //End of Remove button code
+
         setContentPane( pnActiveRentals );
         pack();
         setLocationRelativeTo(null);
         setVisible( true );
+    }
+
+    ArrayList<ActiveRentalModel> getActiveRentals(){
+        return activeRentals;
     }
 
 }

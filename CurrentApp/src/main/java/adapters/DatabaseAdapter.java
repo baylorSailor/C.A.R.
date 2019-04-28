@@ -181,6 +181,7 @@ public class DatabaseAdapter {
             File outfile = new File(u.getPictureLocation());
             try {
                 ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
+                log.log(Level.INFO, "image was uploaded properly");
             } catch(IOException | IllegalArgumentException e) {
                 e.printStackTrace();
                 log.log(Level.SEVERE,"User's selected image could not be saved");
@@ -209,6 +210,7 @@ public class DatabaseAdapter {
         } catch(IOException e) {
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
+                log.log(Level.INFO, "sample.png was loaded properly");
             } catch(IOException ee) {
                 log.log(Level.SEVERE,"sample.png file couldn't be loaded");
             }
@@ -235,6 +237,7 @@ public class DatabaseAdapter {
                     historyModelArrayList.add(new HistoryModel(data));
                 }
             }
+            log.log(Level.INFO, "history.csv was loaded properly");
 
         }catch(Exception e){
             e.printStackTrace();
@@ -261,6 +264,7 @@ public class DatabaseAdapter {
                     activeRentals.add(new ActiveRentalModel(data));
                 }
             }
+            log.log(Level.INFO, "activeRentals.csv was loaded properly");
 
         }catch(Exception e){
             e.printStackTrace();
@@ -297,6 +301,7 @@ public class DatabaseAdapter {
                     }
                 }
             }
+            log.log(Level.INFO, "history.csv was loaded properly");
 
         }catch(Exception e){
             e.printStackTrace();
@@ -324,6 +329,7 @@ public class DatabaseAdapter {
                     arrayListCars.add(new CarModel(split));
                 }
             }
+            log.log(Level.INFO, "Vehicle list was loaded properly");
         } catch(IOException a) {
             a.printStackTrace();
             log.log(Level.SEVERE, "Vehicle list could not be loaded");

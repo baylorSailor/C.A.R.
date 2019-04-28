@@ -119,6 +119,8 @@ public class MainMenuView extends JFrame {
 
         BufferedImage picture = null;
         try {
+            //if car name == TT display audi photo
+            //System.out.println(SearchList[0].getModel());
             picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
         } catch(IOException e) {
             try {
