@@ -236,6 +236,10 @@ public class MainMenuController {
      */
     private void addRentalButtonPressed() {
         mainMenuView.getBtAddRental().addActionListener(e -> {
+            //if the car is not already in active rentals then do all this
+            //else then don't add it unless we want duplicates
+            boolean failFlag = false;
+
             log.log(Level.INFO,"Add Rental button clicked");
             ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
 
@@ -247,9 +251,26 @@ public class MainMenuController {
             String mk = (String)(mainMenuView.getCmbMake().getSelectedItem());
             String mo = (String)(mainMenuView.getCmbModel().getSelectedItem());
             String yr = (String)(mainMenuView.getCmbYear().getSelectedItem());
-
-            JOptionPane.showMessageDialog(null,
-                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.");
+            String tp = (String)(mainMenuView.getCmbType().getSelectedItem());
+            String tr = (String)(mainMenuView.getCmbTrans().getSelectedItem());
+            String intc = (String)(mainMenuView.getCmbInterior().getSelectedItem());
+            String ext = (String)(mainMenuView.getCmbExterior().getSelectedItem());
+            String mil = username + "," + date + "," + mk + "," + mo + "," + yr + "\n";
+            try {
+                if (mk.equals("-") || mo.equals("-") || yr.equals("-") || tp.equals("-")
+                        || tr.equals("-") || intc.equals("-") || ext.equals("-") || mil.equals("-")) {
+                    failFlag = true;
+                }
+            } catch (NullPointerException p){
+                p.printStackTrace();
+            }
+            if(!failFlag) {
+                JOptionPane.showMessageDialog(null,
+                        "[" + mk + " " + mo + yr + "] has been added to your active rentals.");
+            } else {
+                JOptionPane.showMessageDialog(null,"None " +
+                        "of the fields can be left blank");
+            }
 //            JOptionPane.showMessageDialog(null,
 //                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
 //                    "Confirmation",
@@ -258,11 +279,15 @@ public class MainMenuController {
 
             // Add selected car to Active Rentals (Write to csv file)
             try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
-                        true));
+                if(!failFlag) {
+                    BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
+                            true));
 
-                bw.write(username + "," + date + "," + mk + "," + mo + "," + yr + "\n");
-                bw.close();
+                    bw.write(username + "," + date + "," + mk + "," + mo + "," + yr + "\n");
+                    bw.close();
+                } else {
+                    //display a jpane that tells them they could not enter that car b/c it was empty
+                }
             }catch(IOException ex) {
                 ex.printStackTrace();
                 log.log(Level.SEVERE,"Active rental could not be written to Database");
