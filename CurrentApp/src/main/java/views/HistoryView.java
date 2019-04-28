@@ -43,14 +43,15 @@ public class HistoryView extends JFrame {
         if(rentalHistory.isEmpty()) {
             dataHTable[0][0] = "No Past Rentals yet :(";
         }
-        for(int i = 0; i < rentalHistory.size(); i++){
-            for(int j = 0; j < NUM_COLS; j++){
-                //If first col, put vehicle string, else rental date
-                if(j == 0){
-                    dataHTable[i][j] = rentalHistory.get(i).vehicleString();
-                }
-                else{
-                    dataHTable[i][j] = rentalHistory.get(i).rentalDateString();
+        else {
+            for (int i = 0; i < rentalHistory.size(); i++) {
+                for (int j = 0; j < NUM_COLS; j++) {
+                    //If first col, put vehicle string, else rental date
+                    if (j == 0) {
+                        dataHTable[i][j] = rentalHistory.get(i).vehicleString();
+                    } else {
+                        dataHTable[i][j] = rentalHistory.get(i).rentalDateString();
+                    }
                 }
             }
         }

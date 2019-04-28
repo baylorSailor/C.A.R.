@@ -2,6 +2,7 @@ package controllers;
 
 import adapters.DatabaseAdapter;
 import main.CAR;
+import models.AdministratorModel;
 import models.CarModel;
 import views.ActiveRentalsView;
 import views.HistoryView;
@@ -10,7 +11,13 @@ import views.MainMenuView;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -232,14 +239,34 @@ public class MainMenuController {
             log.log(Level.INFO,"Add Rental button clicked");
             ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
 
+
+            String username = UserController.getUser().getUsername();
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            Date dt = new Date();
+            String date = df.format(dt);
+            String mk = (String)(mainMenuView.getCmbMake().getSelectedItem());
+            String mo = (String)(mainMenuView.getCmbModel().getSelectedItem());
+            String yr = (String)(mainMenuView.getCmbYear().getSelectedItem());
+
             JOptionPane.showMessageDialog(null,
-                    " has been added to your active rentals.",
-                    "Confirmation",
-                    JOptionPane.INFORMATION_MESSAGE,
-                    icon);
+                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.");
+//            JOptionPane.showMessageDialog(null,
+//                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
+//                    "Confirmation",
+//                    JOptionPane.INFORMATION_MESSAGE,
+//                    icon);
 
-            //TODO Add selected car to Active Rentals
+            // Add selected car to Active Rentals (Write to csv file)
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
+                        true));
 
+                bw.write(username + "," + date + "," + mk + "," + mo + "," + yr + "\n");
+                bw.close();
+            }catch(IOException ex) {
+                ex.printStackTrace();
+                log.log(Level.SEVERE,"Active rental could not be written to Database");
+            }
         });
     }
 

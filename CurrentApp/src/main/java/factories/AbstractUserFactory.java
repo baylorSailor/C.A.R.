@@ -5,14 +5,20 @@ import models.UserModel;
 import java.util.HashMap;
 
 
-// Implementing Factory Design pattern & Flyweight
+/**
+ * Abstract class for factories for user creation
+ */
 abstract public class AbstractUserFactory {
 
     static HashMap<String, UserModel> hMap = new HashMap<>();
 
     abstract public UserModel getUser(String[] data);
 
-    // Flyweight Design Pattern
+    /**
+     * Makes a user with given data, using flyweight deisgn pattern
+     * @param data
+     * @return
+     */
     public UserModel makeUser(String[] data){
         UserModel user = null;
         String name = data[0];

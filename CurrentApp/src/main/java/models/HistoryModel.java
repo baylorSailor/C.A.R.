@@ -1,5 +1,8 @@
 package models;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Represents a rental history entry
  */
@@ -43,7 +46,7 @@ public class HistoryModel {
             model = data[4];
             year = data[5];
         } catch (Exception ex){
-            ex.printStackTrace();
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Number format exception");
         }
     }
 

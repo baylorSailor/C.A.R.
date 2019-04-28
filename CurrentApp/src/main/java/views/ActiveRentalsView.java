@@ -1,7 +1,13 @@
 package views;
 
+import adapters.DatabaseAdapter;
+import models.ActiveRentalModel;
+import models.CarModel;
+
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Displays the active rentals for the user.
@@ -10,6 +16,10 @@ public class ActiveRentalsView extends JFrame {
 
     private JPanel pnActiveRentals;
     private JTable tbHTable;
+    private final int NUM_COLS = 2;
+
+    public static ArrayList<ActiveRentalModel> activeRentals =
+            new ArrayList<>();
 
     /**
      * Constructor for ActiveRentals View
@@ -25,8 +35,29 @@ public class ActiveRentalsView extends JFrame {
         GridBagConstraints gbcActiveRentals = new GridBagConstraints();
         pnActiveRentals.setLayout( gbMainPanel );
 
-        String [][]dataHTable = new String[][] { new String[] {"No Active Rentals :(", " "} };
-        String []colsHTable = new String[] { "", "" };
+        //Read the active rentals CSV
+        activeRentals = DatabaseAdapter.readActiveRentals();
+
+        //Create the data table
+        String [][]dataHTable = new String[activeRentals.size()+1][NUM_COLS];
+        if(activeRentals.isEmpty()){
+            dataHTable[0][0] = "No Active Rentals >:(";
+        }
+        else{
+            for (int i = 0; i < activeRentals.size(); i++) {
+                for (int j = 0; j < NUM_COLS; j++) {
+                    //If first col, put vehicle string, else rental date
+                    if (j == 0) {
+                        dataHTable[i][j] = activeRentals.get(i).vehicleString();
+                    } else {
+                        dataHTable[i][j] = activeRentals.get(i).activeRentalDate();
+                    }
+                }
+            }
+        }
+        String []colsHTable = new String[] {"Vehicle", "Rented On" };
+
+        // Create table
         tbHTable = new JTable( dataHTable, colsHTable );
         tbHTable.setSelectionBackground( new Color( 212,212,212 ) );
         tbHTable.setSelectionForeground( new Color( 0,0,0 ) );
@@ -62,4 +93,5 @@ public class ActiveRentalsView extends JFrame {
         setLocationRelativeTo(null);
         setVisible( true );
     }
+
 }
