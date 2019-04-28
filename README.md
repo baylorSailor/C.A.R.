@@ -20,11 +20,11 @@ Once Java is installed, you may either open the .JAR file by double clicking it 
 ## Authors
 
 * **[Andrew Case](https://github.com/AndrewC0128)** - *Project Lead*
-* **[Matthew Darby](https://github.com/baylorSailor)** - *Coder*
-* **[Mark Du](https://github.com/mdu2017)** - *Designer*
+* **[Matthew Darby](https://github.com/baylorSailor)** - *Designer*
+* **[Mark Du](https://github.com/mdu2017)** - *Coder*
 * **[Maggie Burton](https://github.com/maggie-burton)** - *Quality Control*
-* **[Stevie Damrel](https://github.com/Drumshadow)** - *Coder*
-* **[Weston Straw](https://github.com/Wolf1200)** - *Designer*
+* **[Stevie Damrel](https://github.com/Drumshadow)** - *Designer*
+* **[Weston Straw](https://github.com/Wolf1200)** - *Coder*
 
 ## Acknowledgments
 
