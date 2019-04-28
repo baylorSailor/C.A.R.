@@ -29,4 +29,4 @@ Once Java is installed, you may either open the .JAR file by double clicking it 
 ## Acknowledgments
 
 * **[Dr. Cerny](http://cs.baylor.edu/~cerny/)** - Advising and consultation throughout the course of this project
-* **Andrew Walker & Matt Griffin** - Providing feedback on Iterations
+* **Andrew Walker & Matt Griffin** - Providing feedback on Iterations (including, but not limited to: UML Designs, Code, & Concepts)
