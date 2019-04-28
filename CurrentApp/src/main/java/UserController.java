@@ -3,6 +3,11 @@ import java.io.File;
 
 class UserController {
     static UserModel user = null;
+
+    public LoginView getLoginView() {
+        return loginView;
+    }
+
     private LoginView loginView = new LoginView();
     private MainMenuController mainMenuController = null;
     private CreateAccountView createAccountView = null;
@@ -30,7 +35,7 @@ class UserController {
     private void loginButtonPressed() {
         loginView.getBtLogin().addActionListener(e -> {
             if((user = DatabaseAdapter.verifyUser(loginView.getTfUser().getText(),
-                                                                        loginView.getTfPass().getText())) != null) {
+                    loginView.getTfPass().getText())) != null) {
                 removeAllFramesAndStart();
             } else {
                 loginView.getLbError().setText("Incorrect username or password.");
