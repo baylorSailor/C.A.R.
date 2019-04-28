@@ -258,7 +258,7 @@ public class MainMenuController {
             String mil = username + "," + date + "," + mk + "," + mo + "," + yr + "\n";
             try {
                 if (mk.equals("-") || mo.equals("-") || yr.equals("-") || tp.equals("-")
-                        || tr.equals("-") || intc.equals("-") || ext.equals("-") || mil.equals("-")) {
+                        || tr.equals("-") || intc.equals("-") || ext.equals("-")) {
                     failFlag = true;
                 }
             } catch (NullPointerException p){
@@ -287,6 +287,7 @@ public class MainMenuController {
                     bw.close();
                 } else {
                     //display a jpane that tells them they could not enter that car b/c it was empty
+                    log.log(Level.SEVERE,"Active rental could not be written to Database b/c fields were left empty");
                 }
             }catch(IOException ex) {
                 ex.printStackTrace();
