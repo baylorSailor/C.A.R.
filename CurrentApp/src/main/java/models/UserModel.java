@@ -100,6 +100,21 @@ public class UserModel {
     }
 
     /**
+     * Creates a string array containing all given attributes of a user
+     * @return a string array with all given attributes of a user
+     */
+    public String[] toStringArray() {
+        String[]strings = new String[6];
+        strings[0] = fullname;
+        strings[1] = username;
+        strings[2] = email;
+        strings[3] = password;
+        strings[4] = creditType;
+        strings[5] = creditCard;
+        return strings;
+    }
+
+    /**
      * Sets the password of the user
      * @param  password a string representing user's new password
      */
