@@ -63,7 +63,7 @@ public class AccountDetailsController {
                         "Please reenter your new password:",
                         "New Password (Again)",
                         JOptionPane.INFORMATION_MESSAGE);
-                if(newPass.equals(retypePass)) {
+                if(newPass.equals(retypePass) && !newPass.contains(",")) {
                     // Update Password
                     DatabaseAdapter.updatePassword(newPass);
                     JOptionPane.showMessageDialog(null,"Your password has been changed."
@@ -71,6 +71,12 @@ public class AccountDetailsController {
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Passwords do not match!","ERROR",JOptionPane.ERROR_MESSAGE);
+                    if(newPass.contains(",")) {
+                        JOptionPane.showMessageDialog(null,
+                                "Passwords cannot contain commas.",
+                                "Invalid Password",JOptionPane.ERROR_MESSAGE,
+                                DatabaseAdapter.getIcon());
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null,
