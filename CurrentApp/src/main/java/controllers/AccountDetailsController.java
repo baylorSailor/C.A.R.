@@ -63,24 +63,35 @@ public class AccountDetailsController {
                         "Please reenter your new password:",
                         "New Password (Again)",
                         JOptionPane.INFORMATION_MESSAGE);
-                if(newPass.equals(retypePass) && !newPass.contains(",")) {
+                if(newPass.equals(retypePass) && !newPass.contains(",") &&
+                        verifyPasswordLength(newPass)) {
                     // Update Password
                     DatabaseAdapter.updatePassword(newPass);
-                    JOptionPane.showMessageDialog(null,"Your password has been changed."
-                    ,"Confirmation",JOptionPane.INFORMATION_MESSAGE);
-                } else {
                     JOptionPane.showMessageDialog(null,
-                            "Passwords do not match!","ERROR",JOptionPane.ERROR_MESSAGE);
-                    if(newPass.contains(",")) {
+                            "Your password has been changed.",
+                            "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    if(!newPass.equals(retypePass)) {
+                        JOptionPane.showMessageDialog(null,
+                                "Passwords do not match!","ERROR",
+                                JOptionPane.ERROR_MESSAGE,
+                                DatabaseAdapter.getIcon());
+                    } else if(newPass.contains(",")) {
                         JOptionPane.showMessageDialog(null,
                                 "Passwords cannot contain commas.",
+                                "Invalid Password",JOptionPane.ERROR_MESSAGE,
+                                DatabaseAdapter.getIcon());
+                    }else if(!verifyPasswordLength(newPass)) {
+                        JOptionPane.showMessageDialog(null,
+                                "Password must be 7 or more characters.",
                                 "Invalid Password",JOptionPane.ERROR_MESSAGE,
                                 DatabaseAdapter.getIcon());
                     }
                 }
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "Incorrect password entered!","ERROR",JOptionPane.ERROR_MESSAGE);
+                        "Incorrect password entered!","ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
     }
@@ -138,5 +149,12 @@ public class AccountDetailsController {
         destroy();
         accountDetailsView = new AccountDetailsView();
         start();
+    }
+
+    /**
+     * Ensures that the password is the correct length
+     */
+    private boolean verifyPasswordLength(String password) {
+        return password.length() >= 7;
     }
 }

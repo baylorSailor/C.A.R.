@@ -2,13 +2,11 @@ package views;
 
 import adapters.DatabaseAdapter;
 import models.ActiveRentalModel;
-import models.CarModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
