@@ -271,6 +271,7 @@ public class MainMenuController {
                 JOptionPane.showMessageDialog(null,"None " +
                         "of the fields can be left blank");
             }
+            //testing
 //            JOptionPane.showMessageDialog(null,
 //                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
 //                    "Confirmation",
