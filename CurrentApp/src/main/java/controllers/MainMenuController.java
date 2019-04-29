@@ -2,7 +2,6 @@ package controllers;
 
 import adapters.DatabaseAdapter;
 import main.CAR;
-import models.AdministratorModel;
 import models.CarModel;
 import views.ActiveRentalsView;
 import views.HistoryView;
