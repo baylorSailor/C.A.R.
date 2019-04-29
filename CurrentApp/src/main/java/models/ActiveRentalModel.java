@@ -42,7 +42,7 @@ public class ActiveRentalModel{
             model = data[3];
             year = data[4];
         } catch (Exception ex){
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Number format exception");
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         }
     }
 
