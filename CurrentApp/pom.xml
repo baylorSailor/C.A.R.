@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project> xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.AscensionTech.CAR</groupId>
@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-<<<<<<< HEAD
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -17,6 +16,7 @@
         <junit.vintage.version>4.12.0</junit.vintage.version>
         <junit.platform.version>1.1.0</junit.platform.version>
     </properties>
+
     
     <build>
         <plugins>
@@ -27,15 +27,11 @@
                     <includes>
                         <include>**/*.java</include>
                     </includes>
-        <project>.build.sourceEncoding</project>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+                    <project>.build.sourceEncoding</project>
+                </configuration>
+            </plugin>
 
-    
-    <!-- TODO add logic for running JUnit tests from jar -->
-    <build>
-        <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

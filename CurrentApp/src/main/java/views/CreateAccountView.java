@@ -361,43 +361,11 @@ public class CreateAccountView extends JFrame {
        return foo;
     }
 
-<<<<<<< HEAD:CurrentApp/src/main/java/CreateAccountView.java
-    public void setTfEmail(String email) {
-        this.tfEmail.setText(email);
-    }
-
-    public void setTfCreditCardNumber(String tfCreditCardNumber) {
-        this.tfCreditCardNumber.setText(tfCreditCardNumber);
-    }
-
-    public void setTfPassword(String password) {
-        this.tfPassword.setText(password);
-        System.out.println(this.tfPassword.getText());
-    }
-
-    public void setTfPassword2(String tfPassword2) {
-        this.tfPassword2.setText(tfPassword2);
-    }
-
-    public void setTfFirstName(String tfFirstName) {
-        JTextField temp = new JTextField(tfFirstName);
-        this.tfFirstName = temp;
-    }
-
-    public void setTfLastName(String tfLastName) {
-        this.tfLastName.setText(tfLastName);
-    }
-
-    public void setTfUserName(String tfUserName) {
-        this.tfUserName.setText(tfUserName);
-    }
-
-=======
     /**
      * Gets the user account image
      * @return BufferedImage of the picture
      */
->>>>>>> 71d9d8fc207895e73e230dacd708b37ec3a8faea:CurrentApp/src/main/java/views/CreateAccountView.java
+
     public static BufferedImage getPicture() {
         return picture;
     }

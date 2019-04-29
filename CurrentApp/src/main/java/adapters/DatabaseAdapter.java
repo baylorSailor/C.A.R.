@@ -40,7 +40,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -83,7 +83,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -104,7 +104,8 @@ public class DatabaseAdapter {
      * Write the user to a CSV
      * @param u the user to write
      */
-    public static void writeUser(UserModel u) {
+    public static boolean writeUser(UserModel u) {
+        boolean foo=true;
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
                     true));
@@ -126,6 +127,7 @@ public class DatabaseAdapter {
             e.printStackTrace();
             log.log(Level.SEVERE,"User could not be written to Database");
         }
+        return foo;
     }
 
     /**
@@ -157,8 +159,9 @@ public class DatabaseAdapter {
      * Writes all the users in an ArrayList to CSV
      * @param arrayList the list containing UserModels
      */
-    public static void writeAllUsers(ArrayList<UserModel> arrayList) {
+    public static boolean writeAllUsers(ArrayList<UserModel> arrayList) {
         // Erase all users
+        boolean foo = true;
         try {
             FileWriter erase = new FileWriter("./src/main/resources/users.csv");
             erase.close();
@@ -167,8 +170,11 @@ public class DatabaseAdapter {
         }
         // Add all users
         for(UserModel u : arrayList) {
-            writeUser(u);
+            if(!writeUser(u))
+                foo=false;
         }
+
+        return foo;
     }
 
     /**
@@ -226,7 +232,7 @@ public class DatabaseAdapter {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), "uft-8");
             input.nextLine();
             String line;
 
@@ -253,7 +259,7 @@ public class DatabaseAdapter {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), "utf-8");
             input.nextLine();
             String line;
 
@@ -279,7 +285,7 @@ public class DatabaseAdapter {
     public static ArrayList<UserModel> readInUsers(){
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
 
             while (input.hasNextLine()) {
@@ -318,7 +324,7 @@ public class DatabaseAdapter {
         List<CarModel> arrayListCars = new ArrayList<>();
 
         try{
-            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), "utf-8");
             String line;
             String[] split;
             sc.nextLine();
