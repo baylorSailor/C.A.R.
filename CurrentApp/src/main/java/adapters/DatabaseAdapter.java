@@ -89,8 +89,7 @@ public class DatabaseAdapter {
                 }
             }
         } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"User could not be verified in the Database");
+            log.log(Level.SEVERE,a.getMessage());
         }
         return user;
     }
@@ -115,8 +114,7 @@ public class DatabaseAdapter {
                 }
             }
         } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE,"User could not be checked for existence in Database");
+            log.log(Level.SEVERE,a.getMessage());
         }
         return found;
     }
@@ -136,6 +134,7 @@ public class DatabaseAdapter {
 //            else if(u instanceof RepresentativeLevel) {
 //                String level = "2";
 //            }
+            //TODO Add Representative
             else {
                 level = "0";
             }
@@ -144,8 +143,7 @@ public class DatabaseAdapter {
                     u.getCreditCard() + "," + level + "\n");
             bw.close();
         }catch(IOException e) {
-            e.printStackTrace();
-            log.log(Level.SEVERE,"User could not be written to Database");
+            log.log(Level.SEVERE,e.getMessage());
         }
     }
 
@@ -169,8 +167,7 @@ public class DatabaseAdapter {
             writer.write(newtext);
             writer.close();
         }catch(IOException e) {
-            e.printStackTrace();
-            log.log(Level.SEVERE,"User could not be written to Database");
+            log.log(Level.SEVERE,e.getMessage());
         }
     }
 
@@ -184,7 +181,7 @@ public class DatabaseAdapter {
             FileWriter erase = new FileWriter("./src/main/resources/users.csv");
             erase.close();
         } catch(IOException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE,e.getMessage());
         }
         // Add all users
         for(UserModel u : arrayList) {
@@ -204,8 +201,7 @@ public class DatabaseAdapter {
                 ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
                 log.log(Level.INFO, "image was uploaded properly");
             } catch(IOException | IllegalArgumentException e) {
-                e.printStackTrace();
-                log.log(Level.SEVERE,"User's selected image could not be saved");
+                log.log(Level.SEVERE,e.getMessage());
             }
         }
     }
@@ -236,11 +232,12 @@ public class DatabaseAdapter {
             picture = ImageIO.read(new File("./src/main/resources/UserPics/" +
                     UserController.getUser().getUsername() + ".png"));
         } catch(IOException e) {
+            log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
                 log.log(Level.INFO, "sample.png was loaded properly");
             } catch(IOException ee) {
-                log.log(Level.SEVERE,"sample.png file couldn't be loaded");
+                log.log(Level.SEVERE,ee.getMessage());
             }
 
         }
@@ -326,14 +323,14 @@ public class DatabaseAdapter {
                     case "2" : {
                         //userModelArrayList.add(new RepresentativeModel(data));
                         //break;
+                        //TODO Implement Representative
                     }
                 }
             }
             log.log(Level.INFO, "history.csv was loaded properly");
 
         }catch(Exception e){
-            e.printStackTrace();
-            log.log(Level.SEVERE,"history.csv could not be loaded");
+            log.log(Level.SEVERE,e.getMessage());
         }
         return userModelArrayList;
     }
@@ -359,8 +356,7 @@ public class DatabaseAdapter {
             }
             log.log(Level.INFO, "Vehicle list was loaded properly");
         } catch(IOException a) {
-            a.printStackTrace();
-            log.log(Level.SEVERE, "Vehicle list could not be loaded");
+            log.log(Level.SEVERE, a.getMessage());
         }
 
         CarModel[] modelArray = new CarModel[ arrayListCars.size() ];
@@ -543,6 +539,7 @@ public class DatabaseAdapter {
 
         return trans;
     }
+
     /**
      * Gets the company logo
      * @return the company logo for output
