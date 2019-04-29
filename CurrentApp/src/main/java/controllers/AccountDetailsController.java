@@ -128,6 +128,7 @@ public class AccountDetailsController {
                     refresh();
                     DatabaseAdapter.updateUser(UserController.getUser(),UserController.getUser());
                 } else {
+                    log.log(Level.INFO,"Invalid Card Number entered!");
                     JOptionPane.showMessageDialog(null,
                             "Invalid Card Number!","ERROR",JOptionPane.ERROR_MESSAGE,
                             DatabaseAdapter.getIcon());
