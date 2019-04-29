@@ -50,26 +50,33 @@ public class AccountDetailsController {
     public void changePasswordButtonPressed() {
         accountDetailsView.getBtChangePassword().addActionListener(e -> {
             log.log(Level.INFO,"Change password button clicked");
-            String oldPass = JOptionPane.showInputDialog(null,
+            String oldPass = (String) JOptionPane.showInputDialog(
+                    null,
                     "Please enter your old password:",
                     "Old Password",
-                    JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),
+                    null,"");
             if(UserController.getUser().getPassword().equals(oldPass)) {
-                String newPass = JOptionPane.showInputDialog(null,
+                String newPass = (String) JOptionPane.showInputDialog(
+                        null,
                         "Please enter your new password:",
                         "New Password",
-                        JOptionPane.INFORMATION_MESSAGE);
-                String retypePass = JOptionPane.showInputDialog(null,
+                        JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),
+                        null,"");
+                String retypePass = (String) JOptionPane.showInputDialog(
+                        null,
                         "Please reenter your new password:",
                         "New Password (Again)",
-                        JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),
+                        null,"");
                 if(newPass.equals(retypePass) && !newPass.contains(",") &&
                         verifyPasswordLength(newPass)) {
                     // Update Password
                     DatabaseAdapter.updatePassword(newPass);
                     JOptionPane.showMessageDialog(null,
                             "Your password has been changed.",
-                            "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                            "Confirmation",JOptionPane.INFORMATION_MESSAGE,
+                            DatabaseAdapter.getIcon());
                 } else {
                     if(!newPass.equals(retypePass)) {
                         JOptionPane.showMessageDialog(null,
@@ -91,7 +98,7 @@ public class AccountDetailsController {
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Incorrect password entered!","ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.ERROR_MESSAGE,DatabaseAdapter.getIcon());
             }
         });
     }
@@ -102,30 +109,34 @@ public class AccountDetailsController {
     private void changeCardInfoButtonPressed() {
         accountDetailsView.getBtChangeInfoInfo().addActionListener(e -> {
             log.log(Level.INFO,"Change card info button clicked");
-            String newCardType = JOptionPane.showInputDialog(null,
+            String newCardType = (String) JOptionPane.showInputDialog(null,
                     "Please enter your new card type:",
                     "New Card Type",
-                    JOptionPane.INFORMATION_MESSAGE);
-            if(newCardType != null && (newCardType.equalsIgnoreCase("MasterCard") || newCardType.equalsIgnoreCase("Visa"))) {
-                String newCardNumber = JOptionPane.showInputDialog(null,
+                    JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),null,"");
+            if(newCardType != null && (newCardType.equalsIgnoreCase("MasterCard") ||
+                    newCardType.equalsIgnoreCase("Visa"))) {
+                String newCardNumber = (String) JOptionPane.showInputDialog(null,
                         "Please enter your new card number:",
                         "New Card Number",
-                        JOptionPane.INFORMATION_MESSAGE);
-                if(newCardNumber != null && (newCardNumber.length() < 20 & newCardNumber.length() > 11 & newCardNumber.matches("[0-9]+") )) {
+                        JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),null,"");
+                if(newCardNumber != null && (newCardNumber.length() < 20 & newCardNumber.length() > 11 &
+                        newCardNumber.matches("[0-9]+") )) {
                     JOptionPane.showMessageDialog(null,"Your card information has been saved."
-                            ,"Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                            ,"Confirmation",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
                     UserController.getUser().setCreditType(newCardType);
                     UserController.getUser().setCreditCard(newCardNumber);
                     refresh();
                     DatabaseAdapter.updateUser(UserController.getUser(),UserController.getUser());
                 } else {
                     JOptionPane.showMessageDialog(null,
-                            "Invalid Card Number!","ERROR",JOptionPane.ERROR_MESSAGE);
+                            "Invalid Card Number!","ERROR",JOptionPane.ERROR_MESSAGE,
+                            DatabaseAdapter.getIcon());
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "Not an approved card type :(","ERROR",JOptionPane.ERROR_MESSAGE);
+                        "Not an approved card type :(","ERROR",JOptionPane.ERROR_MESSAGE,
+                        DatabaseAdapter.getIcon());
             }
         });
     }
