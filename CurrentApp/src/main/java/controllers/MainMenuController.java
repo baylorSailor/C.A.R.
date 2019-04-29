@@ -157,6 +157,7 @@ public class MainMenuController {
                 historyView.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        log.log(Level.INFO,"History View closed");
                         historyView.dispose();
                         historyView = null;
                     }
@@ -177,6 +178,7 @@ public class MainMenuController {
                 activeRentalsView.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        log.log(Level.INFO,"Active Rentals View closed");
                         activeRentalsView.dispose();
                         activeRentalsView = null;
                     }
@@ -240,8 +242,6 @@ public class MainMenuController {
             boolean failFlag = false;
 
             log.log(Level.INFO,"Add Rental button clicked");
-            ImageIcon icon = new ImageIcon("./src/main/resources/logoSmall.png");
-
 
             String username = UserController.getUser().getUsername();
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -261,14 +261,16 @@ public class MainMenuController {
                     failFlag = true;
                 }
             } catch (NullPointerException p){
-                p.printStackTrace();
+                log.log(Level.SEVERE,p.getMessage());
             }
             if(!failFlag) {
                 JOptionPane.showMessageDialog(null,
-                        "[" + mk + " " + mo + yr + "] has been added to your active rentals.");
+                        "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
+                        "Car Added",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
             } else {
                 JOptionPane.showMessageDialog(null,"None " +
-                        "of the fields can be left blank");
+                        "of the fields can be left blank","ERROR",JOptionPane.ERROR_MESSAGE,
+                        DatabaseAdapter.getIcon());
             }
             //testing
 //            JOptionPane.showMessageDialog(null,
@@ -289,9 +291,8 @@ public class MainMenuController {
                     //display a jpane that tells them they could not enter that car b/c it was empty
                     log.log(Level.SEVERE,"Active rental could not be written to Database b/c fields were left empty");
                 }
-            }catch(IOException ex) {
-                ex.printStackTrace();
-                log.log(Level.SEVERE,"Active rental could not be written to Database");
+            }catch(IOException ee) {
+                log.log(Level.SEVERE,ee.getMessage());
             }
         });
     }
@@ -321,6 +322,7 @@ public class MainMenuController {
      */
     private void makeSelected() {
         mainMenuView.getCmbMake().addActionListener(e -> {
+            log.log(Level.INFO,"Make has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
 
             DefaultComboBoxModel model = new DefaultComboBoxModel( DatabaseAdapter.loadAllModels(selectedMake) );
@@ -338,6 +340,7 @@ public class MainMenuController {
      */
     private void modelSelected() {
         mainMenuView.getCmbModel().addActionListener(e -> {
+            log.log(Level.INFO,"Model has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
 
@@ -357,6 +360,7 @@ public class MainMenuController {
      */
     private void yearSelected() {
         mainMenuView.getCmbYear().addActionListener(e -> {
+            log.log(Level.INFO,"Year has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
@@ -377,6 +381,7 @@ public class MainMenuController {
      */
     private void typeSelected() {
         mainMenuView.getCmbType().addActionListener(e -> {
+            log.log(Level.INFO,"Car Type has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
@@ -398,6 +403,7 @@ public class MainMenuController {
      */
     private void transmissionSelected() {
         mainMenuView.getCmbTrans().addActionListener(e -> {
+            log.log(Level.INFO,"Transmission has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
@@ -420,6 +426,7 @@ public class MainMenuController {
      */
     private void interiorColorSelected() {
         mainMenuView.getCmbInterior().addActionListener(e -> {
+            log.log(Level.INFO,"Interior Color has been selected");
             String selectedMake = (String) mainMenuView.getCmbMake().getSelectedItem();
             String selectedModel = (String) mainMenuView.getCmbModel().getSelectedItem();
             String selectedYear = (String) mainMenuView.getCmbYear().getSelectedItem();
@@ -442,6 +449,7 @@ public class MainMenuController {
      * Clears the criteria of all following search parameters based on which "-" is selected
      */
     private void clearCriteria(int selected) {
+        log.log(Level.INFO,"Clearing all following criteria");
         switch (selected) {
             case 6 : {
                 mainMenuView.getCmbModel().setSelectedIndex(0);
