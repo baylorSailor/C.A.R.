@@ -123,7 +123,7 @@ public class DatabaseAdapter {
      * Write the user to a CSV
      * @param u the user to write
      */
-    public static void writeUser(UserModel u) {
+    public static boolean writeUser(UserModel u) {
         if(verifySyntax(u.toStringArray())) {
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
@@ -143,6 +143,7 @@ public class DatabaseAdapter {
                         u.getPassword() + "," + u.getCreditType() + "," +
                         u.getCreditCard() + "," + level + "\n");
                 bw.close();
+                return true;
             }catch(IOException e) {
                 log.log(Level.SEVERE,e.getMessage());
             }
@@ -150,6 +151,7 @@ public class DatabaseAdapter {
             JOptionPane.showMessageDialog(null,"Cannot write " + u.toString() +
                     " as it contains a comma.","ERROR",JOptionPane.ERROR_MESSAGE,icon);
         }
+        return false;
     }
 
     /**
