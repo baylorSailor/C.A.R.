@@ -123,30 +123,30 @@ public class DatabaseAdapter {
      * Write the user to a CSV
      * @param u the user to write
      */
-    public static boolean writeUser(UserModel u) {
-        boolean foo=true;
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
-                    true));
-            String level;
-            if(u instanceof AdministratorModel) {
-                level = "1";
+    public static void writeUser(UserModel u) {
+        if(verifySyntax(u.toStringArray())) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
+                        true));
+                String level;
+                if (u instanceof AdministratorModel) {
+                    level = "1";
+                }
+               //TODO Add Representative
+                else {
+                    level = "0";
+                }
+                bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
+                        u.getPassword() + "," + u.getCreditType() + "," +
+                        u.getCreditCard() + "," + level + "\n");
+                bw.close();
+            }catch(IOException e) {
+                log.log(Level.SEVERE,e.getMessage());
             }
-//            else if(u instanceof RepresentativeLevel) {
-//                String level = "2";
-//            }
-            //TODO Add Representative
-            else {
-                level = "0";
-            }
-            bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
-                    u.getPassword() + "," + u.getCreditType() + "," +
-                    u.getCreditCard() + "," + level + "\n");
-            bw.close();
-        }catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null,"Cannot write " + u.toString() +
+                    " as it contains a comma.","ERROR",JOptionPane.ERROR_MESSAGE,icon);
         }
-        return foo;
     }
 
     /**
@@ -177,9 +177,8 @@ public class DatabaseAdapter {
      * Writes all the users in an ArrayList to CSV
      * @param arrayList the list containing UserModels
      */
-    public static boolean writeAllUsers(ArrayList<UserModel> arrayList) {
+    public static void writeAllUsers(ArrayList<UserModel> arrayList) {
         // Erase all users
-        boolean foo = true;
         try {
             FileWriter erase = new FileWriter("./src/main/resources/users.csv");
             erase.close();
@@ -188,11 +187,9 @@ public class DatabaseAdapter {
         }
         // Add all users
         for(UserModel u : arrayList) {
-            if(!writeUser(u))
-                foo=false;
-        }
+            writeUser(u);
 
-        return foo;
+        }
     }
 
     /**
