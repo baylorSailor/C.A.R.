@@ -51,6 +51,7 @@ public class CreateAccountView extends JFrame {
      */
     public CreateAccountView() {
         super( "Create Account" );
+        log.log(Level.INFO,"Create Account View has been instantiated");
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
 
@@ -338,12 +339,11 @@ public class CreateAccountView extends JFrame {
         try {
             picture = ImageIO.read(new File(file.getAbsolutePath()));
         } catch (IOException | NullPointerException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
             } catch(IOException ee) {
-                ee.printStackTrace();
-                log.log(Level.SEVERE,"Sample Profile Image couldn't be found");
+                log.log(Level.SEVERE,ee.getMessage());
             }
         }
     }

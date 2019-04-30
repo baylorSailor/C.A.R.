@@ -1,6 +1,7 @@
 package views;
 
 import adapters.DatabaseAdapter;
+import main.CAR;
 import models.ActiveRentalModel;
 
 import javax.swing.*;
@@ -8,12 +9,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Displays the active rentals for the user.
  */
 public class ActiveRentalsView extends JFrame {
 
+    private static Logger log = Logger.getLogger(CAR.class.getName());
     private JPanel pnActiveRentals;
     private JTable tbHTable;
     private final int NUM_COLS = 2;
@@ -26,6 +30,7 @@ public class ActiveRentalsView extends JFrame {
      */
     public ActiveRentalsView() {
         super( "View Active Rentals" );
+        log.log(Level.INFO,"Active Rentals View has been instantiated");
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
 
@@ -111,6 +116,10 @@ public class ActiveRentalsView extends JFrame {
         setVisible( true );
     }
 
+    /**
+     * Get an ArrayList of the Active Rentals
+     * @return ArrayList of the Active Rentals
+     */
     ArrayList<ActiveRentalModel> getActiveRentals(){
         return activeRentals;
     }

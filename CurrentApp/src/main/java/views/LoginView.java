@@ -4,6 +4,7 @@ import main.CAR;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -27,6 +28,7 @@ public class LoginView extends JFrame {
      */
     public LoginView() {
         super( "Login" );
+        log.log(Level.INFO,"Login View has been instantiated");
         pnLoginPanel = new JPanel();
         pnLoginPanel.setBorder( BorderFactory.createTitledBorder( "Sign In" ) );
         GridBagLayout gbLoginPanel = new GridBagLayout();

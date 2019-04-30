@@ -68,7 +68,7 @@ public class MainMenuView extends JFrame {
      */
     public MainMenuView() {
         super( "View Local Listings");
-
+        log.log(Level.INFO,"Main Menu View has been instantiated");
         pnMainPanel = new JPanel();
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
@@ -123,10 +123,11 @@ public class MainMenuView extends JFrame {
             //System.out.println(SearchList[0].getModel());
             picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
         } catch(IOException e) {
+            log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
             } catch(IOException ee) {
-                log.log(Level.SEVERE,"Sample Car Image couldn't be loaded");
+                log.log(Level.SEVERE,ee.getMessage());
             }
 
         } finally {
@@ -560,6 +561,9 @@ public class MainMenuView extends JFrame {
         setVisible( true );
     }
 
+    /**
+     * Updates the Search Pane based on criteria provided
+     */
     public void updateSearch() {
         JPanel oldPanel = pnSearchResults;
         pnSearchResults.removeAll();
@@ -735,6 +739,10 @@ public class MainMenuView extends JFrame {
         return CarList;
     }
 
+    /**
+     * Sets the SearchList containing CarModels
+     * @param searchList An array containing CarModels
+     */
     public void setSearchList(CarModel[] searchList) {
         SearchList = searchList;
     }

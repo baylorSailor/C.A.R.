@@ -48,12 +48,14 @@ public class UserController {
      * Remove the login window and start the main screen
      */
     private void removeAllFramesAndStart() {
+        log.log(Level.INFO,"Login frame has been removed");
         loginView.dispose();
         loginView = null;
         if(createAccountView != null) {
             createAccountView.dispose();
             createAccountView = null;
         }
+        log.log(Level.INFO,"MainMenu frame has been instantiated");
         mainMenuController = new MainMenuController();
         mainMenuController.start();
     }
@@ -108,6 +110,7 @@ public class UserController {
                         }
                         removeAllFramesAndStart();
                     } else {
+                        log.log(Level.INFO,"Invalid fields have not been approved");
                         String message = "1. No fields may be left empty.\n" +
                                 "2. Password must be 7 or more characters.\n" +
                                 "3. Image is preferred, but no image is required.\n" +

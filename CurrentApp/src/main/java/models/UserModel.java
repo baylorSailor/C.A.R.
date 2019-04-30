@@ -49,8 +49,8 @@ public class UserModel {
      * @param creditType user credit card type
      * @param creditCard user credit card number
      */
-    public UserModel(String fullname, String username, String email, String password, String creditType,
-                                    String creditCard) {
+    public UserModel(String fullname,String username, String email,String password,
+                     String creditType,String creditCard) {
         this.fullname = fullname;
         this.pictureLocation = "./src/main/resources/" + username + ".png";
         this.username = username;
@@ -130,6 +130,10 @@ public class UserModel {
         return fullname;
     }
 
+    /**
+     * Sets the picture location in database of the user
+     * @param pictureLocation a string representing the location of the user's picture
+     */
     public void setPictureLocation(String pictureLocation) {
         this.pictureLocation = pictureLocation;
     }
@@ -182,22 +186,42 @@ public class UserModel {
         return creditCard;
     }
 
+    /**
+     * Sets the fullname of the user
+     * @param fullname a string representing the fullname of the user
+     */
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 
+    /**
+     * Sets the username of the user
+     * @param username a string representing the username of the user
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Sets the email of the user
+     * @param email a string representing the email of the user
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Sets the credit card type of the user
+     * @param creditType a string representing the credit card type of the user
+     */
     public void setCreditType(String creditType) {
         this.creditType = creditType;
     }
 
+    /**
+     * Sets the credit card number of the user
+     * @param creditCard a string representing the credit card number of the user
+     */
     public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }

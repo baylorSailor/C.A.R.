@@ -7,6 +7,7 @@ import main.CAR;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -31,6 +32,7 @@ public class AccountDetailsView extends JFrame {
      */
     public AccountDetailsView() {
         super( "View Account Details" );
+        log.log(Level.INFO,"Account Details View has been instantiated");
 
         pnAccountDetails = new JPanel();
         pnAccountDetails.setBorder( BorderFactory.createTitledBorder( "Account Details" ) );

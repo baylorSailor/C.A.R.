@@ -46,7 +46,7 @@ public class HistoryModel {
             model = data[4];
             year = data[5];
         } catch (Exception ex){
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Number format exception");
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ex.getMessage());
         }
     }
 

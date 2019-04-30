@@ -1,17 +1,21 @@
 package views;
 
 import adapters.DatabaseAdapter;
+import main.CAR;
 import models.HistoryModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Window displaying rental history
  */
 public class HistoryView extends JFrame {
 
+    private static Logger log = Logger.getLogger(CAR.class.getName());
     private JPanel pnHistory;
     private JTable tbHTable;
     private final int NUM_COLS = 2;
@@ -25,6 +29,7 @@ public class HistoryView extends JFrame {
 
         // Set Layout
         super( "View History" );
+        log.log(Level.INFO,"History View has been instantiated");
         GridBagLayout gbMainPanel = new GridBagLayout();
         GridBagConstraints gbcMainPanel = new GridBagConstraints();
 
