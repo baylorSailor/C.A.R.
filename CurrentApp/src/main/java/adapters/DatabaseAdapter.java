@@ -124,26 +124,31 @@ public class DatabaseAdapter {
      * @param u the user to write
      */
     public static void writeUser(UserModel u) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
-                    true));
-            String level;
-            if(u instanceof AdministratorModel) {
-                level = "1";
-            }
+        if(verifySyntax(u.toStringArray())) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
+                        true));
+                String level;
+                if(u instanceof AdministratorModel) {
+                    level = "1";
+                }
 //            else if(u instanceof RepresentativeLevel) {
 //                String level = "2";
 //            }
-            //TODO Add Representative
-            else {
-                level = "0";
+                //TODO Add Representative
+                else {
+                    level = "0";
+                }
+                bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
+                        u.getPassword() + "," + u.getCreditType() + "," +
+                        u.getCreditCard() + "," + level + "\n");
+                bw.close();
+            }catch(IOException e) {
+                log.log(Level.SEVERE,e.getMessage());
             }
-            bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
-                    u.getPassword() + "," + u.getCreditType() + "," +
-                    u.getCreditCard() + "," + level + "\n");
-            bw.close();
-        }catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null,"Cannot write " + u.toString() +
+                    " as it contains a comma.","ERROR",JOptionPane.ERROR_MESSAGE,icon);
         }
     }
 
