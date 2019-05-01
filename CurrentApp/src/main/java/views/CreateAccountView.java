@@ -349,18 +349,28 @@ public class CreateAccountView extends JFrame {
     }
 
     /**
-     * Checks if all fields have been entered for a new account.
-     * @return true if all fields have been entered, otherwise false.
+     * Makes the entered text in the view into a string array.
+     * @return an array of String containing new account information.
      */
-    public boolean allFieldsEntered() {
-       boolean foo = true;
-       String[] strings = new String[7];
+    public String[] fieldsToString(){
+        String [] strings = new String[7];
         strings[0] = tfFirstName.getText() + tfLastName.getText();
         strings[1] = tfUserName.getText();
         strings[2] = tfEmail.getText();
         strings[3] = tfPassword.getText();
         strings[5] = tfCreditCardNumber.getText();
-        if(DatabaseAdapter.verifySyntax(strings)) {
+        strings[6] = tfPassword2.getText();
+
+
+        return strings;
+    }
+    /**
+     * Checks if all fields have been entered for a new account.
+     * @return true if all fields have been entered, otherwise false.
+     */
+    public boolean allFieldsEntered(String [] strings) {
+       boolean foo = true;
+        if(DatabaseAdapter.verifySyntax(strings) == true) {
             if(!(tfFirstName.isValid() && tfUserName.isValid() && tfCreditCardNumber.isValid() && tfEmail.isValid() &&
                     tfLastName.isValid() && (rbVisa.isSelected() || rbMasterCard.isSelected()) &&
                     (tfPassword.getPassword().length >= 7) && (tfPassword.getText().equals(tfPassword2.getText())))) {

@@ -91,7 +91,7 @@ public class UserController {
                 } else {
                     String creditType;
                     File file = new File("./src/main/resources/users.csv");
-                    if(createAccountView.allFieldsEntered()) {
+                    if(createAccountView.allFieldsEntered(createAccountView.fieldsToString())) {
                         if(createAccountView.getRbVisa().isSelected()) {
                             creditType = "Visa";
                         } else {

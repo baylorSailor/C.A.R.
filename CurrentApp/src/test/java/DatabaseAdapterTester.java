@@ -57,7 +57,7 @@ public class DatabaseAdapterTester {
 
     @DisplayName("Should not save user if credit card type is not MasterCard or Visa")
     @Test
-    public void commaInCreditCardType(){
+    public void IncorrectCreditCardType(){
         assertFalse(data.writeUser(new UserModel("maggie burton","burton_maggie",
                         "burton.maggie81@gmail.com","abcdefg","American Express","111122223333444")),
                 "Credit Card cannot contain a comma");

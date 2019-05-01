@@ -11,55 +11,97 @@ public class CreateAccountViewTest {
     @BeforeEach
     void init(){createAccountView = new CreateAccountView();}
 
-    @Test
-    public void passwordDoesNotMatch(){
-
-        assertFalse(createAccountView.allFieldsEntered(), "Passwords Don't Match");
-
-    }
 
     @Test
-    public void passwordTooShort(){
+    public void commaInName(){
+        String [] strings = new String[7];
+        strings[0] = "Magg,ie Burton";
+        strings[1] = "Mburton";
+        strings[2] = "burton.maggie81@gmail.com";
+        strings[3] = "abd";
+        strings[4] = "Visa";
+        strings[5] = "1111222233334444";
+        strings[6] = "abc";
+        //createAccountView.allFieldsEntered(strings);
 
-        assertFalse(createAccountView.allFieldsEntered(), "Passwords Don't Match");
-
-    }
-
-    @Test
-    public void commaInfName(){
-
-        assertFalse(createAccountView.allFieldsEntered(), "Input cannot contain comma");
-
-    }
-
-    @Test
-    public void commaInlName(){
-
-        assertFalse(createAccountView.allFieldsEntered(), "Input cannot contain comma");
-
-    }
-
-    @Test
-    public void commaInEmail(){
-
-        assertFalse(createAccountView.allFieldsEntered(), "Input cannot contain comma");
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
 
     }
 
     @Test
     public void commaInUserName(){
 
-        assertFalse(createAccountView.allFieldsEntered(), "Input cannot contain comma");
+        String [] strings = new String[7];
+        strings[0] = "Maggie Burton";
+        strings[1] = "M,burton";
+        strings[2] = "burton.maggie81@gmail.com";
+        strings[3] = "abd";
+        strings[5] = "1111222233334444";
+        strings[6] = "abc";
+
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
 
     }
 
     @Test
-    public void commaInPassword(){
+    public void commaInEmail(){
 
-        assertFalse(createAccountView.allFieldsEntered(), "Input cannot contain comma");
+        String [] strings = new String[7];
+        strings[0] = "Maggie Burton";
+        strings[1] = "Mburton";
+        strings[2] = "burton,maggie81@gmail.com";
+        strings[3] = "abd";
+        strings[5] = "1111222233334444";
+        strings[6] = "abc";
+
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
 
     }
 
+
+    @Test
+    public void commaInPassword(){
+
+        String [] strings = new String[7];
+        strings[0] = "Maggie Burton";
+        strings[1] = "Mburton";
+        strings[2] = "burton.maggie81@gmail.com";
+        strings[3] = "ab,c";
+        strings[5] = "1111222233334444";
+        strings[6] = "abc";
+
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
+
+
+    }
+
+    @Test
+    public void commaInCreditCardNumber(){
+
+        String [] strings = new String[7];
+        strings[0] = "Maggie Burton";
+        strings[1] = "Mburton";
+        strings[2] = "burton.maggie81@gmail.com";
+        strings[3] = "abc";
+        strings[5] = "1111,222233334444";
+        strings[6] = "abc";
+
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
+    }
+
+    @Test
+    public void emptyName(){
+
+        String [] strings = new String[7];
+        strings[0] = "";
+        strings[1] = "Mburton";
+        strings[2] = "burton.maggie81@gmail.com";
+        strings[3] = "abc";
+        strings[5] = "1111,222233334444";
+        strings[6] = "abc";
+
+        assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
+    }
 
 
 }
