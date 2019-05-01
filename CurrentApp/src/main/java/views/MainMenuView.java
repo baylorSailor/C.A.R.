@@ -6,6 +6,7 @@ package views;
 
 import adapters.DatabaseAdapter;
 import controllers.UserController;
+import factories.RepresentativeFactory;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
@@ -40,6 +41,7 @@ public class MainMenuView extends JFrame {
     private JButton btActiveRentals;
     private JButton btAccountDetails;
     private JButton btEditUsers;
+    private JButton btEditCars;
     private JButton btLogout;
     private JButton btHelp;
     private JButton btAddRental;
@@ -87,7 +89,7 @@ public class MainMenuView extends JFrame {
 
         gbcMainPanel.gridx = 6;
         gbcMainPanel.gridy = 10;
-        gbcMainPanel.gridwidth = 16;
+        gbcMainPanel.gridwidth = 18;
         gbcMainPanel.gridheight = 10;
         gbcMainPanel.fill = GridBagConstraints.BOTH;
         gbcMainPanel.weightx = 1;
@@ -240,9 +242,26 @@ public class MainMenuView extends JFrame {
             btEditUsers.setVisible(true);
         }
 
+        //Edit Vehicles Button
+        btEditCars = new JButton( "Edit Cars"  );
+        gbcMainPanel.gridx = 18;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btEditCars, gbcMainPanel );
+        pnMainPanel.add( btEditCars );
+        btEditCars.setVisible(false);
+        //if(UserController.getUser() instanceof RepresentativeModel) {
+            btEditCars.setVisible(true);
+        //}
+
         //Logout Button
         btLogout = new JButton( "Logout"  );
-        gbcMainPanel.gridx = 18;
+        gbcMainPanel.gridx = 20;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -255,7 +274,7 @@ public class MainMenuView extends JFrame {
 
         //Help Button
         btHelp = new JButton( "Help"  );
-        gbcMainPanel.gridx = 20;
+        gbcMainPanel.gridx = 22;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 0;
         gbcMainPanel.gridheight = 0;

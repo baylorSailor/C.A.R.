@@ -265,7 +265,7 @@ public class DatabaseAdapter {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), StandardCharsets.UTF_8);
             input.nextLine();
             String line;
 
