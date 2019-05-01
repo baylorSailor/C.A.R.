@@ -31,17 +31,18 @@ public class DatabaseAdapter {
 
     /**
      * Verifies that the strings don't have commas
+     *
      * @param strings an array containing strings to be checked
      * @return true if none contain it, false otherwise
      */
     public static boolean verifySyntax(String[] strings) {
         boolean flag = true;
-        for(String s : strings) {
-            if(s != null && s.contains(",")) {
+        for (String s : strings) {
+            if (s != null && s.contains(",")) {
                 flag = false;
                 JOptionPane.showMessageDialog(null,
                         "Information entered cannot contain commas.",
-                        "Invalid Information",JOptionPane.ERROR_MESSAGE,
+                        "Invalid Information", JOptionPane.ERROR_MESSAGE,
                         icon);
             }
         }
@@ -50,6 +51,7 @@ public class DatabaseAdapter {
 
     /**
      * Verifies if a user exists
+     *
      * @param username the username
      * @param password the password
      * @return the user if it exists
@@ -61,7 +63,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -70,16 +72,16 @@ public class DatabaseAdapter {
 
                 //If username and password match, return that user
                 if (username.equals(split[1]) && password.equals(split[3])) {
-                    switch(split[6]) {
-                        case "0" : {
+                    switch (split[6]) {
+                        case "0": {
                             user = uf.getUser(split);
                             break;
                         }
-                        case "1" : {
+                        case "1": {
                             user = af.getUser(split);
                             break;
                         }
-                        case "2" : {
+                        case "2": {
                             user = rf.getUser(split);
                             break;
                         }
@@ -88,14 +90,15 @@ public class DatabaseAdapter {
                     found = true;
                 }
             }
-        } catch(IOException a) {
-            log.log(Level.SEVERE,a.getMessage());
+        } catch (IOException a) {
+            log.log(Level.SEVERE, a.getMessage());
         }
         return user;
     }
 
     /**
      * Checks if user exists by email
+     *
      * @param email The user's email
      * @return true if user exists already, otherwise false
      */
@@ -103,7 +106,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -113,42 +116,48 @@ public class DatabaseAdapter {
                     found = true;
                 }
             }
-        } catch(IOException a) {
-            log.log(Level.SEVERE,a.getMessage());
+        } catch (IOException a) {
+            log.log(Level.SEVERE, a.getMessage());
         }
         return found;
     }
 
     /**
      * Write the user to a CSV
+     *
      * @param u the user to write
      */
-    public static void writeUser(UserModel u) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
-                    true));
-            String level;
-            if(u instanceof AdministratorModel) {
-                level = "1";
+    public static boolean writeUser(UserModel u) {
+        if (verifySyntax(u.toStringArray())) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/users.csv",
+                        true));
+                String level;
+                if (u instanceof AdministratorModel) {
+                    level = "1";
+                }
+               //TODO Add Representative
+                else {
+                    level = "0";
+                }
+                bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
+                        u.getPassword() + "," + u.getCreditType() + "," +
+                        u.getCreditCard() + "," + level + "\n");
+                bw.close();
+                return true;
+            } catch (IOException e) {
+                log.log(Level.SEVERE, e.getMessage());
             }
-//            else if(u instanceof RepresentativeLevel) {
-//                String level = "2";
-//            }
-            //TODO Add Representative
-            else {
-                level = "0";
-            }
-            bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
-                    u.getPassword() + "," + u.getCreditType() + "," +
-                    u.getCreditCard() + "," + level + "\n");
-            bw.close();
-        }catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot write " + u.toString() +
+                    " as it contains a comma.", "ERROR", JOptionPane.ERROR_MESSAGE, icon);
         }
+        return false;
     }
 
     /**
      * Update the user in CSV
+     *
      * @param oldUser the old user
      * @param newUser the new user to be written
      */
@@ -157,7 +166,7 @@ public class DatabaseAdapter {
             File file = new File("./src/main/resources/users.csv");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line, originalLine = "";
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 originalLine += line + '\n';
             }
             reader.close();
@@ -166,13 +175,14 @@ public class DatabaseAdapter {
             FileWriter writer = new FileWriter("./src/main/resources/users.csv");
             writer.write(newtext);
             writer.close();
-        }catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
         }
     }
 
     /**
      * Writes all the users in an ArrayList to CSV
+     *
      * @param arrayList the list containing UserModels
      */
     public static void writeAllUsers(ArrayList<UserModel> arrayList) {
@@ -180,50 +190,54 @@ public class DatabaseAdapter {
         try {
             FileWriter erase = new FileWriter("./src/main/resources/users.csv");
             erase.close();
-        } catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
         }
         // Add all users
-        for(UserModel u : arrayList) {
+        for (UserModel u : arrayList) {
             writeUser(u);
+
         }
     }
 
     /**
      * Save the user's profile image
+     *
      * @param u the user
      */
     public static void saveImage(UserModel u) {
-        if(CreateAccountView.getPicture() != null) {
+        if (CreateAccountView.getPicture() != null) {
             u.setPictureLocation("./src/main/resources/UserPics/" + u.getUsername() + ".png");
             File outfile = new File(u.getPictureLocation());
             try {
                 ImageIO.write(CreateAccountView.getPicture(), "png", new File(outfile.getPath()));
                 log.log(Level.INFO, "image was uploaded properly");
-            } catch(IOException | IllegalArgumentException e) {
-                log.log(Level.SEVERE,e.getMessage());
+            } catch (IOException | IllegalArgumentException e) {
+                log.log(Level.SEVERE, e.getMessage());
             }
         }
     }
 
     /**
      * Save the user's new password
+     *
      * @param newPassword the user's new password
      */
     public static void updatePassword(String newPassword) {
-        if(newPassword.contains(",")) {
+        if (newPassword.contains(",")) {
             JOptionPane.showMessageDialog(null,
                     "Information entered cannot contain commas",
-                    "Invalid Information",JOptionPane.ERROR_MESSAGE,
+                    "Invalid Information", JOptionPane.ERROR_MESSAGE,
                     icon);
         } else {
             UserController.getUser().setPassword(newPassword);
-            updateUser(UserController.getUser(),UserController.getUser());
+            updateUser(UserController.getUser(), UserController.getUser());
         }
     }
 
     /**
      * Loads the user's profile image
+     *
      * @return the BufferedImage containing the user's profile picture or sample image
      */
     public static BufferedImage loadImage() {
@@ -231,13 +245,13 @@ public class DatabaseAdapter {
         try {
             picture = ImageIO.read(new File("./src/main/resources/UserPics/" +
                     UserController.getUser().getUsername() + ".png"));
-        } catch(IOException e) {
-            log.log(Level.SEVERE,e.getMessage());
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample.png"));
                 log.log(Level.INFO, "sample.png was loaded properly");
-            } catch(IOException ee) {
-                log.log(Level.SEVERE,ee.getMessage());
+            } catch (IOException ee) {
+                log.log(Level.SEVERE, ee.getMessage());
             }
 
         }
@@ -247,26 +261,26 @@ public class DatabaseAdapter {
     /**
      * Function for reading history CSV
      */
-    public static ArrayList<HistoryModel> readHistory(){
+    public static ArrayList<HistoryModel> readHistory() {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), "uft-8");
             input.nextLine();
             String line;
 
             while (input.hasNextLine()) {
                 line = input.nextLine();
                 String[] data = line.split(",");
-                if(data[0].equalsIgnoreCase(username)) {
+                if (data[0].equalsIgnoreCase(username)) {
                     historyModelArrayList.add(new HistoryModel(data));
                 }
             }
             log.log(Level.INFO, "history.csv was loaded properly");
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            log.log(Level.SEVERE,"history.csv could not be loaded");
+            log.log(Level.SEVERE, "history.csv could not be loaded");
         }
         return historyModelArrayList;
     }
@@ -274,26 +288,26 @@ public class DatabaseAdapter {
     /**
      * Function for reading history CSV
      */
-    public static ArrayList<ActiveRentalModel> readActiveRentals(){
+    public static ArrayList<ActiveRentalModel> readActiveRentals() {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), "utf-8");
             input.nextLine();
             String line;
 
             while (input.hasNextLine()) {
                 line = input.nextLine();
                 String[] data = line.split(",");
-                if(data[0].equalsIgnoreCase(username)) {
+                if (data[0].equalsIgnoreCase(username)) {
                     activeRentals.add(new ActiveRentalModel(data));
                 }
             }
             log.log(Level.INFO, "activeRentals.csv was loaded properly");
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            log.log(Level.SEVERE,"activeRentals.csv could not be loaded");
+            log.log(Level.SEVERE, "activeRentals.csv could not be loaded");
         }
         return activeRentals;
     }
@@ -301,26 +315,26 @@ public class DatabaseAdapter {
     /**
      * Function for reading users CSV
      */
-    public static ArrayList<UserModel> readInUsers(){
+    public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
             String line;
 
             while (input.hasNextLine()) {
                 line = input.nextLine();
                 String[] data = line.split(",");
 
-                switch(data[6]) {
-                    case "0" : {
+                switch (data[6]) {
+                    case "0": {
                         userModelArrayList.add(new UserModel(data));
                         break;
                     }
-                    case "1" : {
+                    case "1": {
                         userModelArrayList.add(new AdministratorModel(data));
                         break;
                     }
-                    case "2" : {
+                    case "2": {
                         //userModelArrayList.add(new RepresentativeModel(data));
                         //break;
                         //TODO Implement Representative
@@ -329,37 +343,38 @@ public class DatabaseAdapter {
             }
             log.log(Level.INFO, "history.csv was loaded properly");
 
-        }catch(Exception e){
-            log.log(Level.SEVERE,e.getMessage());
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.getMessage());
         }
         return userModelArrayList;
     }
 
     /**
      * Loads all the cars in the CSV into a list
+     *
      * @return the CarModel array containing an all the cars
      */
     public static CarModel[] loadAllCars() {
         List<CarModel> arrayListCars = new ArrayList<>();
 
-        try{
+        try {
             Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             sc.nextLine();
-            while(sc.hasNextLine()) {
+            while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 split = line.split(",");
-                if(split.length == 15) {
+                if (split.length == 15) {
                     arrayListCars.add(new CarModel(split));
                 }
             }
             log.log(Level.INFO, "Vehicle list was loaded properly");
-        } catch(IOException a) {
+        } catch (IOException a) {
             log.log(Level.SEVERE, a.getMessage());
         }
 
-        CarModel[] modelArray = new CarModel[ arrayListCars.size() ];
+        CarModel[] modelArray = new CarModel[arrayListCars.size()];
         arrayListCars.toArray(modelArray);
         CarList = modelArray;
 
@@ -368,18 +383,19 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the makes in the vehicle list
+     *
      * @return the String array containing an all the makes
      */
     public static String[] loadAllMakes() {
         List<String> arrayListMakes = new ArrayList<>();
         arrayListMakes.add("-");
-        for(CarModel i : CarList) {
-            if(!arrayListMakes.contains(i.getMake())) {
+        for (CarModel i : CarList) {
+            if (!arrayListMakes.contains(i.getMake())) {
                 arrayListMakes.add(i.getMake());
             }
         }
 
-        String[] makes = new String[ arrayListMakes.size() ];
+        String[] makes = new String[arrayListMakes.size()];
         arrayListMakes.toArray(makes);
 
         return makes;
@@ -387,19 +403,20 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the models in the vehicle list with the selected make
+     *
      * @param selectedMake the make the user has selected
      * @return the String array containing an all the models within the provided make
      */
     public static String[] loadAllModels(String selectedMake) {
         List<String> arrayListModels = new ArrayList<>();
         arrayListModels.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && !arrayListModels.contains(i.getModel())) {
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && !arrayListModels.contains(i.getModel())) {
                 arrayListModels.add(i.getModel());
             }
         }
 
-        String[] models = new String[ arrayListModels.size() ];
+        String[] models = new String[arrayListModels.size()];
         arrayListModels.toArray(models);
 
         return models;
@@ -407,21 +424,22 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the years in the vehicle list with the selected model
-     * @param selectedMake the make the user has selected
+     *
+     * @param selectedMake  the make the user has selected
      * @param selectedModel the model the user has selected
      * @return the String array containing an all the years within the provided model
      */
     public static String[] loadAllYears(String selectedMake, String selectedModel) {
         List<String> arrayListYears = new ArrayList<>();
         arrayListYears.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
                     && !arrayListYears.contains(i.getYear().toString())) {
                 arrayListYears.add(i.getYear().toString());
             }
         }
 
-        String[] models = new String[ arrayListYears.size() ];
+        String[] models = new String[arrayListYears.size()];
         arrayListYears.toArray(models);
 
         return models;
@@ -429,22 +447,23 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected year
-     * @param selectedMake the make the user has selected
+     *
+     * @param selectedMake  the make the user has selected
      * @param selectedModel the model the user has selected
-     * @param selectedYear the year the user has selected
+     * @param selectedYear  the year the user has selected
      * @return the String array containing an all the types within the provided year and model
      */
     public static String[] loadAllTypes(String selectedMake, String selectedModel, String selectedYear) {
         List<String> arrayListTypes = new ArrayList<>();
         arrayListTypes.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
                     && i.getYear().toString().equals(selectedYear) && !arrayListTypes.contains(i.getType())) {
                 arrayListTypes.add(i.getType());
             }
         }
 
-        String[] types = new String[ arrayListTypes.size() ];
+        String[] types = new String[arrayListTypes.size()];
         arrayListTypes.toArray(types);
 
         return types;
@@ -452,18 +471,19 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected transmission
-     * @param selectedMake the make the user has selected
+     *
+     * @param selectedMake  the make the user has selected
      * @param selectedModel the model the user has selected
-     * @param selectedYear the year the user has selected
-     * @param selectedType the type the user has selected
+     * @param selectedYear  the year the user has selected
+     * @param selectedType  the type the user has selected
      * @return the String array containing an all the types within the provided year, model, and type
      */
     public static String[] loadAllTransmissions(String selectedMake, String selectedModel,
                                                 String selectedYear, String selectedType) {
         List<String> arrayListTransmissions = new ArrayList<>();
         arrayListTransmissions.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
                     && i.getYear().toString().equals(selectedYear)
                     && i.getType().equals(selectedType)
                     && !arrayListTransmissions.contains(i.getTransmission())) {
@@ -471,7 +491,7 @@ public class DatabaseAdapter {
             }
         }
 
-        String[] trans = new String[ arrayListTransmissions.size() ];
+        String[] trans = new String[arrayListTransmissions.size()];
         arrayListTransmissions.toArray(trans);
 
         return trans;
@@ -479,10 +499,11 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected interior color
-     * @param selectedMake the make the user has selected
+     *
+     * @param selectedMake  the make the user has selected
      * @param selectedModel the model the user has selected
-     * @param selectedYear the year the user has selected
-     * @param selectedType the type the user has selected
+     * @param selectedYear  the year the user has selected
+     * @param selectedType  the type the user has selected
      * @param selectedTrans the transmission the user has selected
      * @return the String array containing an all the cars within the provided year, model, type, and transmission
      */
@@ -491,8 +512,8 @@ public class DatabaseAdapter {
                                                 String selectedTrans) {
         List<String> arrayListInteriorColor = new ArrayList<>();
         arrayListInteriorColor.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
                     && i.getYear().toString().equals(selectedYear)
                     && i.getType().equals(selectedType)
                     && i.getTransmission().equals(selectedTrans)
@@ -501,7 +522,7 @@ public class DatabaseAdapter {
             }
         }
 
-        String[] trans = new String[ arrayListInteriorColor.size() ];
+        String[] trans = new String[arrayListInteriorColor.size()];
         arrayListInteriorColor.toArray(trans);
 
         return trans;
@@ -509,11 +530,12 @@ public class DatabaseAdapter {
 
     /**
      * Loads all the vehicle classes in the vehicle list with the selected exterior color
-     * @param selectedMake the make the user has selected
-     * @param selectedModel the model the user has selected
-     * @param selectedYear the year the user has selected
-     * @param selectedType the type the user has selected
-     * @param selectedTrans the transmission the user has selected
+     *
+     * @param selectedMake          the make the user has selected
+     * @param selectedModel         the model the user has selected
+     * @param selectedYear          the year the user has selected
+     * @param selectedType          the type the user has selected
+     * @param selectedTrans         the transmission the user has selected
      * @param selectedInteriorColor the interior color the user has selected
      * @return the String array containing an all the cars within the provided year, model, type,
      * transmission, and interior color
@@ -523,8 +545,8 @@ public class DatabaseAdapter {
                                                 String selectedTrans, String selectedInteriorColor) {
         List<String> arrayListExteriorColor = new ArrayList<>();
         arrayListExteriorColor.add("-");
-        for(CarModel i : CarList) {
-            if(i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
+        for (CarModel i : CarList) {
+            if (i.getMake().equals(selectedMake) && i.getModel().equals(selectedModel)
                     && i.getYear().toString().equals(selectedYear)
                     && i.getType().equals(selectedType)
                     && i.getTransmission().equals(selectedTrans)
@@ -534,7 +556,7 @@ public class DatabaseAdapter {
             }
         }
 
-        String[] trans = new String[ arrayListExteriorColor.size() ];
+        String[] trans = new String[arrayListExteriorColor.size()];
         arrayListExteriorColor.toArray(trans);
 
         return trans;
@@ -542,9 +564,31 @@ public class DatabaseAdapter {
 
     /**
      * Gets the company logo
+     *
      * @return the company logo for output
      */
     public static ImageIcon getIcon() {
         return icon;
+    }
+
+    /**
+     * Write comments to a file
+     *
+     * @param message the comment to be written
+     */
+    public static void writeComments(String message) {
+        if(message.length() != 0) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/comments.csv",
+                        true));
+                if(message.contains("\n")) {
+                    message = message.replaceAll("\n"," ");
+                }
+                bw.write("<User: " + UserController.getUser().getUsername() + "> " + message + "\n");
+                bw.close();
+            } catch (IOException e) {
+                log.log(Level.SEVERE, e.getMessage());
+            }
+        }
     }
 }

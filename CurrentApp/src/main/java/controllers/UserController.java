@@ -19,6 +19,11 @@ public class UserController {
     private static Logger log = Logger.getLogger(CAR.class.getName());
 
     static UserModel user = null;
+
+    public LoginView getLoginView() {
+        return loginView;
+    }
+
     private LoginView loginView = new LoginView();
     private MainMenuController mainMenuController = null;
     private CreateAccountView createAccountView = null;
@@ -86,7 +91,7 @@ public class UserController {
                 } else {
                     String creditType;
                     File file = new File("./src/main/resources/users.csv");
-                    if(createAccountView.allFieldsEntered()) {
+                    if(createAccountView.allFieldsEntered(createAccountView.fieldsToString())) {
                         if(createAccountView.getRbVisa().isSelected()) {
                             creditType = "Visa";
                         } else {
