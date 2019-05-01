@@ -70,6 +70,8 @@ public class MainMenuView extends JFrame {
     private JComboBox cmbInterior;
     private JComboBox cmbExterior;
 
+    public Integer carListPosition = 0;
+
     /**
      * Constructs main window screen
      */
@@ -633,16 +635,16 @@ public class MainMenuView extends JFrame {
         if(SearchList.length == 0) {
             test = new JLabel("NO MATCHING CARS! :(");
         } else {
-            test = new JLabel("<html>Make: " + SearchList[0].getMake() +
-                    "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
-                    SearchList[0].getYear().toString() + "<br/>Type: " +
-                    SearchList[0].getType() + "<br/>Transmission: " +
-                    SearchList[0].getTransmission() +
+            test = new JLabel("<html>Make: " + SearchList[carListPosition].getMake() +
+                    "<br/>Model: " + SearchList[carListPosition].getModel() + "<br/>Year: " +
+                    SearchList[carListPosition].getYear().toString() + "<br/>Type: " +
+                    SearchList[carListPosition].getType() + "<br/>Transmission: " +
+                    SearchList[carListPosition].getTransmission() +
                     "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
-                    "<br/>Miles: " + SearchList[0].getMileage().toString() +
-                    "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
-                    "<br/>Interior: " + SearchList[0].getInterior() +
-                    "<br/>Exterior: " + SearchList[0].getExterior() + "</html>");
+                    "<br/>Miles: " + SearchList[carListPosition].getMileage().toString() +
+                    "<br/>Avg MPG: " + SearchList[carListPosition].getMpgCombined() +
+                    "<br/>Interior: " + SearchList[carListPosition].getInterior() +
+                    "<br/>Exterior: " + SearchList[carListPosition].getExterior() + "</html>");
         }
         pnSearchResults.add(test);
         pnSearchResults.revalidate();
@@ -814,6 +816,14 @@ public class MainMenuView extends JFrame {
      */
     public void setSearchList(CarModel[] searchList) {
         SearchList = searchList;
+    }
+
+    /**
+     * Gets the SearchList containing CarModels
+     * @return An array containing CarModels
+     */
+    public static CarModel[] getSearchList() {
+        return SearchList;
     }
 
     /**

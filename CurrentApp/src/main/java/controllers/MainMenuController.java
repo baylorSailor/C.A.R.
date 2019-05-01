@@ -33,7 +33,6 @@ public class MainMenuController {
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsController accountDetailsController = null;
     private HelpController helpController = null;
-    private Integer carListPosition = 0;
 
     /**
      * Starts the controller for the buttons
@@ -63,6 +62,7 @@ public class MainMenuController {
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
             log.log(Level.INFO,"Refresh button clicked");
+            mainMenuView.carListPosition = 0;
             boolean match = true;
             List<CarModel> retList = new ArrayList<>();
             String[] searches = new String[7];
@@ -299,7 +299,12 @@ public class MainMenuController {
     private void leftArrowButtonPressed() {
         mainMenuView.getBtLeftButton().addActionListener(e -> {
             log.log(Level.INFO,"Left arrow button clicked");
-            //TODO Implement left arrow
+            if(mainMenuView.carListPosition == 0) {
+                mainMenuView.carListPosition = mainMenuView.getSearchList().length-1;
+            } else {
+                mainMenuView.carListPosition--;
+            }
+            mainMenuView.updateSearch();
         });
     }
 
@@ -309,7 +314,12 @@ public class MainMenuController {
     private void rightArrowButtonPressed() {
         mainMenuView.getBtRightButton().addActionListener(e -> {
             log.log(Level.INFO,"Right arrow button clicked");
-            //TODO Implement right arrow
+            if(mainMenuView.carListPosition == mainMenuView.getSearchList().length-1) {
+                mainMenuView.carListPosition = 0;
+            } else {
+                mainMenuView.carListPosition++;
+            }
+            mainMenuView.updateSearch();
         });
     }
 
