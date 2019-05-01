@@ -135,9 +135,9 @@ public class DatabaseAdapter {
                 String level;
                 if (u instanceof AdministratorModel) {
                     level = "1";
-                }
-               //TODO Add Representative
-                else {
+                } else if( u instanceof RepresentativeModel) {
+                    level = "2";
+                } else {
                     level = "0";
                 }
                 bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
@@ -335,9 +335,8 @@ public class DatabaseAdapter {
                         break;
                     }
                     case "2": {
-                        //userModelArrayList.add(new RepresentativeModel(data));
-                        //break;
-                        //TODO Implement Representative
+                        userModelArrayList.add(new RepresentativeModel(data));
+                        break;
                     }
                 }
             }
