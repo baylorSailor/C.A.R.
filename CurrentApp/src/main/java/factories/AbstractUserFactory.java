@@ -15,7 +15,7 @@ abstract public class AbstractUserFactory {
     abstract public UserModel getUser(String[] data);
 
     /**
-     * Makes a user with given data, using flyweight deisgn pattern
+     * Makes a user with given data, using flyweight design pattern
      * @param data
      * @return
      */

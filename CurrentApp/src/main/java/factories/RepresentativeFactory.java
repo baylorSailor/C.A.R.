@@ -19,6 +19,15 @@ public class RepresentativeFactory extends AbstractUserFactory {
     }
 
     /**
+     * Makes a user with given data, using flyweight design pattern
+     * @param data
+     * @return
+     */
+    public UserModel makeUser(String[] data){
+        return super.makeUser(data);
+    }
+
+    /**
      * Singleton constructor
      * @return the singleton
      */
