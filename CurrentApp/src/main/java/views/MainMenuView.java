@@ -127,17 +127,16 @@ public class MainMenuView extends JFrame {
             //if car name == TT display audi photo
             //System.out.println(SearchList[0].getModel());
             picture = ImageIO.read(new File("./src/main/resources/CarPics/dfa0e17.jpg"));
-            picture = resize(picture,150,300);
         } catch(IOException e) {
             log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
-                picture = resize(picture,150,300);
             } catch(IOException ee) {
                 log.log(Level.SEVERE,ee.getMessage());
             }
 
         } finally {
+            picture = resize(picture,150,300);
             lbPicture = new JLabel(new ImageIcon(picture));
             gbcSearchResults.gridx = 13;
             gbcSearchResults.gridy = 5;
@@ -607,7 +606,7 @@ public class MainMenuView extends JFrame {
      * Updates the Search Pane based on criteria provided
      */
     public void updateSearch() {
-        JPanel oldPanel = pnSearchResults;
+        //JPanel oldPanel = pnSearchResults;
         pnSearchResults.removeAll();
         JLabel test;
 
@@ -626,6 +625,30 @@ public class MainMenuView extends JFrame {
                     "<br/>Exterior: " + SearchList[0].getExterior() + "</html>");
         }
         pnSearchResults.add(test);
+
+        BufferedImage picture = null;
+        try {
+            //if car name == TT display audi photo
+            //System.out.println(SearchList[0].getModel());
+            String imageID = SearchList[0].getImageID();
+            System.out.println(imageID);
+            picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
+                    imageID + ".jpg"));
+        } catch(IOException e) {
+            log.log(Level.SEVERE,e.getMessage());
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+            } catch(IOException ee) {
+                log.log(Level.SEVERE,ee.getMessage());
+            }
+
+        } finally {
+            picture = resize(picture,150,300);
+            lbPicture = new JLabel(new ImageIcon(picture));
+            test.setHorizontalAlignment(SwingConstants.RIGHT);
+            pnSearchResults.add(lbPicture);
+        }
+
         pnSearchResults.revalidate();
         pnSearchResults.repaint();
     }
