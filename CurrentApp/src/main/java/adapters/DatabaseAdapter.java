@@ -365,7 +365,7 @@ public class DatabaseAdapter {
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 split = line.split(",");
-                if (split.length == 15) {
+                if (split.length == 16) {
                     arrayListCars.add(new CarModel(split));
                 }
             }

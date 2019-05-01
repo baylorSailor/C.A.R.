@@ -17,7 +17,10 @@ import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,6 +62,7 @@ public class MainMenuView extends JFrame {
     private JComboBox cmbModel;
     private JComboBox cmbType;
     private JComboBox cmbTrans;
+    private JComboBox cmbDate;
     private JSlider sdMileage;
     private JSlider sdMPG;
     private JComboBox cmbInterior;
@@ -80,10 +84,10 @@ public class MainMenuView extends JFrame {
         GridBagLayout gbSearchResults = new GridBagLayout();
         GridBagConstraints gbcSearchResults = new GridBagConstraints();
         pnSearchResults.setLayout( gbSearchResults );
-        //JScrollPane scpSearchResults = new JScrollPane( pnSearchResults );
+
         gbcMainPanel.gridx = 6;
         gbcMainPanel.gridy = 10;
-        gbcMainPanel.gridwidth = 14;
+        gbcMainPanel.gridwidth = 16;
         gbcMainPanel.gridheight = 10;
         gbcMainPanel.fill = GridBagConstraints.BOTH;
         gbcMainPanel.weightx = 1;
@@ -122,11 +126,13 @@ public class MainMenuView extends JFrame {
         try {
             //if car name == TT display audi photo
             //System.out.println(SearchList[0].getModel());
-            picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+            picture = ImageIO.read(new File("./src/main/resources/CarPics/dfa0e17.jpg"));
+            picture = resize(picture,150,300);
         } catch(IOException e) {
             log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+                picture = resize(picture,150,300);
             } catch(IOException ee) {
                 log.log(Level.SEVERE,ee.getMessage());
             }
@@ -530,7 +536,7 @@ public class MainMenuView extends JFrame {
 
         //Add to rental button
         btAddRental = new JButton( "Add Rental"  );
-        gbcMainPanel.gridx = 1;
+        gbcMainPanel.gridx = 0;
         gbcMainPanel.gridy = 22;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -540,6 +546,28 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btAddRental, gbcMainPanel );
         pnMainPanel.add( btAddRental );
+
+        //Add to date picker
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        String[] dates = new String[7];
+        for(int i = 0; i < 7; i++) {
+            calendar.add(Calendar.DATE,i);
+            Date today = calendar.getTime();
+            String str = today.toString();
+            str = str.substring(0,10);
+            dates[i] = str;
+        }
+        cmbDate = new JComboBox( dates );
+        gbcMainPanel.gridx = 2;
+        gbcMainPanel.gridy = 22;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( cmbDate, gbcMainPanel );
+        pnMainPanel.add( cmbDate );
 
         //Left arrow button
         btLeftButton = new JButton(" < ");
@@ -767,5 +795,20 @@ public class MainMenuView extends JFrame {
      */
     public void setSearchList(CarModel[] searchList) {
         SearchList = searchList;
+    }
+
+    /**
+     * Resizes the image
+     * @param img the image to be resized
+     * @param height the desired height of the image
+     * @param width the desired width of the image
+     */
+    private static BufferedImage resize(BufferedImage img, int height, int width) {
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
     }
 }
