@@ -38,6 +38,7 @@ public class MainMenuView extends JFrame {
     private JButton btAccountDetails;
     private JButton btEditUsers;
     private JButton btLogout;
+    private JButton btHelp;
     private JButton btAddRental;
     private JButton btLeftButton;
     private JButton btRightButton;
@@ -245,6 +246,19 @@ public class MainMenuView extends JFrame {
         gbcMainPanel.anchor = GridBagConstraints.NORTH;
         gbMainPanel.setConstraints( btLogout, gbcMainPanel );
         pnMainPanel.add( btLogout );
+
+        //Help Button
+        btHelp = new JButton( "Help"  );
+        gbcMainPanel.gridx = 20;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 0;
+        gbcMainPanel.gridheight = 0;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btHelp, gbcMainPanel );
+        pnMainPanel.add( btHelp );
 
         //Search Filters display
         lbFilters = new JLabel( "Search Filters"  );
@@ -634,6 +648,14 @@ public class MainMenuView extends JFrame {
      */
     public JButton getBtLogout() {
         return btLogout;
+    }
+
+    /**
+     * Button for help
+     * @return A button for help
+     */
+    public JButton getBtHelp() {
+        return btHelp;
     }
 
     /**

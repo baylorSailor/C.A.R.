@@ -32,6 +32,7 @@ public class MainMenuController {
     private HistoryView historyView = null;
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsController accountDetailsController = null;
+    private HelpController helpController = null;
     private Integer carListPosition = 0;
 
     /**
@@ -43,6 +44,7 @@ public class MainMenuController {
         activeRentalsButtonPressed();
         accountDetailsButtonPressed();
         logoutButtonPressed();
+        helpButtonPressed();
         addRentalButtonPressed();
         leftArrowButtonPressed();
         rightArrowButtonPressed();
@@ -220,15 +222,30 @@ public class MainMenuController {
                 historyView.dispose();
                 historyView = null;
             }
-            if(accountDetailsController != null) {
-                accountDetailsController.destroy();
-                accountDetailsController = null;
-            }
             if(activeRentalsView != null) {
                 activeRentalsView.dispose();
                 activeRentalsView = null;
             }
+            if(accountDetailsController != null) {
+                accountDetailsController.destroy();
+                accountDetailsController = null;
+            }
+            if(helpController != null) {
+                helpController.destroy();
+                helpController = null;
+            }
             new UserController().start();
+        });
+    }
+
+    /**
+     * Adds action listener for the help button
+     */
+    private void helpButtonPressed() {
+        mainMenuView.getBtHelp().addActionListener(e -> {
+            log.log(Level.INFO,"Help button clicked");
+            helpController = new HelpController();
+            helpController.start();
         });
     }
 
