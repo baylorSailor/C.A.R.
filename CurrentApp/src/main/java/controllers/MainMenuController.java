@@ -89,7 +89,7 @@ public class MainMenuController {
             }
 
             search = searchBuild.toString();
-            
+
             CarModel[] fullList = mainMenuView.getCarList();
             for(int i = 0; i < fullList.length; i++) {
                 String carString = fullList[i].searchString();
