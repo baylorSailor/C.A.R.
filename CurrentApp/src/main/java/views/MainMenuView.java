@@ -652,7 +652,6 @@ public class MainMenuView extends JFrame {
             //if car name == TT display audi photo
             //System.out.println(SearchList[0].getModel());
             String imageID = SearchList[carListPosition].getImageID();
-            System.out.println(imageID);
             picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
                     imageID + ".jpg"));
         } catch(IOException e) {
