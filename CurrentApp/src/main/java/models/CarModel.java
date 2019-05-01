@@ -163,6 +163,10 @@ public class CarModel {
                 mpgCombined + "," + interior + "," + exterior + "," + imageID + "," + state;
     }
 
+    public String searchString() {
+        return make + model + year + type + transmission + interior + exterior;
+    }
+
     /**
      * Gets price of the car
      * @return the car's price
