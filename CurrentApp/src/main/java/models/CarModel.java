@@ -5,6 +5,15 @@ package models;
  */
 public class CarModel {
 
+    private static final int AVAILABLE = 0;
+    private static final int RENTED = 1;
+    private static final int RESERVED = 2;
+
+    /**
+     * Car state
+     */
+    private Integer state;
+
     /**
      * Car price
      */
@@ -100,6 +109,7 @@ public class CarModel {
         this.interior = data[12];
         this.exterior = data[13];
         this.imageID = data[14];
+        this.state = AVAILABLE;
     }
 
     /**
@@ -139,6 +149,7 @@ public class CarModel {
         this.interior = interior;
         this.exterior = exterior;
         this.imageID = imageID;
+        this.state = AVAILABLE;
     }
 
     /**
@@ -149,7 +160,7 @@ public class CarModel {
         return price + "," + mileage + "," + make + "," + model + "," +
                 fuelType + "," + year + "," + type + "," + transmission +
                 "," + cylinders + "," + mpgCity + "," + mpgHighway + "," +
-                mpgCombined + "," + interior + "," + exterior + "," + imageID;
+                mpgCombined + "," + interior + "," + exterior + "," + imageID + "," + state;
     }
 
     public String searchString() {
@@ -394,5 +405,21 @@ public class CarModel {
      */
     public void setImageID(String imageID) {
         this.imageID = imageID;
+    }
+
+    /**
+     * Sets the state of the car
+     * @param state the current state of the car
+     */
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    /**
+     * Gets state of the car
+     * @return the car's current state
+     */
+    public Integer getState() {
+        return state;
     }
 }

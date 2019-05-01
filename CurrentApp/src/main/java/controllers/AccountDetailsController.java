@@ -110,7 +110,7 @@ public class AccountDetailsController {
         accountDetailsView.getBtChangeInfoInfo().addActionListener(e -> {
             log.log(Level.INFO,"Change card info button clicked");
             String newCardType = (String) JOptionPane.showInputDialog(null,
-                    "Please enter your new card type:",
+                    "Please enter your new card type (only Visa & MasterCard accepted):",
                     "New Card Type",
                     JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon(),null,"");
             if(newCardType != null && (newCardType.equalsIgnoreCase("MasterCard") ||
