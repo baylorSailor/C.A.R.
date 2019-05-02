@@ -1,6 +1,6 @@
 import adapters.DatabaseAdapter;
 import models.UserModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
@@ -59,8 +59,7 @@ public class DatabaseAdapterTester {
     @Test
     public void IncorrectCreditCardType(){
         assertFalse(data.writeUser(new UserModel("maggie burton","burton_maggie",
-                        "burton.maggie81@gmail.com","abcdefg","American Express","111122223333444")),
+                        "burton.maggie81@gmail.com","abcdefg","American Express","1,11122223333444")),
                 "Credit Card cannot contain a comma");
     }
-
 }

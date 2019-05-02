@@ -1,8 +1,7 @@
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import views.CreateAccountView;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CreateAccountViewTest {
     protected final CreateAccountView createAccountView = new CreateAccountView();

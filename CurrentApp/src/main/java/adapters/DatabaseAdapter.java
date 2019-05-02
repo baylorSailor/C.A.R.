@@ -63,7 +63,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -106,7 +106,7 @@ public class DatabaseAdapter {
         boolean found = false;
         email = email.toLowerCase();
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -265,7 +265,7 @@ public class DatabaseAdapter {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), "uft-8");
+            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), StandardCharsets.UTF_8);
             input.nextLine();
             String line;
 
@@ -292,7 +292,7 @@ public class DatabaseAdapter {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), "utf-8");
+            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), StandardCharsets.UTF_8);
             input.nextLine();
             String line;
 
@@ -318,7 +318,7 @@ public class DatabaseAdapter {
     public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
+            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
 
             while (input.hasNextLine()) {
