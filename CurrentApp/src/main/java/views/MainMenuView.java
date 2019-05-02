@@ -160,7 +160,7 @@ public class MainMenuView extends JFrame {
         if(UserController.getUser() instanceof AdministratorModel) {
             lbLoggedInAs.setForeground(Color.red);
         } else if(UserController.getUser() instanceof RepresentativeModel) {
-            lbLoggedInAs.setForeground(Color.CYAN);
+            lbLoggedInAs.setForeground(Color.pink);
         }
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
@@ -629,7 +629,6 @@ public class MainMenuView extends JFrame {
      * Updates the Search Pane based on criteria provided
      */
     public void updateSearch() {
-        //JPanel oldPanel = pnSearchResults;
         pnSearchResults.removeAll();
         JLabel test;
 
@@ -651,8 +650,6 @@ public class MainMenuView extends JFrame {
 
         BufferedImage picture = null;
         try {
-            //if car name == TT display audi photo
-            //System.out.println(SearchList[0].getModel());
             String imageID = SearchList[carListPosition].getImageID();
             picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
                     imageID + ".jpg"));
@@ -848,6 +845,13 @@ public class MainMenuView extends JFrame {
      */
     public CarModel[] getCarList() {
         return CarList;
+    }
+
+    /** Sets CarModel list for searching
+     * @param carList the Car List to be set
+     */
+    public static void setCarList(CarModel[] carList) {
+        CarList = carList;
     }
 
     /**

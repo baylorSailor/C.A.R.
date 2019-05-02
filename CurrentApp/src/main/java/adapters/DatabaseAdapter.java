@@ -204,6 +204,31 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Update the car in CSV
+     *
+     * @param newCar the new car to be written
+     * @param oldCar the old car
+     */
+    public static void updateCar(CarModel oldCar, CarModel newCar) {
+        try {
+            File file = new File("./src/main/resources/vehiclesSmall.csv");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line, originalLine = "";
+            while ((line = reader.readLine()) != null) {
+                originalLine += line + '\n';
+            }
+            reader.close();
+
+            String newtext = originalLine.replaceAll(oldCar.getPrice() + "," + oldCar.getMileage() + "(.*)", newCar.toString());
+            FileWriter writer = new FileWriter("./src/main/resources/vehiclesSmall.csv");
+            writer.write(newtext);
+            writer.close();
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+    }
+
+    /**
      * Writes all the users in an ArrayList to CSV
      *
      * @param arrayList the list containing UserModels
