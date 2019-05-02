@@ -70,6 +70,7 @@ public class MainMenuView extends JFrame {
     private JComboBox cmbInterior;
     private JComboBox cmbExterior;
 
+    public Date[] datesArray = new Date[7];
     public Integer carListPosition = 0;
 
     /**
@@ -158,6 +159,8 @@ public class MainMenuView extends JFrame {
         Font f = lbLoggedInAs.getFont();
         if(UserController.getUser() instanceof AdministratorModel) {
             lbLoggedInAs.setForeground(Color.red);
+        } else if(UserController.getUser() instanceof RepresentativeModel) {
+            lbLoggedInAs.setForeground(Color.CYAN);
         }
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
@@ -568,11 +571,11 @@ public class MainMenuView extends JFrame {
 
         //Add to date picker
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        String[] dates = new String[7];
+        String [] dates = new String[7];
         for(int i = 0; i < 7; i++) {
-            calendar.add(Calendar.DATE,i);
-            Date today = calendar.getTime();
-            String str = today.toString();
+            calendar.add(Calendar.DATE,1);
+            datesArray[i] = calendar.getTime();
+            String str = datesArray[i].toString();
             str = str.substring(0,10);
             dates[i] = str;
         }
@@ -798,6 +801,14 @@ public class MainMenuView extends JFrame {
      */
     public JComboBox getCmbTrans() {
         return cmbTrans;
+    }
+
+    /**
+     * ComboBox for the selected date
+     * @return A ComboBox for the selected date
+     */
+    public JComboBox getCmbDate() {
+        return cmbDate;
     }
 
     /**
