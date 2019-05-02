@@ -223,7 +223,6 @@ public class DatabaseAdapter {
         // Add all users
         for (UserModel u : arrayList) {
             writeUser(u);
-
         }
     }
 
