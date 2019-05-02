@@ -101,7 +101,6 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( pnSearchResults );
 
         //Test label in the main window
-        //TODO Make this work
         CarList = DatabaseAdapter.loadAllCars();
         SearchList = DatabaseAdapter.loadInitialSearch();
         JLabel test = new JLabel( "<html>Make: " + SearchList[0].getMake() +
