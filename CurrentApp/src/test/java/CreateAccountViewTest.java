@@ -1,16 +1,11 @@
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import views.CreateAccountView;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateAccountViewTest {
-    protected CreateAccountView createAccountView = null;
-
-    @BeforeEach
-    void init(){createAccountView = new CreateAccountView();}
-
+    protected final CreateAccountView createAccountView = new CreateAccountView();
 
     @Test
     public void commaInName(){
@@ -22,7 +17,6 @@ public class CreateAccountViewTest {
         strings[4] = "Visa";
         strings[5] = "1111222233334444";
         strings[6] = "abc";
-        //createAccountView.allFieldsEntered(strings);
 
         assertFalse(createAccountView.allFieldsEntered(strings), "Input cannot contain comma");
 
