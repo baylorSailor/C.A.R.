@@ -41,6 +41,7 @@ public class AccountDetailsView extends JFrame {
         pnAccountDetails.setLayout( gbAccountDetails );
 
         BufferedImage picture = DatabaseAdapter.loadImage();
+        picture = MainMenuView.resize(picture,240,240);
         lbPicture = new JLabel(new ImageIcon(picture));
         add(lbPicture);
         gbcAccountDetails.gridx = 5;
@@ -78,8 +79,7 @@ public class AccountDetailsView extends JFrame {
         gbAccountDetails.setConstraints( lbUsername, gbcAccountDetails );
         pnAccountDetails.add( lbUsername );
 
-        lbEmail = new JLabel( "Email: " + UserController.getUser().getEmail()
-                + "                ");
+        lbEmail = new JLabel( "Email: " + UserController.getUser().getEmail());
         gbcAccountDetails.gridx = 0;
         gbcAccountDetails.gridy = 4;
         gbcAccountDetails.gridwidth = 1;
@@ -112,7 +112,7 @@ public class AccountDetailsView extends JFrame {
         }
         lb.insert(0,"Credit Card Number: ");
 
-        lbCreditCardNumber = new JLabel( lb.toString() );
+        lbCreditCardNumber = new JLabel( lb.toString() + "                " );
         gbcAccountDetails.gridx = 0;
         gbcAccountDetails.gridy = 6;
         gbcAccountDetails.gridwidth = 1;

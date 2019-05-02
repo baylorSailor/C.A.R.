@@ -877,7 +877,7 @@ public class MainMenuView extends JFrame {
      * @param width the desired width of the image
      * @return resized image
      */
-    private static BufferedImage resize(BufferedImage img, int height, int width) {
+    public static BufferedImage resize(BufferedImage img, int height, int width) {
         Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = resized.createGraphics();

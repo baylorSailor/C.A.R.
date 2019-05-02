@@ -8,7 +8,6 @@ import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;

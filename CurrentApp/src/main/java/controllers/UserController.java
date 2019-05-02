@@ -97,7 +97,7 @@ public class UserController {
                         } else {
                             creditType = "MasterCard";
                         }
-                        user = new UserModel(createAccountView.getTfFirstName().getText() +
+                        user = new UserModel(createAccountView.getTfFirstName().getText() + " " +
                                 createAccountView.getTfLastName().getText(),createAccountView.getTfUserName().getText(),
                                 createAccountView.getTfEmail().getText(),createAccountView.getTfPassword().getText(),
                                 creditType,createAccountView.getTfCreditCardNumber().getText());
