@@ -54,6 +54,7 @@ public class MainMenuController {
         transmissionSelected();
         interiorColorSelected();
         editUsersButtonPressed();
+        editCarsButtonPressed();
     }
 
     /**
@@ -186,6 +187,17 @@ public class MainMenuController {
             log.log(Level.INFO,"Edit Users button clicked");
             EditUsersController editUsersController = new EditUsersController();
             editUsersController.start();
+        });
+    }
+
+    /**
+     * Adds action listener for the edit cars button
+     */
+    private void editCarsButtonPressed() {
+        mainMenuView.getBtEditCars().addActionListener(e -> {
+            log.log(Level.INFO,"Edit Cars button clicked");
+            EditCarsController editCarsController = new EditCarsController();
+            editCarsController.start();
         });
     }
 

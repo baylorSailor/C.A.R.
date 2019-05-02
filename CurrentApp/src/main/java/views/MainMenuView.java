@@ -6,7 +6,6 @@ package views;
 
 import adapters.DatabaseAdapter;
 import controllers.UserController;
-import factories.RepresentativeFactory;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
@@ -127,9 +126,8 @@ public class MainMenuView extends JFrame {
 
         BufferedImage picture = null;
         try {
-            //if car name == TT display audi photo
-            //System.out.println(SearchList[0].getModel());
-            picture = ImageIO.read(new File("./src/main/resources/CarPics/dfa0e17.jpg"));
+            picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
+                    SearchList[0].getImageID() + ".jpg"));
         } catch(IOException e) {
             log.log(Level.SEVERE,e.getMessage());
             try {
@@ -702,6 +700,14 @@ public class MainMenuView extends JFrame {
      */
     public JButton getBtAccountDetails() {
         return btAccountDetails;
+    }
+
+    /**
+     * Button for edit cars
+     * @return A button for edit cars
+     */
+    public JButton getBtEditCars() {
+        return btEditCars;
     }
 
     /**

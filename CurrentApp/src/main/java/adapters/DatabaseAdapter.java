@@ -1,5 +1,7 @@
 package adapters;
 
+import com.sun.tools.javac.Main;
+import controllers.MainMenuController;
 import controllers.UserController;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
@@ -7,6 +9,7 @@ import factories.UserFactory;
 import main.CAR;
 import models.*;
 import views.CreateAccountView;
+import views.MainMenuView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -123,6 +126,30 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Write the car to a CSV
+     *
+     * @param u the car to write
+     */
+    public static boolean writeCar(CarModel u) {
+        if (verifySyntax(u.toStringArray())) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/vehiclesSmall.csv",
+                        true));
+                String level;
+                bw.write(u.toString() + "\n");
+                bw.close();
+                return true;
+            } catch (IOException e) {
+                log.log(Level.SEVERE, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot write " + u.toString() +
+                    " as it contains a comma.", "ERROR", JOptionPane.ERROR_MESSAGE, icon);
+        }
+        return false;
+    }
+
+    /**
      * Write the user to a CSV
      *
      * @param u the user to write
@@ -197,6 +224,25 @@ public class DatabaseAdapter {
         for (UserModel u : arrayList) {
             writeUser(u);
 
+        }
+    }
+
+    /**
+     * Writes all the cars in an ArrayList to CSV
+     *
+     * @param arrayList the list containing CarModels
+     */
+    public static void writeAllCars(ArrayList<CarModel> arrayList) {
+        // Erase all cars
+        try {
+            FileWriter erase = new FileWriter("./src/main/resources/vehiclesSmall.csv");
+            erase.close();
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+        // Add all cars
+        for (CarModel c : arrayList) {
+            writeCar(c);
         }
     }
 
@@ -318,7 +364,7 @@ public class DatabaseAdapter {
     public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
+            Scanner input = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
 
             while (input.hasNextLine()) {
@@ -346,6 +392,29 @@ public class DatabaseAdapter {
             log.log(Level.SEVERE, e.getMessage());
         }
         return userModelArrayList;
+    }
+
+    /**
+     * Function for reading cars CSV
+     */
+    public static ArrayList<CarModel> readInCars() {
+        ArrayList<CarModel> carModelArrayList = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
+            String line;
+            input.nextLine();
+            while (input.hasNextLine()) {
+                line = input.nextLine();
+                System.out.println(line);
+                String[] data = line.split(",");
+                carModelArrayList.add(new CarModel(data));
+            }
+            log.log(Level.INFO, "cars.csv was loaded properly");
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+        return carModelArrayList;
     }
 
     /**
