@@ -1,6 +1,6 @@
 import adapters.DatabaseAdapter;
 import models.UserModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
@@ -51,6 +51,15 @@ public class DatabaseAdapterTester {
     public void commaInCreditCard(){
         assertFalse(data.writeUser(new UserModel("maggie burton","burton_maggie",
                         "burton.maggie81@gmail.com","abcdefg","Visa","1111,22223333444")),
+                "Credit Card cannot contain a comma");
+    }
+
+
+    @DisplayName("Should not save user if credit card type is not MasterCard or Visa")
+    @Test
+    public void IncorrectCreditCardType(){
+        assertFalse(data.writeUser(new UserModel("maggie burton","burton_maggie",
+                        "burton.maggie81@gmail.com","abcdefg","American Express","1,11122223333444")),
                 "Credit Card cannot contain a comma");
     }
 }
