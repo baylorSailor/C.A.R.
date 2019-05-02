@@ -21,7 +21,7 @@ public class EditUsersTableModel extends AbstractTableModel {
 
     /**
      * Constructs a new list of users for the table
-     * @param f
+     * @param f the other array list
      */
     public EditUsersTableModel(ArrayList<UserModel> f) {
         rows = new ArrayList<>(f);

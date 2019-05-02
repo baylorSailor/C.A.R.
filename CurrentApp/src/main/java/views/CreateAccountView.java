@@ -366,6 +366,7 @@ public class CreateAccountView extends JFrame {
     }
     /**
      * Checks if all fields have been entered for a new account.
+     * @param  strings the fields
      * @return true if all fields have been entered, otherwise false.
      */
     public boolean allFieldsEntered(String [] strings) {

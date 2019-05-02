@@ -18,6 +18,7 @@ public class EditUsersView extends JFrame {
 
     /**
      * Constructs the window for editing users within the database
+     * @param table The editUsers table
      */
     public EditUsersView(JTable table) {
         super( "Edit Users" );

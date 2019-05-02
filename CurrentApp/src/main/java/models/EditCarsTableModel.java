@@ -25,7 +25,7 @@ public class EditCarsTableModel extends AbstractTableModel {
 
     /**
      * Constructs a new list of cars for the table
-     * @param f
+     * @param f the other array list
      */
     public EditCarsTableModel(ArrayList<CarModel> f) {
         rows = new ArrayList<>(f);
@@ -236,6 +236,7 @@ public class EditCarsTableModel extends AbstractTableModel {
 
     /**
      * Removes a row
+     * @param index the index to delete
      */
     public void delRow(int index) {
         rows.remove(index);

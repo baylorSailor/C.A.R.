@@ -32,8 +32,8 @@ public class AdministratorFactory extends AbstractUserFactory {
 
     /**
      * Makes a user with given data, using flyweight design pattern
-     * @param data
-     * @return
+     * @param data the user data
+     * @return the userModel
      */
     public UserModel makeUser(String[] data){
         return super.makeUser(data);
