@@ -8,6 +8,7 @@ import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
@@ -33,6 +34,8 @@ public class MainMenuController {
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsController accountDetailsController = null;
     private HelpController helpController = null;
+    private EditUsersController editUsersController = null;
+    private EditCarsController editCarsController = null;
 
     /**
      * Starts the controller for the buttons
@@ -189,7 +192,7 @@ public class MainMenuController {
     private void editUsersButtonPressed() {
         mainMenuView.getBtEditUsers().addActionListener(e -> {
             log.log(Level.INFO,"Edit Users button clicked");
-            EditUsersController editUsersController = new EditUsersController();
+            editUsersController = new EditUsersController();
             editUsersController.start();
         });
     }
@@ -200,7 +203,7 @@ public class MainMenuController {
     private void editCarsButtonPressed() {
         mainMenuView.getBtEditCars().addActionListener(e -> {
             log.log(Level.INFO,"Edit Cars button clicked");
-            EditCarsController editCarsController = new EditCarsController();
+            editCarsController = new EditCarsController();
             editCarsController.start();
         });
     }
@@ -229,6 +232,14 @@ public class MainMenuController {
                 helpController.destroy();
                 helpController = null;
             }
+            if(editUsersController != null) {
+                editUsersController.destroy();
+                editUsersController = null;
+            }
+            if(editCarsController != null) {
+                editCarsController.destroy();
+                editCarsController = null;
+            }
             new UserController().start();
         });
     }
@@ -250,9 +261,6 @@ public class MainMenuController {
     private void addRentalButtonPressed() {
         mainMenuView.getBtAddRental().addActionListener(e -> {
             log.log(Level.INFO,"Add Rental button clicked");
-            //if the car is not already in active rentals then do all this
-            //else then don't add it unless we want duplicates
-            //boolean failFlag = false;
 
             String username = UserController.getUser().getUsername();
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -263,39 +271,11 @@ public class MainMenuController {
                             + " " + mainMenuView.getSearchList()[mainMenuView.carListPosition].getModel()
                             + " " + mainMenuView.getSearchList()[mainMenuView.carListPosition].getYear() + "] has been added to your active rentals.",
                     "Car Added",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
-//            String mk = (String)(mainMenuView.getCmbMake().getSelectedItem());
-//            String mo = (String)(mainMenuView.getCmbModel().getSelectedItem());
-//            String yr = (String)(mainMenuView.getCmbYear().getSelectedItem());
-//            String tp = (String)(mainMenuView.getCmbType().getSelectedItem());
-//            String tr = (String)(mainMenuView.getCmbTrans().getSelectedItem());
-//            String intc = (String)(mainMenuView.getCmbInterior().getSelectedItem());
-//            String ext = (String)(mainMenuView.getCmbExterior().getSelectedItem());
-//            String mil = username + "," + date + "," + mk + "," + mo + "," + yr + "\n";
-//            try {
-//                if (mk.equals("-") || mo.equals("-") || yr.equals("-") || tp.equals("-")
-//                        || tr.equals("-") || intc.equals("-") || ext.equals("-")) {
-//                    failFlag = true;
-//                }
-//            } catch (NullPointerException p){
-//                log.log(Level.SEVERE,p.getMessage());
-//            }
-//            if(!failFlag) {
-//                JOptionPane.showMessageDialog(null,
-//                        "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
-//                        "Car Added",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
-//            } else {
-//                JOptionPane.showMessageDialog(null,"None " +
-//                        "of the fields can be left blank","ERROR",JOptionPane.ERROR_MESSAGE,
-//                        DatabaseAdapter.getIcon());
-//            }
-            //testing
-//            JOptionPane.showMessageDialog(null,
-//                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
-//                    "Confirmation",
-//                    JOptionPane.INFORMATION_MESSAGE,
-//                    icon);
-
-            // Add selected car to Active Rentals (Write to csv file)
+            CarModel car = mainMenuView.getSearchList()[mainMenuView.carListPosition];
+            car.setState(2);
+            DatabaseAdapter.updateCar(car,car);
+            mainMenuView.setCarList(DatabaseAdapter.loadAllCars());
+            mainMenuView.getBtRefresh().doClick();
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
                         true));

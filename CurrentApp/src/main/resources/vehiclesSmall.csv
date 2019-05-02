@@ -1,7 +1,7 @@
 Price,Mileage,Make,Model,FuelType,Year,Type,Transmission,EngineCylinders,MPGCity,MPGHighway,MPGcombined,Interior,Exterior,ImageID,State
 37069,88278,Dodge,Avenger,Regular,2013,Sedan,Automatic 6-spd,6,19,29,24,Black,Silver,dfa0e17,1
-27957,61260,Audi,TT,Premium,2008,Coupe,Automatic 5-spd,6,23,31,27,Black,Silver,35b2878,0
-76046,173867,Lincoln,MKZ,Regular,2015,Sedan,Automatic 6-spd,6,22,33,28,Black,Beige,00c9a9d,0
+27957,61260,Audi,TT,Premium,2008,Coupe,Automatic 5-spd,6,23,31,27,Black,Silver,35b2878,2
+76046,173867,Lincoln,MKZ,Regular,2015,Sedan,Automatic 6-spd,6,22,33,28,Black,Beige,00c9a9d,2
 73470,245116,Lincoln,MKX,Regular,2008,SUV,Automatic 6-spd,6,16,24,20,Beige,Off-White,320c886,0
 90177,152185,Dodge,Viper,Premium,2005,Coupe,Manual 6-spd,10,11,19,15,Grey,Silver,6a6688a,1
 88999,196169,Acura,NSX,Premium,2006,Coupe,Automatic 4-spd,6,15,22,18,Red,Yellow,d37fc9e,0

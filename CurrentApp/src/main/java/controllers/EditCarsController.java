@@ -63,4 +63,15 @@ public class EditCarsController {
             }
         });
     }
+
+    /**
+     * Ensures that the view is disposed of if Logout button is clicked
+     */
+    public void destroy() {
+        log.log(Level.INFO,"Edit Cars Controller has been destroyed");
+        if(editCarsView != null) {
+            editCarsView.dispose();
+            editCarsView = null;
+        }
+    }
 }

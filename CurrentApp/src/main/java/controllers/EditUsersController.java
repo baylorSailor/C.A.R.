@@ -39,4 +39,15 @@ public class EditUsersController {
             DatabaseAdapter.writeAllUsers(model.getRows());
         });
     }
+
+    /**
+     * Ensures that the view is disposed of if Logout button is clicked
+     */
+    public void destroy() {
+        log.log(Level.INFO,"Edit Users Controller has been destroyed");
+        if(editUsersView != null) {
+            editUsersView.dispose();
+            editUsersView = null;
+        }
+    }
 }
