@@ -1,7 +1,5 @@
 package adapters;
 
-import com.sun.tools.javac.Main;
-import controllers.MainMenuController;
 import controllers.UserController;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
@@ -9,7 +7,6 @@ import factories.UserFactory;
 import main.CAR;
 import models.*;
 import views.CreateAccountView;
-import views.MainMenuView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -326,6 +323,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all HistoryModels read
      */
     public static ArrayList<HistoryModel> readHistory() {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
@@ -353,6 +352,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all ActiveRentalModels read from file
      */
     public static ArrayList<ActiveRentalModel> readActiveRentals() {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
@@ -380,6 +381,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading users CSV
+     *
+     * @return the ArrayList of all UserModels read from the file
      */
     public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
@@ -416,6 +419,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading cars CSV
+     *
+     * @return the ArrayList of all CarModels read from the file
      */
     public static ArrayList<CarModel> readInCars() {
         ArrayList<CarModel> carModelArrayList = new ArrayList<>();
