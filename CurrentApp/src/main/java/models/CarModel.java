@@ -129,6 +129,7 @@ public class CarModel {
      * @param interior interior color
      * @param exterior exterior color
      * @param imageID image ID of display picture
+     * @param state the status of the car
      */
     public CarModel(Integer price, Integer mileage, String make, String model,
                     String fuelType, Integer year, String type, String transmission,

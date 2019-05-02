@@ -125,6 +125,7 @@ public class DatabaseAdapter {
      * Write the car to a CSV
      *
      * @param u the car to write
+     * @return true if car is written, otherwise false
      */
     public static boolean writeCar(CarModel u) {
         if (verifySyntax(u.toStringArray())) {
@@ -149,6 +150,7 @@ public class DatabaseAdapter {
      * Write the user to a CSV
      *
      * @param u the user to write
+     * @return true if user is writter, otherwise false
      */
     public static boolean writeUser(UserModel u) {
         if (verifySyntax(u.toStringArray())) {
@@ -247,6 +249,7 @@ public class DatabaseAdapter {
      * Verifies that a car isn't empty
      *
      * @param c the CarModel to be checked for being empty
+     * @return true if car is good, otherwise false
      */
     public static boolean verifyCar(CarModel c) {
         String [] arr = c.toStringArray();

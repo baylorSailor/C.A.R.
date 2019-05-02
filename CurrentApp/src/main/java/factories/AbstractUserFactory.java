@@ -16,8 +16,8 @@ abstract public class AbstractUserFactory {
 
     /**
      * Makes a user with given data, using flyweight design pattern
-     * @param data
-     * @return
+     * @param data the user data
+     * @return the userModel
      */
     public UserModel makeUser(String[] data){
         UserModel user = null;

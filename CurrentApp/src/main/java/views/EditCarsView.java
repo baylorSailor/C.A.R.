@@ -20,6 +20,7 @@ public class EditCarsView extends JFrame {
 
     /**
      * Constructs the window for editing cars within the database
+     * @param table The editCars window
      */
     public EditCarsView(JTable table) {
         super( "Edit Cars" );

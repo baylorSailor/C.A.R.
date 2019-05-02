@@ -343,7 +343,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Make & changes the models
+     * Adds action listener for the selected Make and changes the models
      */
     private void makeSelected() {
         mainMenuView.getCmbMake().addActionListener(e -> {
@@ -361,7 +361,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Model & changes the years
+     * Adds action listener for the selected Model and changes the years
      */
     private void modelSelected() {
         mainMenuView.getCmbModel().addActionListener(e -> {
@@ -381,7 +381,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Year & changes the types
+     * Adds action listener for the selected Year and changes the types
      */
     private void yearSelected() {
         mainMenuView.getCmbYear().addActionListener(e -> {
@@ -402,7 +402,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Type & changes the transmission
+     * Adds action listener for the selected Type and changes the transmission
      */
     private void typeSelected() {
         mainMenuView.getCmbType().addActionListener(e -> {
@@ -424,7 +424,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected Transmission & changes the interior color
+     * Adds action listener for the selected Transmission and changes the interior color
      */
     private void transmissionSelected() {
         mainMenuView.getCmbTrans().addActionListener(e -> {
@@ -447,7 +447,7 @@ public class MainMenuController {
     }
 
     /**
-     * Adds action listener for the selected interior color & changes the exterior color
+     * Adds action listener for the selected interior color and changes the exterior color
      */
     private void interiorColorSelected() {
         mainMenuView.getCmbInterior().addActionListener(e -> {
@@ -472,6 +472,7 @@ public class MainMenuController {
 
     /**
      * Clears the criteria of all following search parameters based on which "-" is selected
+     * @param selected The selected criteria
      */
     private void clearCriteria(int selected) {
         log.log(Level.INFO,"Clearing all following criteria");

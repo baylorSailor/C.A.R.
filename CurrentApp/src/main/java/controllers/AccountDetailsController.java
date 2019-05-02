@@ -167,6 +167,8 @@ public class AccountDetailsController {
 
     /**
      * Ensures that the password is the correct length
+     * @param password the password
+     * @return true if password length is good, otherwise false
      */
     private boolean verifyPasswordLength(String password) {
         return password.length() >= 7;
