@@ -1,9 +1,9 @@
 Price,Mileage,Make,Model,FuelType,Year,Type,Transmission,EngineCylinders,MPGCity,MPGHighway,MPGcombined,Interior,Exterior,ImageID,State
-37069,88278,Dodge,Avenger,Regular,2013,Sedan,Automatic 6-spd,6,19,29,24,Black,Silver,dfa0e17,0
+37069,88278,Dodge,Avenger,Regular,2013,Sedan,Automatic 6-spd,6,19,29,24,Black,Silver,dfa0e17,1
 27957,61260,Audi,TT,Premium,2008,Coupe,Automatic 5-spd,6,23,31,27,Black,Silver,35b2878,0
 76046,173867,Lincoln,MKZ,Regular,2015,Sedan,Automatic 6-spd,6,22,33,28,Black,Beige,00c9a9d,0
 73470,245116,Lincoln,MKX,Regular,2008,SUV,Automatic 6-spd,6,16,24,20,Beige,Off-White,320c886,0
-90177,152185,Dodge,Viper,Premium,2005,Coupe,Manual 6-spd,10,11,19,15,Grey,Silver,6a6688a,0
+90177,152185,Dodge,Viper,Premium,2005,Coupe,Manual 6-spd,10,11,19,15,Grey,Silver,6a6688a,1
 88999,196169,Acura,NSX,Premium,2006,Coupe,Automatic 4-spd,6,15,22,18,Red,Yellow,d37fc9e,0
 29808,217143,Acura,NSX,Premium,2002,Coupe,Manual 6-spd,6,15,22,18,Beige,Green,c98244b,0
 39259,132006,BMW,M Coupe,Premium,2001,Coupe,Manual 5-spd,6,17,23,19,Red,Orange,e4891b7,0
@@ -16,7 +16,7 @@ Price,Mileage,Make,Model,FuelType,Year,Type,Transmission,EngineCylinders,MPGCity
 74265,63471,BMW,Z8,Premium,2017,Coupe,Manual 6-spd,8,12,19,15,Beige,Orange,e2f052e,0
 96624,246081,Chevrolet,Corvette,Premium,2008,Coupe,Automatic 4-spd,8,15,23,18,Red,Purple,75d586e,0
 84613,37778,Chevrolet,Corvette,Premium,2019,Coupe,Manual 6-spd,8,16,25,19,Black,Black,ee19232,0
-9996,205761,Dodge,Viper Convertible,Premium,2009,Coupe,Manual 6-spd,10,11,19,14,Grey,White,d928fc7,0
+9996,205761,Dodge,Viper Convertible,Premium,2009,Coupe,Manual 6-spd,10,11,19,14,Grey,White,d928fc7,1
 39398,247739,Ferrari,360 Modena/Spider,Premium,2006,Coupe,Manual 6-spd,8,10,15,11,Beige,Yellow,1f85adb,0
 58773,100363,Ferrari,360 Modena/Spider,Premium,2015,Coupe,Automatic (S6),8,10,15,11,Red,Green,8d98d06,0
 47886,163720,Ferrari,550 Maranello,Premium,2009,Coupe,Manual 6-spd,12,8,12,9,Black,Orange,7ab562d,0
