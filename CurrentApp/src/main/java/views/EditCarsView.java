@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Window for EditCars
+ */
 public class EditCarsView extends JFrame {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
