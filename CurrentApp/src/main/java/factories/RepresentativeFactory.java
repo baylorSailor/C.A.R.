@@ -1,5 +1,6 @@
 package factories;
 
+import models.RepresentativeModel;
 import models.UserModel;
 
 /**
@@ -14,8 +15,7 @@ public class RepresentativeFactory extends AbstractUserFactory {
      * @return the representative
      */
     public UserModel getUser(String[] data) {
-        return null;
-        //return new RepresentativeModel(data[0], data[1], data[2], data[3], data[4], data[5]);
+        return new RepresentativeModel(data[0], data[1], data[2], data[3], data[4], data[5]);
     }
 
     /**

@@ -1,7 +1,5 @@
 package adapters;
 
-import com.sun.tools.javac.Main;
-import controllers.MainMenuController;
 import controllers.UserController;
 import factories.AdministratorFactory;
 import factories.RepresentativeFactory;
@@ -9,7 +7,6 @@ import factories.UserFactory;
 import main.CAR;
 import models.*;
 import views.CreateAccountView;
-import views.MainMenuView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,7 +63,7 @@ public class DatabaseAdapter {
         boolean found = false;
         UserModel user = null;
         try {
-            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), "utf-8");
+            Scanner sc = new Scanner(new File("./src/main/resources/users.csv"), StandardCharsets.UTF_8);
             String line;
             String[] split;
             while (sc.hasNextLine() && !found) {
@@ -89,7 +86,6 @@ public class DatabaseAdapter {
                             break;
                         }
                     }
-                    //user = uf.getUser(split);
                     found = true;
                 }
             }
@@ -358,7 +354,7 @@ public class DatabaseAdapter {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), "utf-8");
+            Scanner input = new Scanner(new File("./src/main/resources/activeRentals.csv"), StandardCharsets.UTF_8);
             input.nextLine();
             String line;
 
