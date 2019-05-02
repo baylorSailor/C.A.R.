@@ -2,6 +2,9 @@ package factories;
 
 import models.UserModel;
 
+/**
+ * Factory class for creating users
+ */
 public class UserFactory extends AbstractUserFactory {
     private static UserFactory singleton = null;
 

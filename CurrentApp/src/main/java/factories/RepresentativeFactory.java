@@ -4,7 +4,7 @@ import models.RepresentativeModel;
 import models.UserModel;
 
 /**
- * Factory class for creating administrators
+ * Factory class for creating Representatives
  */
 public class RepresentativeFactory extends AbstractUserFactory {
     private static RepresentativeFactory singleton = null;

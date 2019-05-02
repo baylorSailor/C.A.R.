@@ -22,6 +22,9 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Main class that runs the application
+ */
 public class CAR {
 
     public static final Logger logger = java.util.logging.Logger.getLogger("CARLog");
