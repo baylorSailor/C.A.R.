@@ -242,8 +242,28 @@ public class DatabaseAdapter {
         }
         // Add all cars
         for (CarModel c : arrayList) {
-            writeCar(c);
+            if(verifyCar(c)) {
+                writeCar(c);
+            }
         }
+    }
+
+    /**
+     * Verifies that a car isn't empty
+     *
+     * @param c the CarModel to be checked for being empty
+     */
+    public static boolean verifyCar(CarModel c) {
+        String [] arr = c.toStringArray();
+        boolean ret = true;
+        for(int i = 0; i < 15; i++) {
+            if(arr[i].equals("0")) {
+                ret = false;
+            } else {
+                ret = true;
+            }
+        }
+        return ret;
     }
 
     /**
@@ -449,6 +469,11 @@ public class DatabaseAdapter {
         return CarList;
     }
 
+    /**
+     * Loads the initial cars in the CSV into a list
+     *
+     * @return the CarModel array containing an initial set of cars
+     */
     public static CarModel[] loadInitialSearch() {
         List<CarModel> arrayListCars = new ArrayList<>();
 

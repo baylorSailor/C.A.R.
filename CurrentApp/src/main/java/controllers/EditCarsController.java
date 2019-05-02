@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 public class EditCarsController {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
-    private EditCarsView editCarsView = null;
     private EditCarsTableModel model = null;
     private JTable jtCars = null;
+    private EditCarsView editCarsView = null;
 
     /**
      * Reads in cars from the database
@@ -28,6 +28,8 @@ public class EditCarsController {
         editCarsView = new EditCarsView(jtCars);
 
         saveButtonPressed();
+        addCarButtonPressed();
+        removeCarButtonPressed();
     }
 
     /**
@@ -37,7 +39,28 @@ public class EditCarsController {
         editCarsView.getBtSave().addActionListener(e -> {
             log.log(Level.INFO,"Save button clicked");
             DatabaseAdapter.writeAllCars(model.getRows());
+        });
+    }
 
+    /**
+     * Add car button pressed status
+     */
+    private void addCarButtonPressed() {
+        editCarsView.getBtAddRow().addActionListener(e -> {
+            log.log(Level.INFO,"Add Car button clicked");
+            model.addRow();
+        });
+    }
+
+    /**
+     * Remove car button pressed status
+     */
+    private void removeCarButtonPressed() {
+        editCarsView.getBtRemoveRow().addActionListener(e -> {
+            log.log(Level.INFO,"Remove Car button clicked");
+            if(jtCars.getSelectedRow() > -1) {
+                model.delRow(jtCars.getSelectedRow());
+            }
         });
     }
 }

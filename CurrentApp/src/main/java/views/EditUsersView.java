@@ -26,7 +26,7 @@ public class EditUsersView extends JFrame {
         pnEditUsers.setBorder( BorderFactory.createTitledBorder( "Users" ) );
         pnEditUsers.setLayout( gbMainPanel );
 
-        //Active Rental Button
+        //Save Button
         btSave = new JButton( "Save"  );
         gbcMainPanel.gridx = 0;
         gbcMainPanel.gridy = 1;

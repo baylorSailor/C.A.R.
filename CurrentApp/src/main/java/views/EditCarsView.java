@@ -12,6 +12,8 @@ public class EditCarsView extends JFrame {
     private static Logger log = Logger.getLogger(CAR.class.getName());
     private JPanel pnEditCars;
     private JButton btSave;
+    private JButton btAddRow;
+    private JButton btRemoveRow;
 
     /**
      * Constructs the window for editing cars within the database
@@ -26,10 +28,36 @@ public class EditCarsView extends JFrame {
         pnEditCars.setBorder( BorderFactory.createTitledBorder( "Cars" ) );
         pnEditCars.setLayout( gbMainPanel );
 
-        //Active Rental Button
-        btSave = new JButton( "Save"  );
+        //Add Car Button
+        btAddRow = new JButton( "Add Car"  );
         gbcMainPanel.gridx = 0;
         gbcMainPanel.gridy = 1;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btAddRow, gbcMainPanel );
+        pnEditCars.add( btAddRow );
+
+        //Remove Car Button
+        btRemoveRow = new JButton( "Remove Car"  );
+        gbcMainPanel.gridx = 0;
+        gbcMainPanel.gridy = 3;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.CENTER;
+        gbMainPanel.setConstraints( btRemoveRow, gbcMainPanel );
+        pnEditCars.add( btRemoveRow );
+
+        //Save Button
+        btSave = new JButton( "Save"  );
+        gbcMainPanel.gridx = 0;
+        gbcMainPanel.gridy = 5;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
         gbcMainPanel.fill = GridBagConstraints.NONE;
@@ -57,5 +85,21 @@ public class EditCarsView extends JFrame {
      */
     public JButton getBtSave() {
         return btSave;
+    }
+
+    /**
+     * Gets the add Car button
+     * @return A button within the Edit Cars View
+     */
+    public JButton getBtAddRow() {
+        return btAddRow;
+    }
+
+    /**
+     * Gets the remove Car button
+     * @return A button within the Edit Cars View
+     */
+    public JButton getBtRemoveRow() {
+        return btRemoveRow;
     }
 }

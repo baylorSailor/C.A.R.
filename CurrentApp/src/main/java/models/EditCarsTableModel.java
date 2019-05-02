@@ -2,6 +2,7 @@ package models;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing a table model with editable properties
@@ -218,6 +219,27 @@ public class EditCarsTableModel extends AbstractTableModel {
             }
         }
         fireTableCellUpdated(r,c);
+    }
+
+    /**
+     * Adds a new editable row
+     */
+    public void addRow() {
+        List<String> arrayList = new ArrayList<>();
+        for(int i = 0; i < getColumnCount(); i++) {
+            arrayList.add("0");
+        }
+        String[] arr = arrayList.toArray(new String[0]);
+        rows.add(new CarModel(arr));
+        fireTableRowsInserted(getRowCount()-1,getRowCount()-1);
+    }
+
+    /**
+     * Removes a row
+     */
+    public void delRow(int index) {
+        rows.remove(index);
+        fireTableRowsDeleted(index,index);
     }
 
     /**

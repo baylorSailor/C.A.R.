@@ -9,6 +9,7 @@ import controllers.UserController;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
+import models.RepresentativeModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -253,9 +254,10 @@ public class MainMenuView extends JFrame {
         gbMainPanel.setConstraints( btEditCars, gbcMainPanel );
         pnMainPanel.add( btEditCars );
         btEditCars.setVisible(false);
-        //if(UserController.getUser() instanceof RepresentativeModel) {
+        if(UserController.getUser() instanceof RepresentativeModel ||
+            UserController.getUser()instanceof AdministratorModel) {
             btEditCars.setVisible(true);
-        //}
+        }
 
         //Logout Button
         btLogout = new JButton( "Logout"  );
