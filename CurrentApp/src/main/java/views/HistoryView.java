@@ -26,7 +26,6 @@ public class HistoryView extends JFrame {
      * Constructs the window for rental history
      */
     public HistoryView() {
-
         // Set Layout
         super( "View History" );
         log.log(Level.INFO,"History View has been instantiated");
