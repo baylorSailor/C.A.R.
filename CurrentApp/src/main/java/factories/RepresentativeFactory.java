@@ -1,9 +1,10 @@
 package factories;
 
+import models.RepresentativeModel;
 import models.UserModel;
 
 /**
- * Factory class for creating administrators
+ * Factory class for creating Representatives
  */
 public class RepresentativeFactory extends AbstractUserFactory {
     private static RepresentativeFactory singleton = null;
@@ -14,8 +15,16 @@ public class RepresentativeFactory extends AbstractUserFactory {
      * @return the representative
      */
     public UserModel getUser(String[] data) {
-        return null;
-        //return new RepresentativeModel(data[0], data[1], data[2], data[3], data[4], data[5]);
+        return new RepresentativeModel(data[0], data[1], data[2], data[3], data[4], data[5]);
+    }
+
+    /**
+     * Makes a user with given data, using flyweight design pattern
+     * @param data
+     * @return
+     */
+    public UserModel makeUser(String[] data){
+        return super.makeUser(data);
     }
 
     /**

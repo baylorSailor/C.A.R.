@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Window for EditUsers
+ */
 public class EditUsersView extends JFrame {
 
     private static Logger log = Logger.getLogger(CAR.class.getName());
@@ -26,7 +29,7 @@ public class EditUsersView extends JFrame {
         pnEditUsers.setBorder( BorderFactory.createTitledBorder( "Users" ) );
         pnEditUsers.setLayout( gbMainPanel );
 
-        //Active Rental Button
+        //Save Button
         btSave = new JButton( "Save"  );
         gbcMainPanel.gridx = 0;
         gbcMainPanel.gridy = 1;

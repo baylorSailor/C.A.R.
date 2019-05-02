@@ -8,6 +8,7 @@ import views.HistoryView;
 import views.MainMenuView;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
@@ -33,7 +34,8 @@ public class MainMenuController {
     private ActiveRentalsView activeRentalsView = null;
     private AccountDetailsController accountDetailsController = null;
     private HelpController helpController = null;
-    private Integer carListPosition = 0;
+    private EditUsersController editUsersController = null;
+    private EditCarsController editCarsController = null;
 
     /**
      * Starts the controller for the buttons
@@ -55,6 +57,7 @@ public class MainMenuController {
         transmissionSelected();
         interiorColorSelected();
         editUsersButtonPressed();
+        editCarsButtonPressed();
     }
 
     /**
@@ -63,70 +66,54 @@ public class MainMenuController {
     private void refreshButtonPressed() {
         mainMenuView.getBtRefresh().addActionListener(e -> {
             log.log(Level.INFO,"Refresh button clicked");
+            mainMenuView.carListPosition = 0;
             boolean match = true;
             List<CarModel> retList = new ArrayList<>();
+            String[] searches = new String[7];
+
+            searches[0] = mainMenuView.getCmbMake().getSelectedItem().
+                    toString();
+            searches[1] = mainMenuView.getCmbModel().getSelectedItem().
+                    toString();
+            searches[2] = mainMenuView.getCmbYear().getSelectedItem().
+                    toString();
+            searches[3] = mainMenuView.getCmbType().getSelectedItem().
+                    toString();
+            searches[4] = mainMenuView.getCmbTrans().getSelectedItem().
+                    toString();
+            searches[5] = mainMenuView.getCmbInterior().getSelectedItem().
+                    toString();
+            searches[6] = mainMenuView.getCmbExterior().getSelectedItem().
+                    toString();
+            String search;
+            StringBuilder searchBuild = new StringBuilder();
+
+            for(int i = 0; i < 7 && !searches[i].equals("-"); i++) {
+                searchBuild.append(searches[i]);
+            }
+
+            search = searchBuild.toString();
+
             CarModel[] fullList = mainMenuView.getCarList();
-            for(int i = 0; i < fullList.length && match; i++) {
-                if(!mainMenuView.getCmbMake().getSelectedItem().equals("-")) {
+            for(int i = 0; i < fullList.length; i++) {
+                String carString = fullList[i].searchString();
 
-                    if(fullList[i].getMake().equals(mainMenuView.getCmbMake().getSelectedItem())) {
-
-                        if(!mainMenuView.getCmbModel().getSelectedItem().equals("-")) {
-
-                            if(fullList[i].getModel().equals(mainMenuView.getCmbModel().getSelectedItem())) {
-
-                                if(!mainMenuView.getCmbYear().getSelectedItem().equals("-")) {
-
-                                    if(fullList[i].getYear().toString().equals(mainMenuView.getCmbYear().getSelectedItem())) {
-
-                                        if(!mainMenuView.getCmbType().getSelectedItem().equals("-")) {
-
-                                            if(fullList[i].getType().equals(mainMenuView.getCmbType().getSelectedItem())) {
-
-                                                if(!mainMenuView.getCmbTrans().getSelectedItem().equals("-")) {
-
-                                                    if(fullList[i].getTransmission().equals(mainMenuView.getCmbTrans().getSelectedItem())) {
-
-                                                        if(!mainMenuView.getCmbInterior().getSelectedItem().equals("-")) {
-
-                                                            if(fullList[i].getInterior().equals(mainMenuView.getCmbInterior())) {
-
-                                                                if(!mainMenuView.getCmbExterior().getSelectedItem().equals("-") &&
-                                                                        !fullList[i].getExterior().equals(mainMenuView.getCmbExterior().getSelectedItem())) {
-
-                                                                    match = false;
-                                                                }
-                                                            } else {
-                                                                match = false;
-                                                            }
-                                                        }
-                                                    } else {
-                                                        match = false;
-                                                    }
-                                                }
-                                            } else {
-                                                match = false;
-                                            }
-                                        }
-                                    } else {
-                                        match = false;
-                                    }
-                                }
-                            } else {
-                                match = false;
-                            }
-                        }
-                    } else {
-                        match = false;
-                    }
+                if(!search.isEmpty() && !carString.contains(search)) {
+                    match = false;
                 }
 
                 if(match) {
-                    if(fullList[i].getMileage() < mainMenuView.getSdMileage().getValue()) {
+                    if(fullList[i].getMileage() <
+                            mainMenuView.getSdMileage().getValue()) {
                         match = false;
                     }
 
-                    if(match && fullList[i].getMpgCombined() < mainMenuView.getSdMPG().getValue()) {
+                    if(match && fullList[i].getMpgCombined() <
+                            mainMenuView.getSdMPG().getValue()) {
+                        match = false;
+                    }
+
+                    if(match && fullList[i].getState() != 0) {
                         match = false;
                     }
                 }
@@ -205,8 +192,19 @@ public class MainMenuController {
     private void editUsersButtonPressed() {
         mainMenuView.getBtEditUsers().addActionListener(e -> {
             log.log(Level.INFO,"Edit Users button clicked");
-            EditUsersController editUsersController = new EditUsersController();
+            editUsersController = new EditUsersController();
             editUsersController.start();
+        });
+    }
+
+    /**
+     * Adds action listener for the edit cars button
+     */
+    private void editCarsButtonPressed() {
+        mainMenuView.getBtEditCars().addActionListener(e -> {
+            log.log(Level.INFO,"Edit Cars button clicked");
+            editCarsController = new EditCarsController();
+            editCarsController.start();
         });
     }
 
@@ -234,6 +232,14 @@ public class MainMenuController {
                 helpController.destroy();
                 helpController = null;
             }
+            if(editUsersController != null) {
+                editUsersController.destroy();
+                editUsersController = null;
+            }
+            if(editCarsController != null) {
+                editCarsController.destroy();
+                editCarsController = null;
+            }
             new UserController().start();
         });
     }
@@ -254,60 +260,32 @@ public class MainMenuController {
      */
     private void addRentalButtonPressed() {
         mainMenuView.getBtAddRental().addActionListener(e -> {
-            //if the car is not already in active rentals then do all this
-            //else then don't add it unless we want duplicates
-            boolean failFlag = false;
-
             log.log(Level.INFO,"Add Rental button clicked");
 
             String username = UserController.getUser().getUsername();
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-            Date dt = new Date();
+            Date dt = mainMenuView.datesArray[mainMenuView.getCmbDate().getSelectedIndex()];
             String date = df.format(dt);
-            String mk = (String)(mainMenuView.getCmbMake().getSelectedItem());
-            String mo = (String)(mainMenuView.getCmbModel().getSelectedItem());
-            String yr = (String)(mainMenuView.getCmbYear().getSelectedItem());
-            String tp = (String)(mainMenuView.getCmbType().getSelectedItem());
-            String tr = (String)(mainMenuView.getCmbTrans().getSelectedItem());
-            String intc = (String)(mainMenuView.getCmbInterior().getSelectedItem());
-            String ext = (String)(mainMenuView.getCmbExterior().getSelectedItem());
-            String mil = username + "," + date + "," + mk + "," + mo + "," + yr + "\n";
+            JOptionPane.showMessageDialog(null,
+                    "[" + mainMenuView.getSearchList()[mainMenuView.carListPosition].getMake()
+                            + " " + mainMenuView.getSearchList()[mainMenuView.carListPosition].getModel()
+                            + " " + mainMenuView.getSearchList()[mainMenuView.carListPosition].getYear() + "] has been added to your active rentals.",
+                    "Car Added",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
+            CarModel car = mainMenuView.getSearchList()[mainMenuView.carListPosition];
+            car.setState(2);
+            DatabaseAdapter.updateCar(car,car);
+            mainMenuView.setCarList(DatabaseAdapter.loadAllCars());
+            mainMenuView.getBtRefresh().doClick();
             try {
-                if (mk.equals("-") || mo.equals("-") || yr.equals("-") || tp.equals("-")
-                        || tr.equals("-") || intc.equals("-") || ext.equals("-")) {
-                    failFlag = true;
-                }
-            } catch (NullPointerException p){
-                log.log(Level.SEVERE,p.getMessage());
-            }
-            if(!failFlag) {
-                JOptionPane.showMessageDialog(null,
-                        "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
-                        "Car Added",JOptionPane.INFORMATION_MESSAGE,DatabaseAdapter.getIcon());
-            } else {
-                JOptionPane.showMessageDialog(null,"None " +
-                        "of the fields can be left blank","ERROR",JOptionPane.ERROR_MESSAGE,
-                        DatabaseAdapter.getIcon());
-            }
-            //testing
-//            JOptionPane.showMessageDialog(null,
-//                    "[" + mk + " " + mo + yr + "] has been added to your active rentals.",
-//                    "Confirmation",
-//                    JOptionPane.INFORMATION_MESSAGE,
-//                    icon);
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
+                        true));
 
-            // Add selected car to Active Rentals (Write to csv file)
-            try {
-                if(!failFlag) {
-                    BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/activeRentals.csv",
-                            true));
+                bw.write(username + "," + date + "," +
+                        mainMenuView.getSearchList()[mainMenuView.carListPosition].getMake() + "," +
+                        mainMenuView.getSearchList()[mainMenuView.carListPosition].getModel() + "," +
+                        mainMenuView.getSearchList()[mainMenuView.carListPosition].getYear() + "\n");
+                bw.close();
 
-                    bw.write(username + "," + date + "," + mk + "," + mo + "," + yr + "\n");
-                    bw.close();
-                } else {
-                    //display a jpane that tells them they could not enter that car b/c it was empty
-                    log.log(Level.SEVERE,"Active rental could not be written to Database b/c fields were left empty");
-                }
             }catch(IOException ee) {
                 log.log(Level.SEVERE,ee.getMessage());
             }
@@ -320,7 +298,12 @@ public class MainMenuController {
     private void leftArrowButtonPressed() {
         mainMenuView.getBtLeftButton().addActionListener(e -> {
             log.log(Level.INFO,"Left arrow button clicked");
-            //TODO Implement left arrow
+            if(mainMenuView.carListPosition == 0) {
+                mainMenuView.carListPosition = mainMenuView.getSearchList().length-1;
+            } else {
+                mainMenuView.carListPosition--;
+            }
+            mainMenuView.updateSearch();
         });
     }
 
@@ -330,7 +313,12 @@ public class MainMenuController {
     private void rightArrowButtonPressed() {
         mainMenuView.getBtRightButton().addActionListener(e -> {
             log.log(Level.INFO,"Right arrow button clicked");
-            //TODO Implement right arrow
+            if(mainMenuView.carListPosition == mainMenuView.getSearchList().length-1) {
+                mainMenuView.carListPosition = 0;
+            } else {
+                mainMenuView.carListPosition++;
+            }
+            mainMenuView.updateSearch();
         });
     }
 

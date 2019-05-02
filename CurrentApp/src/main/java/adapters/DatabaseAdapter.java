@@ -86,7 +86,6 @@ public class DatabaseAdapter {
                             break;
                         }
                     }
-                    //user = uf.getUser(split);
                     found = true;
                 }
             }
@@ -123,6 +122,30 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Write the car to a CSV
+     *
+     * @param u the car to write
+     */
+    public static boolean writeCar(CarModel u) {
+        if (verifySyntax(u.toStringArray())) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter("./src/main/resources/vehiclesSmall.csv",
+                        true));
+                String level;
+                bw.write(u.toString() + "\n");
+                bw.close();
+                return true;
+            } catch (IOException e) {
+                log.log(Level.SEVERE, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot write " + u.toString() +
+                    " as it contains a comma.", "ERROR", JOptionPane.ERROR_MESSAGE, icon);
+        }
+        return false;
+    }
+
+    /**
      * Write the user to a CSV
      *
      * @param u the user to write
@@ -135,9 +158,9 @@ public class DatabaseAdapter {
                 String level;
                 if (u instanceof AdministratorModel) {
                     level = "1";
-                }
-               //TODO Add Representative
-                else {
+                } else if( u instanceof RepresentativeModel) {
+                    level = "2";
+                } else {
                     level = "0";
                 }
                 bw.write(u.getFullname() + "," + u.getUsername() + "," + u.getEmail() + "," +
@@ -181,6 +204,31 @@ public class DatabaseAdapter {
     }
 
     /**
+     * Update the car in CSV
+     *
+     * @param newCar the new car to be written
+     * @param oldCar the old car
+     */
+    public static void updateCar(CarModel oldCar, CarModel newCar) {
+        try {
+            File file = new File("./src/main/resources/vehiclesSmall.csv");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line, originalLine = "";
+            while ((line = reader.readLine()) != null) {
+                originalLine += line + '\n';
+            }
+            reader.close();
+
+            String newtext = originalLine.replaceAll(oldCar.getPrice() + "," + oldCar.getMileage() + "(.*)", newCar.toString());
+            FileWriter writer = new FileWriter("./src/main/resources/vehiclesSmall.csv");
+            writer.write(newtext);
+            writer.close();
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+    }
+
+    /**
      * Writes all the users in an ArrayList to CSV
      *
      * @param arrayList the list containing UserModels
@@ -196,8 +244,46 @@ public class DatabaseAdapter {
         // Add all users
         for (UserModel u : arrayList) {
             writeUser(u);
-
         }
+    }
+
+    /**
+     * Writes all the cars in an ArrayList to CSV
+     *
+     * @param arrayList the list containing CarModels
+     */
+    public static void writeAllCars(ArrayList<CarModel> arrayList) {
+        // Erase all cars
+        try {
+            FileWriter erase = new FileWriter("./src/main/resources/vehiclesSmall.csv");
+            erase.close();
+        } catch (IOException e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+        // Add all cars
+        for (CarModel c : arrayList) {
+            if(verifyCar(c)) {
+                writeCar(c);
+            }
+        }
+    }
+
+    /**
+     * Verifies that a car isn't empty
+     *
+     * @param c the CarModel to be checked for being empty
+     */
+    public static boolean verifyCar(CarModel c) {
+        String [] arr = c.toStringArray();
+        boolean ret = true;
+        for(int i = 0; i < 15; i++) {
+            if(arr[i].equals("0")) {
+                ret = false;
+            } else {
+                ret = true;
+            }
+        }
+        return ret;
     }
 
     /**
@@ -260,12 +346,15 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all HistoryModels read
      */
     public static ArrayList<HistoryModel> readHistory() {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
         try {
             String username = UserController.getUser().getUsername();
-            Scanner input = new Scanner(new File("./src/main/resources/UserPics/history.csv"), StandardCharsets.UTF_8);
+            Scanner input = new Scanner(new File("./src/main/resources/history.csv"), StandardCharsets.UTF_8);
+
             input.nextLine();
             String line;
 
@@ -287,6 +376,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all ActiveRentalModels read from file
      */
     public static ArrayList<ActiveRentalModel> readActiveRentals() {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
@@ -314,6 +405,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading users CSV
+     *
+     * @return the ArrayList of all UserModels read from the file
      */
     public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
@@ -335,9 +428,8 @@ public class DatabaseAdapter {
                         break;
                     }
                     case "2": {
-                        //userModelArrayList.add(new RepresentativeModel(data));
-                        //break;
-                        //TODO Implement Representative
+                        userModelArrayList.add(new RepresentativeModel(data));
+                        break;
                     }
                 }
             }
@@ -347,6 +439,31 @@ public class DatabaseAdapter {
             log.log(Level.SEVERE, e.getMessage());
         }
         return userModelArrayList;
+    }
+
+    /**
+     * Function for reading cars CSV
+     *
+     * @return the ArrayList of all CarModels read from the file
+     */
+    public static ArrayList<CarModel> readInCars() {
+        ArrayList<CarModel> carModelArrayList = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
+            String line;
+            input.nextLine();
+            while (input.hasNextLine()) {
+                line = input.nextLine();
+                System.out.println(line);
+                String[] data = line.split(",");
+                carModelArrayList.add(new CarModel(data));
+            }
+            log.log(Level.INFO, "cars.csv was loaded properly");
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, e.getMessage());
+        }
+        return carModelArrayList;
     }
 
     /**
@@ -366,6 +483,38 @@ public class DatabaseAdapter {
                 line = sc.nextLine();
                 split = line.split(",");
                 if (split.length == 16) {
+                    arrayListCars.add(new CarModel(split));
+                }
+            }
+            log.log(Level.INFO, "Vehicle list was loaded properly");
+        } catch (IOException a) {
+            log.log(Level.SEVERE, a.getMessage());
+        }
+
+        CarModel[] modelArray = new CarModel[arrayListCars.size()];
+        arrayListCars.toArray(modelArray);
+        CarList = modelArray;
+
+        return CarList;
+    }
+
+    /**
+     * Loads the initial cars in the CSV into a list
+     *
+     * @return the CarModel array containing an initial set of cars
+     */
+    public static CarModel[] loadInitialSearch() {
+        List<CarModel> arrayListCars = new ArrayList<>();
+
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
+            String line;
+            String[] split;
+            sc.nextLine();
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 16 && split[15].equals("0")) {
                     arrayListCars.add(new CarModel(split));
                 }
             }

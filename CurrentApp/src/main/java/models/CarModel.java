@@ -109,7 +109,7 @@ public class CarModel {
         this.interior = data[12];
         this.exterior = data[13];
         this.imageID = data[14];
-        this.state = AVAILABLE;
+        this.state = Integer.parseInt(data[15]);
     }
 
     /**
@@ -133,7 +133,7 @@ public class CarModel {
     public CarModel(Integer price, Integer mileage, String make, String model,
                     String fuelType, Integer year, String type, String transmission,
                     Integer cylinders, Integer mpgCity, Integer mpgHighway, Integer mpgCombined,
-                    String interior, String exterior, String imageID) {
+                    String interior, String exterior, String imageID, Integer state) {
         this.price = price;
         this.mileage = mileage;
         this.make = make;
@@ -149,7 +149,7 @@ public class CarModel {
         this.interior = interior;
         this.exterior = exterior;
         this.imageID = imageID;
-        this.state = AVAILABLE;
+        this.state = state;
     }
 
     /**
@@ -161,6 +161,39 @@ public class CarModel {
                 fuelType + "," + year + "," + type + "," + transmission +
                 "," + cylinders + "," + mpgCity + "," + mpgHighway + "," +
                 mpgCombined + "," + interior + "," + exterior + "," + imageID + "," + state;
+    }
+
+    /**
+     * Creates a search string of the car attributes
+     * @return partial string representation of a car object
+     */
+    public String searchString() {
+        return make + model + year + type + transmission + interior + exterior;
+    }
+
+    /**
+     * Creates a string array containing all given attributes of a car
+     * @return a string array with all given attributes of a car
+     */
+    public String[] toStringArray() {
+        String[]strings = new String[16];
+        strings[0] = price.toString();
+        strings[1] = mileage.toString();
+        strings[2] = make;
+        strings[3] = model;
+        strings[4] = fuelType;
+        strings[5] = year.toString();
+        strings[6] = type;
+        strings[7] = transmission;
+        strings[8] = cylinders.toString();
+        strings[9] = mpgCity.toString();
+        strings[10] = mpgHighway.toString();
+        strings[11] = mpgCombined.toString();
+        strings[12] = interior;
+        strings[13] = exterior;
+        strings[14] = imageID;
+        strings[15] = state.toString();
+        return strings;
     }
 
     /**

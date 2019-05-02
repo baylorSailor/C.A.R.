@@ -83,11 +83,9 @@ public class EditUsersTableModel extends AbstractTableModel {
                 if(rows.get(rowIndex) instanceof AdministratorModel) {
                     return "Admin";
                 }
-//                else if(rows.get(rowIndex) instanceof RepresentativeModel) {
-//                    return "2";
-//                }
-                //TODO Implement Representative Role here
-                else {
+                else if(rows.get(rowIndex) instanceof RepresentativeModel) {
+                    return "Rep";
+                } else {
                     return "User";
                 }
             }
@@ -140,12 +138,9 @@ public class EditUsersTableModel extends AbstractTableModel {
             case 6 : {
                 if(o.toString().equals("Admin")) {
                     rows.set(r,new AdministratorModel(rows.get(r)));
-                }
-//                else if(rows.get(r).toString().equals("Rep")) {
-//                    rows.set(r,new RepresentativeModel(rows.get(r)));
-//                }
-                //TODO Implement Representative Role here
-                else if(o.toString().equals("User")) {
+                } else if(rows.get(r).toString().equals("Rep")) {
+                    rows.set(r,new RepresentativeModel(rows.get(r)));
+                } else if(o.toString().equals("User")) {
                     rows.set(r,new UserModel(rows.get(r)));
                 }
                 break;

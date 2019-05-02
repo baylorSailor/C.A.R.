@@ -9,6 +9,7 @@ import controllers.UserController;
 import main.CAR;
 import models.AdministratorModel;
 import models.CarModel;
+import models.RepresentativeModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -40,6 +41,7 @@ public class MainMenuView extends JFrame {
     private JButton btActiveRentals;
     private JButton btAccountDetails;
     private JButton btEditUsers;
+    private JButton btEditCars;
     private JButton btLogout;
     private JButton btHelp;
     private JButton btAddRental;
@@ -68,6 +70,9 @@ public class MainMenuView extends JFrame {
     private JComboBox cmbInterior;
     private JComboBox cmbExterior;
 
+    public Date[] datesArray = new Date[7];
+    public Integer carListPosition = 0;
+
     /**
      * Constructs main window screen
      */
@@ -87,7 +92,7 @@ public class MainMenuView extends JFrame {
 
         gbcMainPanel.gridx = 6;
         gbcMainPanel.gridy = 10;
-        gbcMainPanel.gridwidth = 16;
+        gbcMainPanel.gridwidth = 18;
         gbcMainPanel.gridheight = 10;
         gbcMainPanel.fill = GridBagConstraints.BOTH;
         gbcMainPanel.weightx = 1;
@@ -97,9 +102,8 @@ public class MainMenuView extends JFrame {
         pnMainPanel.add( pnSearchResults );
 
         //Test label in the main window
-        //TODO Make this work
         CarList = DatabaseAdapter.loadAllCars();
-        SearchList = CarList;
+        SearchList = DatabaseAdapter.loadInitialSearch();
         JLabel test = new JLabel( "<html>Make: " + SearchList[0].getMake() +
                 "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
                 SearchList[0].getYear().toString() + "<br/>Type: " +
@@ -124,20 +128,18 @@ public class MainMenuView extends JFrame {
 
         BufferedImage picture = null;
         try {
-            //if car name == TT display audi photo
-            //System.out.println(SearchList[0].getModel());
-            picture = ImageIO.read(new File("./src/main/resources/CarPics/dfa0e17.jpg"));
-            picture = resize(picture,150,300);
+            picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
+                    SearchList[0].getImageID() + ".jpg"));
         } catch(IOException e) {
             log.log(Level.SEVERE,e.getMessage());
             try {
                 picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
-                picture = resize(picture,150,300);
             } catch(IOException ee) {
                 log.log(Level.SEVERE,ee.getMessage());
             }
 
         } finally {
+            picture = resize(picture,150,300);
             lbPicture = new JLabel(new ImageIcon(picture));
             gbcSearchResults.gridx = 13;
             gbcSearchResults.gridy = 5;
@@ -157,6 +159,8 @@ public class MainMenuView extends JFrame {
         Font f = lbLoggedInAs.getFont();
         if(UserController.getUser() instanceof AdministratorModel) {
             lbLoggedInAs.setForeground(Color.red);
+        } else if(UserController.getUser() instanceof RepresentativeModel) {
+            lbLoggedInAs.setForeground(Color.pink);
         }
         lbLoggedInAs.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         gbcMainPanel.gridx = 1;
@@ -240,9 +244,27 @@ public class MainMenuView extends JFrame {
             btEditUsers.setVisible(true);
         }
 
+        //Edit Vehicles Button
+        btEditCars = new JButton( "Edit Cars"  );
+        gbcMainPanel.gridx = 18;
+        gbcMainPanel.gridy = 9;
+        gbcMainPanel.gridwidth = 2;
+        gbcMainPanel.gridheight = 1;
+        gbcMainPanel.fill = GridBagConstraints.NONE;
+        gbcMainPanel.weightx = 0;
+        gbcMainPanel.weighty = 0;
+        gbcMainPanel.anchor = GridBagConstraints.NORTH;
+        gbMainPanel.setConstraints( btEditCars, gbcMainPanel );
+        pnMainPanel.add( btEditCars );
+        btEditCars.setVisible(false);
+        if(UserController.getUser() instanceof RepresentativeModel ||
+            UserController.getUser()instanceof AdministratorModel) {
+            btEditCars.setVisible(true);
+        }
+
         //Logout Button
         btLogout = new JButton( "Logout"  );
-        gbcMainPanel.gridx = 18;
+        gbcMainPanel.gridx = 20;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 2;
         gbcMainPanel.gridheight = 1;
@@ -255,7 +277,7 @@ public class MainMenuView extends JFrame {
 
         //Help Button
         btHelp = new JButton( "Help"  );
-        gbcMainPanel.gridx = 20;
+        gbcMainPanel.gridx = 22;
         gbcMainPanel.gridy = 9;
         gbcMainPanel.gridwidth = 0;
         gbcMainPanel.gridheight = 0;
@@ -549,11 +571,11 @@ public class MainMenuView extends JFrame {
 
         //Add to date picker
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        String[] dates = new String[7];
+        String [] dates = new String[7];
         for(int i = 0; i < 7; i++) {
-            calendar.add(Calendar.DATE,i);
-            Date today = calendar.getTime();
-            String str = today.toString();
+            calendar.add(Calendar.DATE,1);
+            datesArray[i] = calendar.getTime();
+            String str = datesArray[i].toString();
             str = str.substring(0,10);
             dates[i] = str;
         }
@@ -607,25 +629,45 @@ public class MainMenuView extends JFrame {
      * Updates the Search Pane based on criteria provided
      */
     public void updateSearch() {
-        JPanel oldPanel = pnSearchResults;
         pnSearchResults.removeAll();
         JLabel test;
 
         if(SearchList.length == 0) {
             test = new JLabel("NO MATCHING CARS! :(");
         } else {
-            test = new JLabel("<html>Make: " + SearchList[0].getMake() +
-                    "<br/>Model: " + SearchList[0].getModel() + "<br/>Year: " +
-                    SearchList[0].getYear().toString() + "<br/>Type: " +
-                    SearchList[0].getType() + "<br/>Transmission: " +
-                    SearchList[0].getTransmission() +
+            test = new JLabel("<html>Make: " + SearchList[carListPosition].getMake() +
+                    "<br/>Model: " + SearchList[carListPosition].getModel() + "<br/>Year: " +
+                    SearchList[carListPosition].getYear().toString() + "<br/>Type: " +
+                    SearchList[carListPosition].getType() + "<br/>Transmission: " +
+                    SearchList[carListPosition].getTransmission() +
                     "&#160 &#160 &#160 &#160 &#160 &#160" + // Add spacing
-                    "<br/>Miles: " + SearchList[0].getMileage().toString() +
-                    "<br/>Avg MPG: " + SearchList[0].getMpgCombined() +
-                    "<br/>Interior: " + SearchList[0].getInterior() +
-                    "<br/>Exterior: " + SearchList[0].getExterior() + "</html>");
+                    "<br/>Miles: " + SearchList[carListPosition].getMileage().toString() +
+                    "<br/>Avg MPG: " + SearchList[carListPosition].getMpgCombined() +
+                    "<br/>Interior: " + SearchList[carListPosition].getInterior() +
+                    "<br/>Exterior: " + SearchList[carListPosition].getExterior() + "</html>");
         }
         pnSearchResults.add(test);
+
+        BufferedImage picture = null;
+        try {
+            String imageID = SearchList[carListPosition].getImageID();
+            picture = ImageIO.read(new File("./src/main/resources/CarPics/" +
+                    imageID + ".jpg"));
+        } catch(IOException e) {
+            log.log(Level.SEVERE,e.getMessage());
+            try {
+                picture = ImageIO.read(new File("./src/main/resources/sample_car.png"));
+            } catch(IOException ee) {
+                log.log(Level.SEVERE,ee.getMessage());
+            }
+
+        } finally {
+            picture = resize(picture,150,300);
+            lbPicture = new JLabel(new ImageIcon(picture));
+            test.setHorizontalAlignment(SwingConstants.RIGHT);
+            pnSearchResults.add(lbPicture);
+        }
+
         pnSearchResults.revalidate();
         pnSearchResults.repaint();
     }
@@ -660,6 +702,14 @@ public class MainMenuView extends JFrame {
      */
     public JButton getBtAccountDetails() {
         return btAccountDetails;
+    }
+
+    /**
+     * Button for edit cars
+     * @return A button for edit cars
+     */
+    public JButton getBtEditCars() {
+        return btEditCars;
     }
 
     /**
@@ -751,6 +801,14 @@ public class MainMenuView extends JFrame {
     }
 
     /**
+     * ComboBox for the selected date
+     * @return A ComboBox for the selected date
+     */
+    public JComboBox getCmbDate() {
+        return cmbDate;
+    }
+
+    /**
      * JSlider for the selected mileage
      * @return A JSlider for the selected mileage
      */
@@ -789,12 +847,27 @@ public class MainMenuView extends JFrame {
         return CarList;
     }
 
+    /** Sets CarModel list for searching
+     * @param carList the Car List to be set
+     */
+    public static void setCarList(CarModel[] carList) {
+        CarList = carList;
+    }
+
     /**
      * Sets the SearchList containing CarModels
      * @param searchList An array containing CarModels
      */
     public void setSearchList(CarModel[] searchList) {
         SearchList = searchList;
+    }
+
+    /**
+     * Gets the SearchList containing CarModels
+     * @return An array containing CarModels
+     */
+    public static CarModel[] getSearchList() {
+        return SearchList;
     }
 
     /**

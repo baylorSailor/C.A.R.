@@ -2,6 +2,9 @@ package factories;
 
 import models.UserModel;
 
+/**
+ * Factory class for creating users
+ */
 public class UserFactory extends AbstractUserFactory {
     private static UserFactory singleton = null;
 
@@ -24,5 +27,14 @@ public class UserFactory extends AbstractUserFactory {
         }
 
         return singleton;
+    }
+
+    /**
+     * Makes a user with given data, using flyweight design pattern
+     * @param data
+     * @return
+     */
+    public UserModel makeUser(String[] data){
+        return super.makeUser(data);
     }
 }
