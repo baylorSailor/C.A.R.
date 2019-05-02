@@ -321,6 +321,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all HistoryModels read
      */
     public static ArrayList<HistoryModel> readHistory() {
         ArrayList<HistoryModel> historyModelArrayList = new ArrayList<>();
@@ -348,6 +350,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading history CSV
+     *
+     * @return the ArrayList of all ActiveRentalModels read from file
      */
     public static ArrayList<ActiveRentalModel> readActiveRentals() {
         ArrayList<ActiveRentalModel> activeRentals = new ArrayList<>();
@@ -375,6 +379,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading users CSV
+     *
+     * @return the ArrayList of all UserModels read from the file
      */
     public static ArrayList<UserModel> readInUsers() {
         ArrayList<UserModel> userModelArrayList = new ArrayList<>();
@@ -411,6 +417,8 @@ public class DatabaseAdapter {
 
     /**
      * Function for reading cars CSV
+     *
+     * @return the ArrayList of all CarModels read from the file
      */
     public static ArrayList<CarModel> readInCars() {
         ArrayList<CarModel> carModelArrayList = new ArrayList<>();
