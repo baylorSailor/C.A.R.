@@ -109,7 +109,7 @@ public class CarModel {
         this.interior = data[12];
         this.exterior = data[13];
         this.imageID = data[14];
-        this.state = AVAILABLE;
+        this.state = Integer.parseInt(data[15]);
     }
 
     /**
@@ -133,7 +133,7 @@ public class CarModel {
     public CarModel(Integer price, Integer mileage, String make, String model,
                     String fuelType, Integer year, String type, String transmission,
                     Integer cylinders, Integer mpgCity, Integer mpgHighway, Integer mpgCombined,
-                    String interior, String exterior, String imageID) {
+                    String interior, String exterior, String imageID, Integer state) {
         this.price = price;
         this.mileage = mileage;
         this.make = make;
@@ -149,7 +149,7 @@ public class CarModel {
         this.interior = interior;
         this.exterior = exterior;
         this.imageID = imageID;
-        this.state = AVAILABLE;
+        this.state = state;
     }
 
     /**

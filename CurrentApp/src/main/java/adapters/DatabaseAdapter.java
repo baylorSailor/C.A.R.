@@ -381,6 +381,33 @@ public class DatabaseAdapter {
         return CarList;
     }
 
+    public static CarModel[] loadInitialSearch() {
+        List<CarModel> arrayListCars = new ArrayList<>();
+
+        try {
+            Scanner sc = new Scanner(new File("./src/main/resources/vehiclesSmall.csv"), StandardCharsets.UTF_8);
+            String line;
+            String[] split;
+            sc.nextLine();
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                split = line.split(",");
+                if (split.length == 16 && split[15].equals("0")) {
+                    arrayListCars.add(new CarModel(split));
+                }
+            }
+            log.log(Level.INFO, "Vehicle list was loaded properly");
+        } catch (IOException a) {
+            log.log(Level.SEVERE, a.getMessage());
+        }
+
+        CarModel[] modelArray = new CarModel[arrayListCars.size()];
+        arrayListCars.toArray(modelArray);
+        CarList = modelArray;
+
+        return CarList;
+    }
+
     /**
      * Loads all the makes in the vehicle list
      *

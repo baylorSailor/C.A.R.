@@ -108,6 +108,10 @@ public class MainMenuController {
                             mainMenuView.getSdMPG().getValue()) {
                         match = false;
                     }
+
+                    if(match && fullList[i].getState() != 0) {
+                        match = false;
+                    }
                 }
 
                 if(!match) {
