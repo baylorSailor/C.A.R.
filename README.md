@@ -6,7 +6,7 @@ Car Aggregate Reformed, or C.A.R. for short, is a car rental app that allows you
 
 ## Getting Started
 
-In order to use our application, you will need a version of Java installed on your computer. You can download our up-to-date .JAR file here: ...
+In order to use our application, you will need a version of Java installed on your computer. You can download our up-to-date .JAR file on our website under "Application (JAR)"
 
 ## Running the Application
 
