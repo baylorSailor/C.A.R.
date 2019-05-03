@@ -16,6 +16,7 @@ Once Java is installed, you may either open the .JAR file by double clicking it 
 
 * [IDEA](https://www.jetbrains.com/idea/) - A Java IDE
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [FindBugs](https://plugins.jetbrains.com/plugin/3847-findbugs-idea) - Static Byte Code Analysis in Java
 
 ## Authors
 
